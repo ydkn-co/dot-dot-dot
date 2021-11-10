@@ -2,6 +2,9 @@ name: Continuous Integration and Deployment
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 env:
   CI: true
@@ -82,3 +85,30 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+
+  deploy:
+    name: Deploy - GitHub Pages
+    needs: [cache-keys, build, test-unit]
+    if: |
+      always() &&
+      github.ref == 'refs/heads/main' &&
+      (needs.test-a11y.result == 'success' || needs.test-a11y.result == 'skipped') &&
+      (needs.test-unit.result == 'success' || needs.test-unit.result == 'skipped')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Get cached build
+        uses: actions/cache@v2
+        with:
+          path: |
+            dist
+          key: ${{ needs.cache-keys.outputs.build }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
