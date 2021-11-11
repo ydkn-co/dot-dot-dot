@@ -21,6 +21,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "identity-obj-proxy": "^3.0.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
@@ -34,6 +35,8 @@
     "@storybook/addon-essentials": "^6.4.0-beta.31",
     "@storybook/addon-links": "^6.4.0-beta.31",
     "@storybook/react": "^6.4.0-beta.31",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
