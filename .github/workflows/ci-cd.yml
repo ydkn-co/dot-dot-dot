@@ -45,15 +45,20 @@ jobs:
             node_modules
           key: ${{ needs.cache-keys.outputs.node-modules }}
 
-      - name: Setup node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.21.0
+
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: lts/fermium
-          cache: npm
+          cache: pnpm
 
       - if: steps.cache-node-modules.outputs.cache-hit != 'true'
         name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
   build:
     name: Build
@@ -63,6 +68,11 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.21.0
 
       - name: Get cached dependencies
         uses: actions/cache@v2
@@ -82,7 +92,7 @@ jobs:
 
       - if: steps.cached-build.outputs.cache-hit != 'true'
         name: Build
-        run: npm run build
+        run: pnpm run build
 
   test-unit:
     name: Test – Unit
@@ -93,6 +103,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.21.0
+
       - name: Get cached dependencies
         uses: actions/cache@v2
         with:
@@ -101,7 +116,7 @@ jobs:
           key: ${{ needs.cache-keys.outputs.node-modules }}
 
       - name: Run unit tests
-        run: npm run test
+        run: pnpm run test
 
   deploy:
     name: Deploy
@@ -115,6 +130,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.21.0
 
       - name: Get cached build
         uses: actions/cache@v2
