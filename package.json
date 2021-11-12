@@ -83,6 +83,6 @@
     "*.json": "npm run fix:json",
     "*.{css,scss}": "npm run fix:styles",
     "*.{js,ts,tsx}": "npm run fix:scripts",
-    ".*rc.{js}": "npm run fix:configs"
+    ".*rc.js": "npm run fix:configs"
   }
 }
