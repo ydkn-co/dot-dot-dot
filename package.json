@@ -10,11 +10,11 @@
     "lint:scripts": "eslint . --ext js,ts,tsx",
     "lint:styles": "stylelint ./src/**/*.{css,scss,sass}",
     "fix": "run-p fix:*",
-    "fix:configs": "npm run lint:configs -- --fix",
-    "fix:json": "npm run lint:json -- --fix",
-    "fix:scripts": "npm run lint:scripts -- --fix",
-    "fix:styles": "npm run lint:styles --fix",
-    "preinstall": "npx npm-force-resolutions",
+    "fix:configs": "pnpm run lint:configs -- --fix",
+    "fix:json": "pnpm run lint:json -- --fix",
+    "fix:scripts": "pnpm run lint:scripts -- --fix",
+    "fix:styles": "pnpm run lint:styles --fix",
+    "preinstall": "npx only-allow pnpm",
     "serve": "vite preview",
     "test": "jest --config .jestrc.js",
     "prepare": "husky install"
@@ -68,9 +68,13 @@
     "vite": "^2.6.4"
   },
   "lint-staged": {
-    "*.json": "npm run fix:json",
-    "*.{css,scss}": "npm run fix:styles",
-    "*.{js,ts,tsx}": "npm run fix:scripts",
-    ".*rc.js": "npm run fix:configs"
+    "*.json": "pnpm run fix:json",
+    "*.{css,scss}": "pnpm run fix:styles",
+    "*.{js,ts,tsx}": "pnpm run fix:scripts",
+    ".*rc.js": "pnpm run fix:configs"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=6"
   }
 }
