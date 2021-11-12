@@ -1,0 +1,13 @@
+{
+  "game": {
+    "controlButtonText": {
+      "pause": "Pause",
+      "play": "Play"
+    },
+    "statusDescription": {
+      "new": "Press the play button to start the game.",
+      "paused": "Press the play button to play the game.",
+      "playing": "Press the pause button to pause the game."
+    }
+  }
+}

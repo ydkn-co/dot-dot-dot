@@ -8,12 +8,14 @@ specifiers:
   '@testing-library/jest-dom': ^5.15.0
   '@testing-library/react': ^12.1.2
   '@types/jest': ^27.0.2
+  '@types/prop-types': ^15.7.4
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@typescript-eslint/eslint-plugin': ^5.3.1
   '@typescript-eslint/parser': ^5.3.1
   '@vitejs/plugin-react': ^1.0.0
   babel-loader: ^8.2.3
+  classnames: ^2.3.1
   eslint: ^7.32.0
   eslint-config-standard: ^16.0.3
   eslint-plugin-import: ^2.25.3
@@ -28,13 +30,16 @@ specifiers:
   eslint-plugin-sort-keys-fix: ^1.1.2
   eslint-plugin-typescript-sort-keys: ^2.0.0
   husky: ^7.0.4
+  i18next: ^21.4.2
   identity-obj-proxy: ^3.0.0
   jest: ^27.3.1
   lint-staged: ^11.2.6
   normalize.css: ^8.0.1
   npm-run-all: ^4.1.5
+  prop-types: ^15.7.2
   react: ^17.0.0
   react-dom: ^17.0.0
+  react-i18next: ^11.14.2
   sass: ^1.43.4
   stylelint: ^14.0.1
   stylelint-config-recommended: ^6.0.0
@@ -47,10 +52,14 @@ specifiers:
   vite: ^2.6.4
 
 dependencies:
+  classnames: 2.3.1
+  i18next: 21.4.2
   identity-obj-proxy: 3.0.0
   normalize.css: 8.0.1
+  prop-types: 15.7.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-i18next: 11.14.2_i18next@21.4.2+react@17.0.2
 
 devDependencies:
   '@babel/core': 7.16.0
@@ -60,6 +69,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.15.0
   '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
   '@types/jest': 27.0.2
+  '@types/prop-types': 15.7.4
   '@types/react': 17.0.34
   '@types/react-dom': 17.0.11
   '@typescript-eslint/eslint-plugin': 5.3.1_4daca2483796bdceece3758b04dba2a1
@@ -493,7 +503,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.9
-    dev: true
 
   /@babel/template/7.16.0:
     resolution: {integrity: sha512-MnZdpFD/ZdYhXwiunMqqgyZyucaYsbL0IrjoGjaVhGilz+x8YB++kRfygSOIj1yOtWKPlx7NBp+9I1RQSgsd5A==}
@@ -1714,6 +1723,10 @@ packages:
   /cjs-module-lexer/1.2.2:
     resolution: {integrity: sha512-cOU9usZw8/dXIXKtwa8pM0OTJQuJkxMN6w30csNRUerHfeQ5R6U3kkU/FtJeIf3M202OHfY2U8ccInBG7/xogA==}
     dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -3006,6 +3019,12 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
   /html-tags/3.1.0:
     resolution: {integrity: sha512-1qYz89hW3lFDEazhjW0yVAV87lw8lVkrJocr72XmBkMKsoSVJCQx3W8BXsC7hO2qAt8BoVjYjtAcZ9perqGnNg==}
     engines: {node: '>=8'}
@@ -3042,6 +3061,12 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
     dev: true
+
+  /i18next/21.4.2:
+    resolution: {integrity: sha512-vVWsmTnZNdYHPLt01MvT5YNM2lxec2R6r5T72J89eaazp8XQnGSqA66O+a918qqmjHZGB6HHRSs02xp753he9g==}
+    dependencies:
+      '@babel/runtime': 7.16.3
+    dev: false
 
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -4658,7 +4683,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /psl/1.8.0:
     resolution: {integrity: sha512-RIdOzyoavK+hA18OGGWDqUTsCLhtA7IcZ/6NCs4fFJaHBDab+pDDmDIByWFRQJq2Cd7r1OoQxBGKOaztq+hjIQ==}
@@ -4689,9 +4713,20 @@ packages:
       scheduler: 0.20.2
     dev: false
 
+  /react-i18next/11.14.2_i18next@21.4.2+react@17.0.2:
+    resolution: {integrity: sha512-fmDhwNA0zDmSEL3BBT5qwNMvxrKu25oXDDAZyHprfB0AHZmWXfBmRLf8MX8i1iBd2I2C2vsA2D9wxYBIwzooEQ==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+    dependencies:
+      '@babel/runtime': 7.16.3
+      html-parse-stringify: 3.0.1
+      i18next: 21.4.2
+      react: 17.0.2
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
@@ -4782,7 +4817,6 @@ packages:
 
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
-    dev: true
 
   /regexp.prototype.flags/1.3.1:
     resolution: {integrity: sha512-JiBdRBq91WlY7uRJ0ds7R+dU02i6LKi8r3BuQhNXn+kmeLN+EfHhfjqMRis1zJxnlu88hq/4dx0P2OP3APRTOA==}
@@ -5618,6 +5652,11 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /vscode-json-languageservice/4.1.9:
     resolution: {integrity: sha512-kxNHitUy2fCxmP6vAp0SRLrUSuecUYzzxlC+85cC3jJlFHWmvtCJOzikC+kcUnIdls9fQSB8n0yHs8Sl6taxJw==}
