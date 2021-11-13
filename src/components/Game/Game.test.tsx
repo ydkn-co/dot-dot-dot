@@ -1,6 +1,5 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
-import { render } from '../../utils/testing'
 import Game from '.'
 
 describe('<Game />', () => {
