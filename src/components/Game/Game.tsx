@@ -8,6 +8,7 @@ import { ReactComponent as Play } from '../../assets/play.svg'
 import { GameStatus } from '.'
 import ControlButton from './ControlButton'
 import styles from './Game.module.scss'
+import Settings from './Settings'
 
 const isPlayable = (gameStatus: GameStatus) => [
   GameStatus.Paused,
@@ -33,7 +34,7 @@ const Game: React.FC<GameProps> = (props) => {
         className,
         styles.Game,
         {
-          [styles.Game__IsActive]: isActive(gameStatus)
+          [styles['Game--active']]: isActive(gameStatus)
         }
       )}
     >
@@ -74,6 +75,10 @@ const Game: React.FC<GameProps> = (props) => {
             />
           )}
         </div>
+
+        <Settings
+          className={styles.Settings}
+        />
       </div>
     </div>
   )

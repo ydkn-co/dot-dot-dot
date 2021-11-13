@@ -4,12 +4,13 @@
   cursor: pointer;
   display: grid;
   padding: 20px;
+  width: 60px;
 }
 
 .Icon {
-  display: inline-block;
+  display: block;
   height: auto;
-  width: 20px;
+  width: 100%;
 
   * {
     fill: #333;

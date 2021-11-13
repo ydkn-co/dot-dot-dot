@@ -4,8 +4,14 @@
   },
   "game": {
     "controlButtonText": {
-      "pause": "Pause",
-      "play": "Play"
+      "pause": "Pause game",
+      "play": "Play game"
+    },
+    "settings": {
+      "closed": "Close settings",
+      "difficultyLabel": "Choose a difficulty",
+      "heading": "Settings",
+      "opened": "Open settings"
     }
   }
 }

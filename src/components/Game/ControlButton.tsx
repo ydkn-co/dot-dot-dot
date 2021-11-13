@@ -26,9 +26,9 @@ const ControlButton: React.FC<
       {...rest}
     >
       <Icon
-        aria-hidden={true}
         className={styles.Icon}
         focusable={false}
+        role="presentation"
       />
     </button>
   )
