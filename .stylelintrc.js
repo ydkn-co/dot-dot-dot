@@ -28,6 +28,7 @@ module.exports = {
       {
         resolveNestedSelectors: true
       }
-    ]
+    ],
+    'selector-max-id': 1
   }
 }

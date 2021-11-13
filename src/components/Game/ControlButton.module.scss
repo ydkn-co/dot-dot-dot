@@ -1,0 +1,17 @@
+.Button {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  padding: 20px;
+}
+
+.Icon {
+  display: inline-block;
+  height: auto;
+  width: 20px;
+
+  * {
+    fill: #333;
+  }
+}

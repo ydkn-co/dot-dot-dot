@@ -22,11 +22,16 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
       - id: build
-        run: echo "::set-output name=hash::${{ hashFiles('src/**', '**/package.json', '**/package-lock.json') }}"
+        run: echo "::set-output name=hash::${{ hashFiles('src/**', '**/package.json', '**/pnpm-lock.yaml') }}"
 
       - id: node-modules
-        run: echo "::set-output name=hash::${{ hashFiles('**/package-lock.json') }}"
+        run: echo "::set-output name=hash::${{ hashFiles('**/pnpm-lock.yaml') }}"
 
   install-dependencies:
     name: Install dependencies
@@ -44,6 +49,11 @@ jobs:
           path: |
             node_modules
           key: ${{ needs.cache-keys.outputs.node-modules }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -68,6 +78,11 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -103,6 +118,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -130,6 +150,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2

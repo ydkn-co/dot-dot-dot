@@ -1,0 +1,11 @@
+{
+  "app": {
+    "name": "Dot Dot Dot"
+  },
+  "game": {
+    "controlButtonText": {
+      "pause": "Pause",
+      "play": "Play"
+    }
+  }
+}
