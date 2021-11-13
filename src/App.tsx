@@ -8,7 +8,9 @@ const App: React.FC = () => {
     <div
       className={styles.App}
     >
-      <Game />
+      <Game
+        className={styles.Game}
+      />
     </div>
   )
 }

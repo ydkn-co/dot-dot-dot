@@ -12,11 +12,6 @@ export interface Translation {
       pause: string;
       play: string;
     }
-    statusDescription: {
-      new: string;
-      paused: string;
-      playing: string;
-    }
   }
 }
 

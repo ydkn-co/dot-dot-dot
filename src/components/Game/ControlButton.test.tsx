@@ -1,46 +1,44 @@
 import { render, screen } from '@testing-library/react'
 
+import { ReactComponent as Icon } from '../../assets/play.svg'
 import ControlButton from './ControlButton'
 
 describe('<ControlButton />', () => {
   test('icon is rendered', async () => {
-    const icon = (
-      <span
-        data-testid="svg"
-      >
-        Bar
-      </span>
-    )
+    const labelText = 'Foo'
 
     render(
       <ControlButton
-        icon={icon}
-        text='Foo'
+        Icon={Icon}
+        text={labelText}
       />
     )
 
     const anscestor = screen.getByTestId('control-button')
-    const descendant = screen.getByTestId('svg')
+    const descendant = screen.getByLabelText(labelText)
+
     expect(anscestor).toContainElement(descendant)
   })
 
-  test('text is rendered', async () => {
+  test('button is accessible for screen readers', async () => {
     const text = 'Foo'
     render(
       <ControlButton
-        icon={<></>}
+        Icon={Icon}
         text={text}
       />
     )
-    expect(screen.getByTestId('control-button')).toHaveTextContent(text)
+    expect(
+      screen.getByTestId('control-button')
+    ).toHaveAttribute('aria-label', text)
   })
 
   test('styles are extensible', async () => {
     const className = 'foo'
     render(
       <ControlButton
+        Icon={Icon}
         className={className}
-        icon={<></>}
         text="Foo"
       />
     )
