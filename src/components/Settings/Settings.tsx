@@ -1,20 +1,12 @@
-import cx from 'classnames'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ReactComponent as SettingsIcon } from '../../assets/settings.svg'
 // eslint-disable-next-line max-len
 import useVisibilityAnimationClassModifier from '../../hooks/useVisibilityAnimationClassModifier'
-import ControlButton from './ControlButton'
-import styles from './Settings.module.scss'
+import { Button, Form, Heading, Wrapper } from './elements'
 
-interface SettingsProps {
-  className?: string;
-}
-
-const Settings: React.FC<SettingsProps> = (props) => {
-  const { className } = props
-
+const Settings: React.FC = () => {
   const { t } = useTranslation()
 
   const pane = useVisibilityAnimationClassModifier({
@@ -55,17 +47,11 @@ const Settings: React.FC<SettingsProps> = (props) => {
   }
 
   return (
-    <div
-      className={cx(
-        className,
-        styles.Settings
-      )}
-    >
-      <ControlButton
+    <Wrapper>
+      <Button
         Icon={SettingsIcon}
         aria-expanded={pane.isVisible}
         aria-haspopup="true"
-        className={styles.ToggleButton}
         data-testid="settings-btn"
         onClick={handleSettingsClick}
         text={
@@ -75,22 +61,16 @@ const Settings: React.FC<SettingsProps> = (props) => {
         }
       />
 
-      <form
-        className={cx(
-          styles.Pane,
-          // eslint-disable-next-line security/detect-object-injection
-          styles[`Pane${pane.cssClassModifier}`]
-        )}
+      <Form
+        data-modifier={pane.cssClassModifier}
         data-testid="settings-form"
+        modifier={pane.cssClassModifier}
         onBlur={handleBlur}
         onSubmit={handleSubmit}
       >
-        <h1
-          className={styles.heading}
-          id="settings"
-        >
+        <Heading>
           {t('game.settings.heading')}
-        </h1>
+        </Heading>
 
         <input
           type="range"
@@ -106,8 +86,8 @@ const Settings: React.FC<SettingsProps> = (props) => {
         >
           {t('game.settings.save')}
         </button>
-      </form>
-    </div>
+      </Form>
+    </Wrapper>
   )
 }
 

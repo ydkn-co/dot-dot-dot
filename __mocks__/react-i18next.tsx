@@ -3,6 +3,6 @@ export const useTranslation = () => {
     i18n: {
       changeLanguage: () => new Promise(() => jest.fn())
     },
-    t: (str) => str
+    t: (str: string) => str
   }
 }

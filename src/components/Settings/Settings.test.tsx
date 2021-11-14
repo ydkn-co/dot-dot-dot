@@ -42,14 +42,14 @@ describe('<Settings />', () => {
 
     test('clicking the settings button again closes the settings', () => {
       const settingsForm = screen.getByTestId('settings-form')
-      expect(settingsForm).toHaveClass('Pane--animatingIn')
+      expect(settingsForm).toHaveAttribute('data-modifier', '--animatingIn')
       fireEvent.click(settingsBtn)
-      expect(settingsForm).toHaveClass('Pane--animatingOut')
+      expect(settingsForm).toHaveAttribute('data-modifier', '--animatingOut')
     })
 
     xtest('pressing the escape button closes the settings', () => {
       const settingsForm = screen.getByTestId('settings-form')
-      expect(settingsForm).toHaveClass('Pane--animatingIn')
+      expect(settingsForm).toHaveAttribute('data-modifier', '--animatingIn')
 
       if (settingsForm.parentNode) {
         fireEvent.keyDown(
@@ -62,12 +62,12 @@ describe('<Settings />', () => {
           }
         )
 
-        expect(settingsForm).toHaveClass('Pane--animatingOut')
+        expect(settingsForm).toHaveAttribute('data-modifier', '--animatingOut')
       } else {
         fail('Parent node not found')
       }
 
-      expect(settingsForm).toHaveClass('Pane--animatingOut')
+      expect(settingsForm).toHaveAttribute('data-modifier', '--animatingOut')
     })
   })
 })

@@ -4,8 +4,16 @@ import svgPlugin from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  esbuild: {
+    jsxFactory: 'jsx',
+    jsxInject: 'import { jsx } from \'@emotion/react\''
+  },
   plugins: [
     svgPlugin(),
-    react()
+    react({
+      babel: {
+        plugins: ['@emotion/babel-plugin']
+      }
+    })
   ]
 })

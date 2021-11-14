@@ -20,6 +20,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "classnames": "^2.3.1",
     "i18next": "^21.4.2",
     "identity-obj-proxy": "^3.0.0",
@@ -32,6 +34,8 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/eslint-parser": "^7.16.3",
+    "@emotion/babel-plugin": "^11.3.0",
+    "@emotion/jest": "^11.5.0",
     "@swc/core": "^1.2.108",
     "@swc/jest": "^0.2.5",
     "@testing-library/jest-dom": "^5.15.0",
