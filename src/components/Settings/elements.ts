@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   background: #3f72d3;
   border-radius: 50%;
   justify-content: center;
-  padding: 5px;
+padding: 5px;
   position: absolute;
   right: 0;
   transform: translate(-50%, -50%);

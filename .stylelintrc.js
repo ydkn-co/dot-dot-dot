@@ -3,10 +3,11 @@ const path = require('path')
 
 module.exports = {
   configBasedir: path.resolve(__dirname),
+  customSyntax: '@stylelint/postcss-css-in-js',
   defaultSeverity: 'warning',
   extends: [
     'stylelint-config-recommended',
-    'stylelint-config-sass-guidelines',
+    'stylelint-config-styled-components',
     'stylelint-config-standard'
   ],
   plugins: [
