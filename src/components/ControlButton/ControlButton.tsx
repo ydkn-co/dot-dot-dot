@@ -1,8 +1,7 @@
-import cx from 'classnames'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import styles from './ControlButton.module.scss'
+import { Button, iconStyles } from './elements'
 
 interface ButtonProps {
   Icon: React.FC<React.SVGProps<SVGSVGElement> & { title?: string }>;
@@ -13,24 +12,21 @@ interface ButtonProps {
 const ControlButton: React.FC<
   ButtonProps & React.HTMLAttributes<HTMLButtonElement>
 > = (props) => {
-  const { text, className, Icon, ...rest } = props
+  const { className, Icon, text, ...rest } = props
 
   return (
-    <button
+    <Button
       aria-label={text}
-      className={cx(
-        className,
-        styles.Button
-      )}
+      className={className}
+      css={iconStyles}
       data-testid="control-button"
       {...rest}
     >
       <Icon
-        aria-hidden={true}
-        className={styles.Icon}
         focusable={false}
+        role="presentation"
       />
-    </button>
+    </Button>
   )
 }
 

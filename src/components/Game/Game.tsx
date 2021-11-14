@@ -1,86 +1,41 @@
-import cx from 'classnames'
-import PropTypes from 'prop-types'
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ReactComponent as Pause } from '../../assets/pause.svg'
-import { ReactComponent as Play } from '../../assets/play.svg'
+import Board from '../Board'
+import Controls from '../Controls'
+import Logo from '../Logo'
+import Settings from '../Settings'
 import { GameStatus } from '.'
-import ControlButton from './ControlButton'
-import styles from './Game.module.scss'
-
-const isPlayable = (gameStatus: GameStatus) => [
-  GameStatus.Paused,
-  GameStatus.New
-].includes(gameStatus)
-
-const isPausible = (gameStatus: GameStatus) => gameStatus === GameStatus.Playing
+import { BottomPane, TopPane, Wrapper } from './elements'
 
 const isActive = (gameStatus: GameStatus) => gameStatus !== GameStatus.New
 
-interface GameProps {
-  className?: string;
-}
-
-const Game: React.FC<GameProps> = (props) => {
-  const { className } = props
+const Game: React.FC = () => {
   const [gameStatus, setGameStatus] = React.useState<GameStatus>(GameStatus.New)
   const { t } = useTranslation()
 
   return (
-    <div
-      className={cx(
-        className,
-        styles.Game,
-        {
-          [styles.Game__IsActive]: isActive(gameStatus)
-        }
-      )}
+    <Wrapper
+      isActive={isActive(gameStatus)}
     >
-      <div
-        className={styles.Board}
-      >
+      <Board />
 
-      </div>
-
-      <div
-        className={styles.TopPane}
+      <TopPane
         data-testid="status-description"
       >
-        <h1>{t('app.name')}</h1>
-      </div>
+        <Logo>{t('app.name')}</Logo>
+      </TopPane>
 
-      <div
-        className={styles.BottomPane}
-      >
-        <div
-          className={styles.Controls}
-        >
-          {isPlayable(gameStatus) && (
-            <ControlButton
-              Icon={Play}
-              data-testid="play-btn"
-              onClick={() => setGameStatus(GameStatus.Playing)}
-              text={t('game.controlButtonText.play')}
-            />
-          )}
+      <BottomPane>
+        <Controls
+          gameStatus={gameStatus}
+          setGameStatus={setGameStatus}
+        />
 
-          {isPausible(gameStatus) && (
-            <ControlButton
-              Icon={Pause}
-              data-testid="pause-btn"
-              onClick={() => setGameStatus(GameStatus.Paused)}
-              text={t('game.controlButtonText.pause')}
-            />
-          )}
-        </div>
-      </div>
-    </div>
+        <Settings />
+      </BottomPane>
+    </Wrapper>
   )
-}
-
-Game.propTypes = {
-  className: PropTypes.string
 }
 
 export default Game
