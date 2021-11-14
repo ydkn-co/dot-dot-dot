@@ -13,7 +13,7 @@ interface ButtonProps {
 const ControlButton: React.FC<
   ButtonProps & React.HTMLAttributes<HTMLButtonElement>
 > = (props) => {
-  const { text, className, Icon, ...rest } = props
+  const { className, Icon, text, ...rest } = props
 
   return (
     <button

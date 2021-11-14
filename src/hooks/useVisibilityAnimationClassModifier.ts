@@ -8,6 +8,7 @@ interface HookProps {
 const useVisibilityAnimationClassModifier = (props: HookProps) : {
   cssClassModifier: string,
   isVisible: boolean,
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>,
   toggleIsVisible: () => void
 } => {
   const [isFirstRender, setIsFirstRender] = React.useState(true)
@@ -64,6 +65,7 @@ const useVisibilityAnimationClassModifier = (props: HookProps) : {
   return {
     cssClassModifier,
     isVisible,
+    setIsVisible,
     toggleIsVisible
   }
 }

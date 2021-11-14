@@ -8,10 +8,12 @@
       "play": "Play game"
     },
     "settings": {
-      "closed": "Close settings",
+      "closed": "Open settings",
       "difficultyLabel": "Choose a difficulty",
       "heading": "Settings",
-      "opened": "Open settings"
+      "opened": "Close settings",
+      "reset": "Reset",
+      "save": "Save"
     }
   }
 }

@@ -14,15 +14,45 @@ interface SettingsProps {
 
 const Settings: React.FC<SettingsProps> = (props) => {
   const { className } = props
+
   const { t } = useTranslation()
-  const {
-    isVisible,
-    cssClassModifier,
-    toggleIsVisible
-  } = useVisibilityAnimationClassModifier({
+
+  const pane = useVisibilityAnimationClassModifier({
     duration: 200,
     isVisible: false
   })
+
+  const handleSettingsClick = () => {
+    pane.toggleIsVisible()
+  }
+
+  const closePane = () => {
+    pane.setIsVisible(false)
+    // Todo - set focus on setting button
+  }
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      closePane()
+      document.body.removeEventListener('keyup', handleKeyDown, false)
+    }
+  }
+
+  React.useEffect(() => {
+    document.body.addEventListener('keyup', handleKeyDown)
+  })
+
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      closePane()
+    }
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    closePane()
+  }
 
   return (
     <div
@@ -33,26 +63,27 @@ const Settings: React.FC<SettingsProps> = (props) => {
     >
       <ControlButton
         Icon={SettingsIcon}
-        aria-expanded={isVisible}
+        aria-expanded={pane.isVisible}
         aria-haspopup="true"
         className={styles.ToggleButton}
         data-testid="settings-btn"
-        onClick={toggleIsVisible}
+        onClick={handleSettingsClick}
         text={
-          isVisible
+          pane.isVisible
             ? t('game.settings.opened')
             : t('game.settings.closed')
         }
       />
 
-      <div
+      <form
         className={cx(
           styles.Pane,
           // eslint-disable-next-line security/detect-object-injection
-          styles[`Pane${cssClassModifier}`]
+          styles[`Pane${pane.cssClassModifier}`]
         )}
-        role="menu"
-        tabIndex={-1}
+        data-testid="settings-form"
+        onBlur={handleBlur}
+        onSubmit={handleSubmit}
       >
         <h1
           className={styles.heading}
@@ -60,10 +91,22 @@ const Settings: React.FC<SettingsProps> = (props) => {
         >
           {t('game.settings.heading')}
         </h1>
+
         <input
           type="range"
         />
-      </div>
+
+        <button
+          type="reset"
+        >
+          {t('game.settings.reset')}
+        </button>
+        <button
+          type="submit"
+        >
+          {t('game.settings.save')}
+        </button>
+      </form>
     </div>
   )
 }
