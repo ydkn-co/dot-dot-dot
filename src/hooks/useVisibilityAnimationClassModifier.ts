@@ -5,12 +5,16 @@ interface HookProps {
   isVisible?: boolean;
 }
 
-const useVisibilityAnimationClassModifier = (props: HookProps) : {
+export interface VisibilityAnimationClassModifier {
   cssClassModifier: string,
   isVisible: boolean,
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>,
   toggleIsVisible: () => void
-} => {
+}
+
+const useVisibilityAnimationClassModifier = (
+  props: HookProps
+) : VisibilityAnimationClassModifier => {
   const [isFirstRender, setIsFirstRender] = React.useState(true)
   const { duration, isVisible: isVisibleProp } = props
   const timeoutId = React.useRef<number | undefined>(undefined)

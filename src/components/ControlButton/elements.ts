@@ -1,5 +1,4 @@
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
+import styled, { css } from 'styled-components'
 
 export const Button = styled.button`
   border: 1px solid #fff;

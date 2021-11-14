@@ -1,6 +1,8 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook, RenderHookResult } from '@testing-library/react-hooks'
 
-import useVisibilityAnimationClassModifier from './useVisibilityAnimationClassModifier'
+import useVisibilityAnimationClassModifier, {
+  VisibilityAnimationClassModifier
+} from './useVisibilityAnimationClassModifier'
 
 describe('useVisibilityAnimationClassModifier()', () => {
   describe('returned `isVisible` variable', () => {
@@ -57,10 +59,10 @@ describe('useVisibilityAnimationClassModifier()', () => {
     const duration = 200
 
     describe('if default visibility is false', () => {
-      let renderedHook: any
+      let renderedHook: RenderHookResult<null, VisibilityAnimationClassModifier>
 
       beforeEach(() => {
-        renderedHook = renderHook(
+        renderedHook = renderHook<null, VisibilityAnimationClassModifier>(
           () => useVisibilityAnimationClassModifier({
             duration,
             isVisible: false
@@ -148,10 +150,10 @@ describe('useVisibilityAnimationClassModifier()', () => {
     })
 
     describe('if default visibility is true', () => {
-      let renderedHook: any
+      let renderedHook: RenderHookResult<null, VisibilityAnimationClassModifier>
 
       beforeEach(() => {
-        renderedHook = renderHook(
+        renderedHook = renderHook<null, VisibilityAnimationClassModifier>(
           () => useVisibilityAnimationClassModifier({
             duration,
             isVisible: true

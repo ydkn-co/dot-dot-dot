@@ -1,7 +1,5 @@
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
-import { ReactComponent as PauseSvg } from '../../assets/pause.svg'
-import { ReactComponent as PlaySvg } from '../../assets/play.svg'
 import ControlButton from '../ControlButton'
 
 export const Wrapper = styled.div`
