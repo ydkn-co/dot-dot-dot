@@ -1,16 +1,16 @@
 import * as React from 'react'
 
 import Game from '~/app/game'
-import { AppProvider } from '~/store'
+import { SettingsProvider } from '~/app/settings/store'
 
 import { Page } from './elements'
 
 const App: React.FC = () => (
-  <AppProvider>
+  <SettingsProvider>
     <Page>
       <Game />
     </Page>
-  </AppProvider>
+  </SettingsProvider>
 )
 
 export default App

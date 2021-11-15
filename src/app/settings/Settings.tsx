@@ -5,7 +5,6 @@ import { ReactComponent as CloseIcon } from '~/assets/close.svg'
 import { ReactComponent as SettingsIcon } from '~/assets/settings.svg'
 import NumberSlider from '~/components/NumberSlider'
 import usePresence from '~/hooks/usePresence'
-import { AppContext } from '~/store'
 
 import {
   Body,
@@ -17,6 +16,7 @@ import {
   SubmitButton,
   Wrapper
 } from './elements'
+import { useSettings } from './store'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
@@ -78,18 +78,15 @@ const Settings: React.FC = () => {
 
   /* ----- Form Handling Logic ----- */
 
-  const { state, dispatch } = React.useContext(AppContext)
-  const { settings } = state
+  const { settings, dispatch } = useSettings()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch({
       payload: {
-        settings: {
-          difficulty: 7
-        }
+        difficulty: 7
       },
-      type: 'UPDATE_SETTINGS'
+      type: '@SETTINGS/UPDATE'
     })
     closeSettings()
   }
