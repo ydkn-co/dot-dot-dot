@@ -1,17 +1,51 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Page = styled.div`
-  height: 100vh;
-  width: 100vw;
-`
-export const Board = styled.div`
-  background: #0d2d5e;
-  height: calc(100vh - 150px);
+const Pane = styled.div`
+  height: 50%;
   position: absolute;
-  top: 100px;
+  transform: translate3d(0, 0, 0);
+  transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
+  will-change: transform;
 `
 
-export const TopPane = styled.div``
+export const TopPane = styled(Pane)`
+  align-content: center;
+  background: #fff;
+  display: grid;
+  justify-items: center;
+  top: 0;
+`
 
-export const BottomPane = styled.div``
+export const BottomPane = styled(Pane)`
+  background: hsl(30deg 17% 98%);
+  border-top: 1px solid #ddd;
+  bottom: 0;
+`
+
+interface WrapperProps {
+  isActive: boolean;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
+  background: #fff;
+  box-shadow:
+    rgb(0 0 0 / 0%) 0 0 0 0,
+    rgb(0 0 0 / 0%) 0 0 0 0,
+    rgb(0 0 0 / 10%) 0 4px 6px -1px,
+    rgb(0 0 0 / 6%) 0 2px 4px -1px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  ${props => props.isActive && css`
+    ${TopPane} {
+      height: 100px;
+    }
+
+    ${BottomPane} {
+      height: 50px;
+    }
+  `}
+`

@@ -1,1 +1,3 @@
-export { default } from './Game'
+export { default as Board } from './Board'
+export { default as Controls } from './Controls'
+export * from './types'

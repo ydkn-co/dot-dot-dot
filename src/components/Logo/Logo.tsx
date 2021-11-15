@@ -1,17 +1,14 @@
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Wrapper } from './elements'
 
-interface LogoProps {
-  children?: React.ReactElement;
-}
-
-const Logo: React.FC<LogoProps> = (props) => {
-  const { children } = props
+const Logo: React.FC = () => {
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
-      {children}
+      {t('app.name')}
     </Wrapper>
   )
 }
