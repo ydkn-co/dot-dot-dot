@@ -78,27 +78,6 @@ export const Footer = styled.footer`
   padding: 40px;
 `
 
-export const Slider = styled.input`
-  appearance: none;
-  background: #d3d3d3;
-  border-radius: 2px;
-  height: 5px;
-  outline: none;
-  transition: opacity .2s;
-  width: 100%;
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    background: var(--ddd-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    height: 25px;
-    width: 25px;
-  }
-`
-
-export const Label = styled.label``
-
 const FormButton = styled.button`
   background: #fff;
   border: 1px solid var(--ddd-blue);

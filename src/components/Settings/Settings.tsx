@@ -4,21 +4,23 @@ import { useTranslation } from 'react-i18next'
 import { ReactComponent as CloseIcon } from '../../assets/close.svg'
 import { ReactComponent as SettingsIcon } from '../../assets/settings.svg'
 import usePresence from '../../hooks/usePresence'
+import { AppContext } from '../../store'
+import NumberSlider from '../NumberSlider'
 import {
   Body,
   Footer,
   Form,
   Heading,
-  Label,
   ResetButton,
   SettingsButton,
-  Slider,
   SubmitButton,
   Wrapper
 } from './elements'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
+
+  /* ----- Container Display Logic ----- */
 
   const presence = usePresence({
     duration: 200,
@@ -29,18 +31,18 @@ const Settings: React.FC = () => {
 
   React.useEffect(() => {
     switch (presence.status) {
-    case 'AnimatingIn':
-      setFormCssModifier('--animatingIn')
-      break
-    case 'AnimatingOut':
-      setFormCssModifier('--animatingOut')
-      break
-    case 'Visible':
-      setFormCssModifier('--visible')
-      break
-    case 'Hidden':
-      setFormCssModifier('')
-      break
+      case 'AnimatingIn':
+        setFormCssModifier('--animatingIn')
+        break
+      case 'AnimatingOut':
+        setFormCssModifier('--animatingOut')
+        break
+      case 'Visible':
+        setFormCssModifier('--visible')
+        break
+      case 'Hidden':
+        setFormCssModifier('')
+        break
     }
   }, [
     presence.status
@@ -55,6 +57,12 @@ const Settings: React.FC = () => {
     // Todo - set focus on setting button
   }
 
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      presence.hide()
+    }
+  }
+
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.preventDefault()
@@ -67,14 +75,21 @@ const Settings: React.FC = () => {
     document.body.addEventListener('keyup', handleKeyDown)
   })
 
-  const handleBlur = (e: React.FocusEvent) => {
-    if (!e.currentTarget.contains(e.relatedTarget)) {
-      presence.hide()
-    }
-  }
+  /* ----- Form Handling Logic ----- */
+
+  const { state, dispatch } = React.useContext(AppContext)
+  const { settings } = state
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    dispatch({
+      payload: {
+        settings: {
+          difficulty: 7
+        }
+      },
+      type: 'UPDATE_SETTINGS'
+    })
     closeSettings()
   }
 
@@ -105,18 +120,15 @@ const Settings: React.FC = () => {
             {t('game.settings.heading')}
           </Heading>
 
-          <Label
-            htmlFor="difficulty-input"
-          >
-            Difficulty
-          </Label>
+          {settings.difficulty}
 
-          <Slider
+          <NumberSlider
+            defaultValue={settings.difficulty}
             id="difficulty-input"
-            max="10"
-            min="1"
-            step="1"
-            type="range"
+            list={'difficulty-input-list'}
+            max={10}
+            min={1}
+            step={2}
           />
         </Body>
 
