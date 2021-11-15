@@ -28,6 +28,8 @@ body {
 }
 
 :root {
+  --ddd-blue: #3f72d3;
+
   --ddd-color-expressive-green-0: #fff;
   --ddd-color-expressive-green-1: #f5fbf9;
   --ddd-color-expressive-green-2: #e6f5f1;

@@ -1,32 +1,64 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { ReactComponent as CloseIcon } from '../../assets/close.svg'
 import { ReactComponent as SettingsIcon } from '../../assets/settings.svg'
-// eslint-disable-next-line max-len
-import useVisibilityAnimationClassModifier from '../../hooks/useVisibilityAnimationClassModifier'
-import { Button, Form, Heading, Wrapper } from './elements'
+import usePresence from '../../hooks/usePresence'
+import {
+  Body,
+  Footer,
+  Form,
+  Heading,
+  Label,
+  ResetButton,
+  SettingsButton,
+  Slider,
+  SubmitButton,
+  Wrapper
+} from './elements'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
 
-  const pane = useVisibilityAnimationClassModifier({
+  const presence = usePresence({
     duration: 200,
-    isVisible: false
+    initialVisibility: 'Hidden'
   })
 
+  const [formCssModifier, setFormCssModifier] = React.useState('')
+
+  React.useEffect(() => {
+    switch (presence.status) {
+    case 'AnimatingIn':
+      setFormCssModifier('--animatingIn')
+      break
+    case 'AnimatingOut':
+      setFormCssModifier('--animatingOut')
+      break
+    case 'Visible':
+      setFormCssModifier('--visible')
+      break
+    case 'Hidden':
+      setFormCssModifier('')
+      break
+    }
+  }, [
+    presence.status
+  ])
+
   const handleSettingsClick = () => {
-    pane.toggleIsVisible()
+    presence.toggle()
   }
 
-  const closePane = () => {
-    pane.setIsVisible(false)
+  const closeSettings = () => {
+    presence.hide()
     // Todo - set focus on setting button
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.preventDefault()
-      closePane()
+      closeSettings()
       document.body.removeEventListener('keyup', handleKeyDown, false)
     }
   }
@@ -37,55 +69,69 @@ const Settings: React.FC = () => {
 
   const handleBlur = (e: React.FocusEvent) => {
     if (!e.currentTarget.contains(e.relatedTarget)) {
-      closePane()
+      presence.hide()
     }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    closePane()
+    closeSettings()
   }
 
   return (
     <Wrapper>
-      <Button
-        Icon={SettingsIcon}
-        aria-expanded={pane.isVisible}
+      <SettingsButton
+        Icon={presence.isVisible ? CloseIcon : SettingsIcon}
+        aria-expanded={presence.isVisible}
         aria-haspopup="true"
         data-testid="settings-btn"
         onClick={handleSettingsClick}
         text={
-          pane.isVisible
+          presence.isVisible
             ? t('game.settings.opened')
             : t('game.settings.closed')
         }
       />
 
       <Form
-        data-modifier={pane.cssClassModifier}
+        data-modifier={formCssModifier}
         data-testid="settings-form"
-        modifier={pane.cssClassModifier}
+        modifier={formCssModifier}
         onBlur={handleBlur}
         onSubmit={handleSubmit}
       >
-        <Heading>
-          {t('game.settings.heading')}
-        </Heading>
+        <Body>
+          <Heading>
+            {t('game.settings.heading')}
+          </Heading>
 
-        <input
-          type="range"
-        />
+          <Label
+            htmlFor="difficulty-input"
+          >
+            Difficulty
+          </Label>
 
-        <button
-          type="reset"
-        >
-          {t('game.settings.reset')}
-        </button>
-        <button
-          type="submit"
-        >
-          {t('game.settings.save')}
-        </button>
+          <Slider
+            id="difficulty-input"
+            max="10"
+            min="1"
+            step="1"
+            type="range"
+          />
+        </Body>
+
+        <Footer>
+          <ResetButton
+            type="reset"
+          >
+            {t('game.settings.reset')}
+          </ResetButton>
+          <SubmitButton
+            type="submit"
+          >
+            {t('game.settings.save')}
+          </SubmitButton>
+        </Footer>
       </Form>
     </Wrapper>
   )
