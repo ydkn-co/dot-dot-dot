@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ReactComponent as CloseIcon } from '../../assets/close.svg'
-import { ReactComponent as SettingsIcon } from '../../assets/settings.svg'
-import usePresence from '../../hooks/usePresence'
-import { AppContext } from '../../store'
-import NumberSlider from '../NumberSlider'
+import { ReactComponent as CloseIcon } from '~/assets/close.svg'
+import { ReactComponent as SettingsIcon } from '~/assets/settings.svg'
+import NumberSlider from '~/components/NumberSlider'
+import usePresence from '~/hooks/usePresence'
+import { AppContext } from '~/store'
+
 import {
   Body,
   Footer,
@@ -128,7 +129,7 @@ const Settings: React.FC = () => {
             list={'difficulty-input-list'}
             max={10}
             min={1}
-            step={2}
+            step={1}
           />
         </Body>
 

@@ -18,6 +18,9 @@
     "skipLibCheck": false,
     "strict": true,
     "target": "ESNext",
+    "paths": {
+      "~*": ["./src/*"]
+    },
     "typeRoots": [
       "./node_modules/@types"
     ],

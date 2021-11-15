@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ReactComponent as PauseIcon } from '../../assets/pause.svg'
-import { ReactComponent as PlayIcon } from '../../assets/play.svg'
-import { GameStatus } from '../Game'
+import { GameStatus } from '~/app/game/types'
+import { ReactComponent as PauseIcon } from '~/assets/pause.svg'
+import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+
 import { PauseButton, PlayButton, Wrapper } from './elements'
 
 const isPlayable = (gameStatus: GameStatus) => [

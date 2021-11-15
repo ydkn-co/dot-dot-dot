@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 
-import { ReactComponent as Icon } from '../../assets/play.svg'
+import { ReactComponent as Icon } from '~/assets/play.svg'
+
 import ControlButton from './ControlButton'
 
 describe('<ControlButton />', () => {

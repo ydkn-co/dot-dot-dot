@@ -1,11 +1,11 @@
 import 'normalize.css'
 import './index.css'
-import './utils/i18n'
+import '~/utils/i18n'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './layouts/App'
+import App from '~/app'
 
 ReactDOM.render(
   <React.StrictMode>

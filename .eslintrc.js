@@ -127,6 +127,14 @@ module.exports = {
             '.ts',
             '.tsx'
           ]
+        },
+        'import/resolver': {
+          'eslint-import-resolver-custom-alias': {
+            alias: {
+              '~': './src'
+            },
+            extensions: ['.ts', '.tsx']
+          }
         }
       }
     }

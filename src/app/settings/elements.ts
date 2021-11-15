@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import ControlButton from '../ControlButton'
+import ControlButton from '~/app/game/ControlButton'
 
 export const Wrapper = styled.div`
   align-items: center;

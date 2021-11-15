@@ -1,7 +1,8 @@
 import * as React from 'react'
 
-import Game from '../../components/Game'
-import { AppProvider } from '../../store'
+import Game from '~/app/game'
+import { AppProvider } from '~/store'
+
 import { Page } from './elements'
 
 const App: React.FC = () => (
