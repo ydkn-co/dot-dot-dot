@@ -80,7 +80,6 @@
   },
   "lint-staged": {
     "*.json": "pnpm run fix:json",
-    "*.{css,scss}": "pnpm run fix:styles",
     "*.{js,ts,tsx}": "pnpm run fix:scripts",
     ".*rc.js": "pnpm run fix:configs"
   },
