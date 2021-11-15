@@ -30,8 +30,9 @@ const Controls: React.FC<ControlsProps> = (props) => {
           Icon={PlayIcon}
           data-testid="play-btn"
           onClick={() => setGameStatus(GameStatus.Playing)}
-          text={t('game.controlButtonText.play')}
-        />
+        >
+          {t('game.controlButtonText.play')}
+        </PlayButton>
       )}
 
       {isPausible(gameStatus) && (
@@ -39,8 +40,9 @@ const Controls: React.FC<ControlsProps> = (props) => {
           Icon={PauseIcon}
           data-testid="pause-btn"
           onClick={() => setGameStatus(GameStatus.Paused)}
-          text={t('game.controlButtonText.pause')}
-        />
+        >
+          {t('game.controlButtonText.pause')}
+        </PauseButton>
       )}
     </Wrapper>
   )

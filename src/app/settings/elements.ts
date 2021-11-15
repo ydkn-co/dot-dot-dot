@@ -1,30 +1,21 @@
 import styled, { css } from 'styled-components'
 
-import ControlButton from '~/app/game/ControlButton'
+import Button from '~/components/Button'
 
 export const Wrapper = styled.div`
-  align-items: center;
-  background: #3f72d3;
   border-radius: 50%;
-  justify-content: center;
-  padding: 5px;
   position: absolute;
   right: 0;
   transform: translate(-50%, -50%);
 `
 
-export const SettingsButton = styled(ControlButton)`
-  display: grid;
-  align-items: center;
-  justify-content: center;
+export const SettingsButton = styled(Button)`
+  border-width: 5px;
   padding: 10px;
-  height: 40px;
-  width: 40px;
+  grid-template-columns: max-content;
 
-  > svg {
-    display: block;
-    height: 20px;
-    width: 20px;
+  svg {
+    width: 18px;
   }
 `
 
@@ -78,13 +69,8 @@ export const Footer = styled.footer`
   padding: 40px;
 `
 
-const FormButton = styled.button`
-  background: #fff;
-  border: 1px solid var(--ddd-blue);
-  border-radius: 4px;
-  background: transparent;
-  padding: 8px 16px;
-  font-size: 14px;
+const FormButton = styled(Button)`
+  display: block;
 `
 
 export const SubmitButton = styled(FormButton)`
@@ -94,6 +80,5 @@ export const SubmitButton = styled(FormButton)`
 `
 
 export const ResetButton = styled(FormButton)`
-  background-color: #fff;
   border: 2px solid var(--ddd-blue);
 `

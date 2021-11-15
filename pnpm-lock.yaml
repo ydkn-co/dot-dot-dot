@@ -49,17 +49,18 @@ specifiers:
   react: ^17.0.0
   react-dom: ^17.0.0
   react-i18next: ^11.14.2
+  react-is: ^17.0.2
   sass: ^1.43.4
   styled-components: ^5.3.3
   stylelint: ^14.1.0
   stylelint-config-recommended: ^6.0.0
-  stylelint-config-sass-guidelines: ^9.0.1
   stylelint-config-standard: ^23.0.0
   stylelint-config-styled-components: ^0.1.1
   stylelint-no-unsupported-browser-features: ^5.0.2
   stylelint-order: ^5.0.0
   typescript: ^4.3.2
   vite: ^2.6.4
+  vite-plugin-babel-macros: ^1.0.5
   vite-plugin-svgr: ^0.5.1
 
 dependencies:
@@ -70,7 +71,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-i18next: 11.14.2_i18next@21.4.2+react@17.0.2
-  styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+  react-is: 17.0.2
+  styled-components: 5.3.3_281a4fa50a045c9112baf635f3bc27a7
 
 devDependencies:
   '@babel/core': 7.16.0
@@ -114,13 +116,13 @@ devDependencies:
   sass: 1.43.4
   stylelint: 14.1.0
   stylelint-config-recommended: 6.0.0_stylelint@14.1.0
-  stylelint-config-sass-guidelines: 9.0.1_stylelint@14.1.0
   stylelint-config-standard: 23.0.0_stylelint@14.1.0
   stylelint-config-styled-components: 0.1.1
   stylelint-no-unsupported-browser-features: 5.0.2_stylelint@14.1.0
   stylelint-order: 5.0.0_stylelint@14.1.0
   typescript: 4.4.4
   vite: 2.6.14_sass@1.43.4
+  vite-plugin-babel-macros: 1.0.5_vite@2.6.14
   vite-plugin-svgr: 0.5.1_vite@2.6.14
 
 packages:
@@ -1766,6 +1768,15 @@ packages:
       '@types/babel__traverse': 7.14.2
     dev: true
 
+  /babel-plugin-macros/3.1.0:
+    resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
+    engines: {node: '>=10', npm: '>=6'}
+    dependencies:
+      '@babel/runtime': 7.16.3
+      cosmiconfig: 7.0.1
+      resolve: 1.20.0
+    dev: true
+
   /babel-plugin-styled-components/1.13.3_styled-components@5.3.3:
     resolution: {integrity: sha512-meGStRGv+VuKA/q0/jXxrPNWEm4LPfYIqxooDTdmh8kFsP/Ph7jJG5rUPwUPX3QHUvggwdbgdGpo88P/rRYsVw==}
     peerDependencies:
@@ -1775,7 +1786,7 @@ packages:
       '@babel/helper-module-imports': 7.16.0
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
-      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+      styled-components: 5.3.3_281a4fa50a045c9112baf635f3bc27a7
     dev: false
 
   /babel-plugin-syntax-jsx/6.18.0:
@@ -4078,7 +4089,7 @@ packages:
       styled-components: '>= 5'
     dependencies:
       css: 3.0.0
-      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+      styled-components: 5.3.3_281a4fa50a045c9112baf635f3bc27a7
     dev: true
 
   /jest-util/27.3.1:
@@ -4925,13 +4936,6 @@ packages:
       postcss: 8.3.11
     dev: true
 
-  /postcss-scss/4.0.2:
-    resolution: {integrity: sha512-xfdkU128CkKKKVAwkyt0M8OdnelJ3MRcIRAPPQkRpoPeuzWY3RIeg7piRCpZ79MK7Q16diLXMMAD9dN5mauPlQ==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.3.3
-    dev: true
-
   /postcss-selector-parser/6.0.6:
     resolution: {integrity: sha512-9LXrvaaX3+mcv5xkg5kFwqSzSH1JIObIx51PrndZwlmznwXRfxMddDvo9gve3gVR8ZTKgoFDdWkbRFmEhT4PMg==}
     engines: {node: '>=4'}
@@ -5062,7 +5066,6 @@ packages:
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
-    dev: true
 
   /react-refresh/0.10.0:
     resolution: {integrity: sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==}
@@ -5600,7 +5603,7 @@ packages:
       tslib: 2.1.0
     dev: false
 
-  /styled-components/5.3.3_react-dom@17.0.2+react@17.0.2:
+  /styled-components/5.3.3_281a4fa50a045c9112baf635f3bc27a7:
     resolution: {integrity: sha512-++4iHwBM7ZN+x6DtPPWkCI4vdtwumQ+inA/DdAsqYd4SVgUKJie5vXyzotA00ttcFdQkCng7zc6grwlfIfw+lw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -5618,6 +5621,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+      react-is: 17.0.2
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: false
@@ -5628,19 +5632,6 @@ packages:
       stylelint: ^14.0.0
     dependencies:
       stylelint: 14.1.0
-    dev: true
-
-  /stylelint-config-sass-guidelines/9.0.1_stylelint@14.1.0:
-    resolution: {integrity: sha512-N06PsVsrgKijQ3YT5hqKA7x3NUkgELTRI1cbWMqcYiCGG6MjzvNk6Cb5YYA1PrvrksBV76BvY9P9bAswojVMqA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    peerDependencies:
-      postcss: ^8.3.3
-      stylelint: ^14.0.1
-    dependencies:
-      postcss-scss: 4.0.2
-      stylelint: 14.1.0
-      stylelint-order: 5.0.0_stylelint@14.1.0
-      stylelint-scss: 4.0.0_stylelint@14.1.0
     dev: true
 
   /stylelint-config-standard/23.0.0_stylelint@14.1.0:
@@ -5675,19 +5666,6 @@ packages:
     dependencies:
       postcss: 8.3.11
       postcss-sorting: 7.0.1_postcss@8.3.11
-      stylelint: 14.1.0
-    dev: true
-
-  /stylelint-scss/4.0.0_stylelint@14.1.0:
-    resolution: {integrity: sha512-lIRhPqtI6I065EJ6aI4mWKsmQt8Krnu6aF9XSL9s8Nd2f/cDKImST0T9TfjnUul3ReKYWozkG9dlpNTZH2FB9w==}
-    peerDependencies:
-      stylelint: ^14.0.0
-    dependencies:
-      lodash: 4.17.21
-      postcss-media-query-parser: 0.2.3
-      postcss-resolve-nested-selector: 0.1.1
-      postcss-selector-parser: 6.0.6
-      postcss-value-parser: 4.1.0
       stylelint: 14.1.0
     dev: true
 
@@ -5991,6 +5969,22 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /vite-plugin-babel-macros/1.0.5_vite@2.6.14:
+    resolution: {integrity: sha512-QPPeIIiu1y6C9T0pG8gkOSuE5ukQ1o4AIaYGm9b8yFsk7C4T4wLmzxpXrVYMMWGmZ0ul5ZaNP+NY9+ROGMDiVw==}
+    peerDependencies:
+      vite: '>=2'
+    dependencies:
+      '@babel/core': 7.16.0
+      '@babel/plugin-syntax-jsx': 7.16.0_@babel+core@7.16.0
+      '@babel/plugin-syntax-typescript': 7.16.0_@babel+core@7.16.0
+      '@types/babel__core': 7.1.16
+      babel-plugin-macros: 3.1.0
+      tslib: 2.1.0
+      vite: 2.6.14_sass@1.43.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vite-plugin-svgr/0.5.1_vite@2.6.14:

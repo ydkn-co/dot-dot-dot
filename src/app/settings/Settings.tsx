@@ -97,13 +97,13 @@ const Settings: React.FC = () => {
         Icon={presence.isVisible ? CloseIcon : SettingsIcon}
         aria-expanded={presence.isVisible}
         aria-haspopup="true"
-        data-testid="settings-btn"
-        onClick={handleSettingsClick}
-        text={
+        aria-label={
           presence.isVisible
             ? t('game.settings.opened')
             : t('game.settings.closed')
         }
+        data-testid="settings-btn"
+        onClick={handleSettingsClick}
       />
 
       <Form
