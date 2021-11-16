@@ -18,8 +18,13 @@
     "skipLibCheck": false,
     "strict": true,
     "target": "ESNext",
+    "paths": {
+      "~*": ["./src/*"]
+    },
     "typeRoots": [
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./src/types",
+      "./src/global"
     ],
     "types": [
       "@types/testing-library__jest-dom",

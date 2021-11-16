@@ -1,11 +1,11 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
-import Game from '.'
+import Layout from './App'
 
 describe('<Game />', () => {
   beforeEach(() => {
     render(
-      <Game />
+      <Layout />
     )
   })
 

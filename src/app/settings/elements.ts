@@ -1,21 +1,22 @@
 import styled, { css } from 'styled-components'
 
-import ControlButton from '../ControlButton'
+import Button from '~/components/Button'
 
 export const Wrapper = styled.div`
-  align-items: center;
-  background: #3f72d3;
   border-radius: 50%;
-  justify-content: center;
-padding: 5px;
   position: absolute;
   right: 0;
   transform: translate(-50%, -50%);
 `
 
-export const Button = styled(ControlButton)`
+export const SettingsButton = styled(Button)`
+  border-width: 5px;
   padding: 10px;
-  width: 40px;
+  grid-template-columns: max-content;
+
+  svg {
+    width: 18px;
+  }
 `
 
 export const Heading = styled.h2``
@@ -30,26 +31,13 @@ export const Form = styled.form<FormProps>`
   box-shadow: 2px 4px 4px rgb(0 0 0 / 50%);
   display: none;
   opacity: 0%;
-  padding: 40px;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: -20px;
   transform: translateY(-95%);
   transition: all 0.2s ease-in-out;
-
-  &::after {
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #fff;
-    bottom: 1px;
-    content: " ";
-    display: block;
-    height: 0;
-    position: absolute;
-    right: 15px;
-    transform: translateY(100%);
-    width: 0;
-  }
+  width: 300px;
 
   ${({ modifier }) => modifier === '--animatingIn' && css`
     display: block;
@@ -66,4 +54,31 @@ export const Form = styled.form<FormProps>`
     display: block;
     opacity: 0%;
   `}
+`
+
+export const Body = styled.div`
+  padding: 40px;
+`
+
+export const Footer = styled.footer`
+  background: #eee;
+  border-top: 1px solid #ddd;
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: column;
+  padding: 40px;
+`
+
+const FormButton = styled(Button)`
+  display: block;
+`
+
+export const SubmitButton = styled(FormButton)`
+  background-color: var(--ddd-blue);
+  border: 2px solid var(--ddd-blue);
+  color: #fff;
+`
+
+export const ResetButton = styled(FormButton)`
+  border: 2px solid var(--ddd-blue);
 `

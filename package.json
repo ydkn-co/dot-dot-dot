@@ -20,14 +20,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
+    "framer-motion": "^5.3.0",
     "i18next": "^21.4.2",
-    "identity-obj-proxy": "^3.0.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-i18next": "^11.14.2",
+    "react-is": "^17.0.2",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
@@ -50,6 +50,7 @@
     "babel-loader": "^8.2.3",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-custom-alias": "^1.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -62,6 +63,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-typescript-sort-keys": "^2.0.0",
     "husky": "^7.0.4",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-styled-components": "^7.0.6",
     "lint-staged": "^11.2.6",
@@ -70,18 +72,17 @@
     "sass": "^1.43.4",
     "stylelint": "^14.1.0",
     "stylelint-config-recommended": "^6.0.0",
-    "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^23.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-no-unsupported-browser-features": "^5.0.2",
     "stylelint-order": "^5.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.6.4",
+    "vite-plugin-babel-macros": "^1.0.5",
     "vite-plugin-svgr": "^0.5.1"
   },
   "lint-staged": {
     "*.json": "pnpm run fix:json",
-    "*.{css,scss}": "pnpm run fix:styles",
     "*.{js,ts,tsx}": "pnpm run fix:scripts",
     ".*rc.js": "pnpm run fix:configs"
   },

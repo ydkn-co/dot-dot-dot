@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ReactComponent as PauseIcon } from '../../assets/pause.svg'
-import { ReactComponent as PlayIcon } from '../../assets/play.svg'
-import { GameStatus } from '../Game'
+import { GameStatus } from '~/app/game/types'
+import { ReactComponent as PauseIcon } from '~/assets/pause.svg'
+import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+
 import { PauseButton, PlayButton, Wrapper } from './elements'
 
 const isPlayable = (gameStatus: GameStatus) => [
@@ -29,8 +30,9 @@ const Controls: React.FC<ControlsProps> = (props) => {
           Icon={PlayIcon}
           data-testid="play-btn"
           onClick={() => setGameStatus(GameStatus.Playing)}
-          text={t('game.controlButtonText.play')}
-        />
+        >
+          {t('game.controlButtonText.play')}
+        </PlayButton>
       )}
 
       {isPausible(gameStatus) && (
@@ -38,8 +40,9 @@ const Controls: React.FC<ControlsProps> = (props) => {
           Icon={PauseIcon}
           data-testid="pause-btn"
           onClick={() => setGameStatus(GameStatus.Paused)}
-          text={t('game.controlButtonText.pause')}
-        />
+        >
+          {t('game.controlButtonText.pause')}
+        </PauseButton>
       )}
     </Wrapper>
   )

@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import path from 'path'
 import { defineConfig } from 'vite'
 import svgPlugin from 'vite-plugin-svgr'
 
@@ -7,5 +8,10 @@ export default defineConfig({
   plugins: [
     svgPlugin(),
     react()
-  ]
+  ],
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, './src')
+    }
+  }
 })

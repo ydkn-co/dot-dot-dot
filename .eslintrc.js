@@ -127,6 +127,14 @@ module.exports = {
             '.ts',
             '.tsx'
           ]
+        },
+        'import/resolver': {
+          'eslint-import-resolver-custom-alias': {
+            alias: {
+              '~': './src'
+            },
+            extensions: ['.ts', '.tsx']
+          }
         }
       }
     }
@@ -149,7 +157,10 @@ module.exports = {
   rules: {
     indent: [
       'warn',
-      2
+      2,
+      {
+        SwitchCase: 1
+      }
     ],
     'max-len': [
       'warn',

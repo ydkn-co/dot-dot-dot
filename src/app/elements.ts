@@ -1,9 +1,5 @@
 import styled, { css } from 'styled-components'
 
-interface WrapperProps {
-  isActive: boolean;
-}
-
 const Pane = styled.div`
   height: 50%;
   position: absolute;
@@ -26,6 +22,10 @@ export const BottomPane = styled(Pane)`
   border-top: 1px solid #ddd;
   bottom: 0;
 `
+
+interface WrapperProps {
+  isActive: boolean;
+}
 
 export const Wrapper = styled.div<WrapperProps>`
   background: #fff;
