@@ -36,17 +36,14 @@ const Button: React.FC<ButtonProps & BaseVariation> = (props) => {
 
   if ('aria-label' in props) {
     ariaLabel = props['aria-label']
-    delete props['aria-label']
   }
 
   if ('children' in props) {
     children = props.children
-    delete props.children
   }
 
   if ('Icon' in props) {
     Icon = props.Icon
-    delete props.Icon
   }
 
   return (

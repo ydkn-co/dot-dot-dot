@@ -17,6 +17,7 @@ import {
   Wrapper
 } from './elements'
 import { useSettings } from './store'
+import validators from './validators'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
@@ -78,13 +79,23 @@ const Settings: React.FC = () => {
 
   /* ----- Form Handling Logic ----- */
 
-  const { settings, dispatch } = useSettings()
+  const {
+    settings,
+    dispatch
+  } = useSettings()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+    const formValues = Object.fromEntries(formData.entries())
+
+    // TODO - Finish implementing validation
+
     dispatch({
       payload: {
-        difficulty: 7
+        ...formValues,
+        difficulty: Number(formValues.difficulty)
       },
       type: '@SETTINGS/UPDATE'
     })
@@ -110,6 +121,7 @@ const Settings: React.FC = () => {
         data-modifier={formCssModifier}
         data-testid="settings-form"
         modifier={formCssModifier}
+        noValidate
         onBlur={handleBlur}
         onSubmit={handleSubmit}
       >
@@ -124,8 +136,9 @@ const Settings: React.FC = () => {
             defaultValue={settings.difficulty}
             id="difficulty-input"
             list={'difficulty-input-list'}
-            max={10}
-            min={1}
+            max={validators.difficulty.max}
+            min={validators.difficulty.min}
+            name='difficulty'
             step={1}
           />
         </Body>

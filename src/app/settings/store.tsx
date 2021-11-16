@@ -1,9 +1,11 @@
 import * as React from 'react'
+interface State {
+  difficulty: number
+}
 
-const initialState = {
+const initialState: State = {
   difficulty: 4
 }
-type State = typeof initialState;
 
 type Action = {
   payload: State,
@@ -30,13 +32,25 @@ export const SettingsContext = React.createContext<{
 export const SettingsProvider: React.FC = ({ children }) => {
   const [settings, dispatch] = React.useReducer(reducer, initialState)
 
+  const value = React.useMemo(() => ({ dispatch, settings }), [settings])
+
   return (
     <SettingsContext.Provider
-      value={{ dispatch, settings }}
+      value={value}
     >
       {children}
     </SettingsContext.Provider>
   )
 }
 
-export const useSettings = () => React.useContext(SettingsContext)
+export const useSettings = () => {
+  const context = React.useContext(SettingsContext)
+
+  if (!context) {
+    throw new Error(
+      '`useSettings()` must be used within `<SettingsProvider />`'
+    )
+  }
+
+  return context
+}
