@@ -68,17 +68,21 @@ export const Footer = styled.footer`
   grid-auto-flow: column;
   padding: 40px;
 `
+Footer.displayName = 'Settings.Footer'
 
 const FormButton = styled(Button)`
   display: block;
 `
+FormButton.displayName = 'Settings.FormButton'
 
 export const SubmitButton = styled(FormButton)`
   background-color: var(--ddd-blue);
   border: 2px solid var(--ddd-blue);
   color: #fff;
 `
+SubmitButton.displayName = 'SubmitButton.Footer'
 
 export const ResetButton = styled(FormButton)`
   border: 2px solid var(--ddd-blue);
 `
+ResetButton.displayName = 'ResetButton.Footer'

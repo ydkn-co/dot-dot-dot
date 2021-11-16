@@ -8,3 +8,4 @@ export const Wrapper = styled.div`
   top: 100px;
   width: 100%;
 `
+Wrapper.displayName = 'Board.Wrapper'

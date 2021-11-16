@@ -158,4 +158,4 @@ const Settings: React.FC = () => {
   )
 }
 
-export default React.memo(Settings)
+export default Settings
