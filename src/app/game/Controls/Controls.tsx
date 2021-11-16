@@ -1,18 +1,11 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { GameStatus, useGame } from '~/app/game/store'
+import { useGame } from '~/app/game'
 import { ReactComponent as PauseIcon } from '~/assets/pause.svg'
 import { ReactComponent as PlayIcon } from '~/assets/play.svg'
 
 import { PauseButton, PlayButton, Wrapper } from './elements'
-
-const isPlayable = (gameStatus: GameStatus) => [
-  'paused',
-  'unstarted'
-].includes(gameStatus)
-
-const isPausible = (gameStatus: GameStatus) => gameStatus === 'playing'
 
 const Controls: React.FC = () => {
   const { t } = useTranslation()
@@ -20,7 +13,7 @@ const Controls: React.FC = () => {
 
   return (
     <Wrapper>
-      {isPlayable(game.status) && (
+      {game.status === 'unstarted' && (
         <PlayButton
           Icon={PlayIcon}
           data-testid="play-btn"
@@ -29,11 +22,24 @@ const Controls: React.FC = () => {
             type: '@GAME/UPDATE_STATUS'
           })}
         >
-          {t('game.controlButtonText.play')}
+          {t('game.controlButtonText.unstarted')}
         </PlayButton>
       )}
 
-      {isPausible(game.status) && (
+      {game.status === 'paused' && (
+        <PlayButton
+          Icon={PlayIcon}
+          data-testid="resume-btn"
+          onClick={() => dispatch({
+            payload: 'playing',
+            type: '@GAME/UPDATE_STATUS'
+          })}
+        >
+          {t('game.controlButtonText.paused')}
+        </PlayButton>
+      )}
+
+      {game.status === 'playing' && (
         <PauseButton
           Icon={PauseIcon}
           data-testid="pause-btn"
@@ -42,7 +48,7 @@ const Controls: React.FC = () => {
             type: '@GAME/UPDATE_STATUS'
           })}
         >
-          {t('game.controlButtonText.pause')}
+          {t('game.controlButtonText.playing')}
         </PauseButton>
       )}
     </Wrapper>

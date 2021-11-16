@@ -5,15 +5,7 @@ const NAMESPACE = 'translation'
 const locales = {
   en
 }
-
-export interface Translation {
-  game: {
-    controlButtonText: {
-      pause: string;
-      play: string;
-    }
-  }
-}
+type Translation = keyof typeof locales.en;
 
 type NamespacedTranslation = Record<string, Translation>
 
@@ -24,7 +16,7 @@ const resources: Resources = Object
   .reduce((acc, [locale, translation]) => ({
     ...acc,
     [locale]: {
-      [NAMESPACE]: translation as Translation
+      [NAMESPACE]: translation
     }
   }), {})
 
