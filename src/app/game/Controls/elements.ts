@@ -7,7 +7,10 @@ export const Wrapper = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
 `
+Wrapper.displayName = 'Controls.ButtonWrapper'
 
 export const PlayButton = styled(Button)``
+PlayButton.displayName = 'Controls.PlayButton'
 
 export const PauseButton = styled(Button)``
+PauseButton.displayName = 'Controls.PauseButton'

@@ -19,7 +19,7 @@ describe('<Game />', () => {
     })
   })
 
-  describe('after starting a game', () => {
+  xdescribe('after starting a game', () => {
     beforeEach(async () => {
       const playBtn = screen.getByTestId('play-btn')
       fireEvent.click(playBtn)
@@ -35,7 +35,7 @@ describe('<Game />', () => {
     })
   })
 
-  describe('after pausing a game', () => {
+  xdescribe('after pausing a game', () => {
     beforeEach(async () => {
       const playBtn = screen.getByTestId('play-btn')
       fireEvent.click(playBtn)

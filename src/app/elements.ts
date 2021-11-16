@@ -16,12 +16,14 @@ export const TopPane = styled(Pane)`
   justify-items: center;
   top: 0;
 `
+TopPane.displayName = 'App.TopPane'
 
 export const BottomPane = styled(Pane)`
   background: hsl(30deg 17% 98%);
   border-top: 1px solid #ddd;
   bottom: 0;
 `
+BottomPane.displayName = 'App.BottomPane'
 
 interface WrapperProps {
   isActive: boolean;
@@ -49,3 +51,4 @@ export const Wrapper = styled.div<WrapperProps>`
     }
   `}
 `
+Wrapper.displayName = 'App.Wrapper'

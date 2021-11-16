@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div``
+Wrapper.displayName = 'NumberSlider.Wrapper'
 
 export const Label = styled.label``
+Label.displayName = 'NumberSlider.Label'
 
 export const Input = styled.input`
   /* appearance: none; */
@@ -23,3 +25,4 @@ export const Input = styled.input`
     width: 40px;
   }
 `
+Input.displayName = 'NumberSlider.Input'

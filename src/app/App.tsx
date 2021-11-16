@@ -1,37 +1,32 @@
 import * as React from 'react'
 
-import { Board, Controls, GameStatus } from '~/app/game'
+import { Board, Controls } from '~/app/game'
+import { GameStatus, useGame } from '~/app/game/store'
 import Settings from '~/app/settings'
-import { SettingsProvider } from '~/app/settings/store'
 import Logo from '~/components/Logo'
 
 import { BottomPane, TopPane, Wrapper } from './elements'
 
-const isActive = (gameStatus: GameStatus) => gameStatus !== GameStatus.New
+const isActive = (gameStatus: GameStatus) => gameStatus !== 'unstarted'
 
 const App: React.FC = () => {
-  const [gameStatus, setGameStatus] = React.useState<GameStatus>(GameStatus.New)
+  const { game } = useGame()
 
   return (
-    <SettingsProvider>
-      <Wrapper
-        isActive={isActive(gameStatus)}
-      >
-        <Board />
+    <Wrapper
+      isActive={isActive(game.status)}
+    >
+      <Board />
 
-        <TopPane>
-          <Logo />
-        </TopPane>
+      <TopPane>
+        <Logo />
+      </TopPane>
 
-        <BottomPane>
-          <Controls
-            gameStatus={gameStatus}
-            setGameStatus={setGameStatus}
-          />
-          <Settings />
-        </BottomPane>
-      </Wrapper>
-    </SettingsProvider>
+      <BottomPane>
+        <Controls />
+        <Settings />
+      </BottomPane>
+    </Wrapper>
   )
 }
 

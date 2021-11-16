@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-type GameStatus = 'unstarted' | 'playing' | 'paused' | 'over'
+export type GameStatus = 'unstarted' | 'playing' | 'paused' | 'over'
 
 interface State {
   score: number;
