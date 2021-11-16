@@ -17,6 +17,7 @@ specifiers:
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@types/styled-components': ^5.1.15
+  '@types/uuid': ^8.3.1
   '@typescript-eslint/eslint-plugin': ^5.3.1
   '@typescript-eslint/parser': ^5.3.1
   '@vitejs/plugin-react': ^1.0.0
@@ -59,6 +60,7 @@ specifiers:
   stylelint-no-unsupported-browser-features: ^5.0.2
   stylelint-order: ^5.0.0
   typescript: ^4.3.2
+  uuid: ^8.3.2
   vite: ^2.6.4
   vite-plugin-babel-macros: ^1.0.5
   vite-plugin-svgr: ^0.5.1
@@ -73,6 +75,7 @@ dependencies:
   react-i18next: 11.14.2_i18next@21.4.2+react@17.0.2
   react-is: 17.0.2
   styled-components: 5.3.3_281a4fa50a045c9112baf635f3bc27a7
+  uuid: 8.3.2
 
 devDependencies:
   '@babel/core': 7.16.0
@@ -88,6 +91,7 @@ devDependencies:
   '@types/react': 17.0.34
   '@types/react-dom': 17.0.11
   '@types/styled-components': 5.1.15
+  '@types/uuid': 8.3.1
   '@typescript-eslint/eslint-plugin': 5.3.1_4daca2483796bdceece3758b04dba2a1
   '@typescript-eslint/parser': 5.3.1_eslint@7.32.0+typescript@4.4.4
   '@vitejs/plugin-react': 1.0.8
@@ -1360,6 +1364,10 @@ packages:
     resolution: {integrity: sha512-Gk9vaXfbzc5zCXI9eYE9BI5BNHEp4D3FWjgqBE/ePGYElLAP+KvxBcsdkwfIVvezs605oiyd/VrpiHe3Oeg+Aw==}
     dependencies:
       '@types/jest': 27.0.2
+    dev: true
+
+  /@types/uuid/8.3.1:
+    resolution: {integrity: sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==}
     dev: true
 
   /@types/yargs-parser/20.2.1:
@@ -5950,6 +5958,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
     dev: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}

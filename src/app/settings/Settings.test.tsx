@@ -14,7 +14,7 @@ describe('<Settings />', () => {
 
         expect(
           screen.getByTestId('settings-btn')
-        ).toHaveAccessibleName('game.settings.closed')
+        ).toHaveAccessibleName('settings.closed')
       }
     )
   })
@@ -36,7 +36,7 @@ describe('<Settings />', () => {
       // eslint-disable-next-line max-len
       'settings button text indicates that clicking the button opens the settings',
       () => {
-        expect(settingsBtn).toHaveAccessibleName('game.settings.opened')
+        expect(settingsBtn).toHaveAccessibleName('settings.opened')
       }
     )
 
@@ -53,7 +53,7 @@ describe('<Settings />', () => {
 
       if (settingsForm.parentNode) {
         fireEvent.keyDown(
-          screen.getByText('game.settings.heading'),
+          screen.getByText('settings.heading'),
           {
             charCode: 27,
             code: 'Escape',

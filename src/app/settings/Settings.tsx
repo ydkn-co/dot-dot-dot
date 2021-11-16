@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useGame } from '~/app/game'
 import { ReactComponent as CloseIcon } from '~/assets/close.svg'
 import { ReactComponent as SettingsIcon } from '~/assets/settings.svg'
 import NumberSlider from '~/components/NumberSlider'
@@ -20,6 +21,8 @@ import { useSettings } from './store'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
+
+  const { dispatch: gameDispatch } = useGame()
 
   /* ----- Container Display Logic ----- */
 
@@ -51,6 +54,13 @@ const Settings: React.FC = () => {
 
   const handleSettingsClick = () => {
     presence.toggle()
+
+    if (!presence.isVisible) {
+      gameDispatch({
+        payload: 'paused',
+        type: '@GAME/UPDATE_STATUS'
+      })
+    }
   }
 
   const closeSettings = () => {
@@ -108,8 +118,8 @@ const Settings: React.FC = () => {
         aria-haspopup="true"
         aria-label={
           presence.isVisible
-            ? t('game.settings.opened')
-            : t('game.settings.closed')
+            ? t('settings.opened')
+            : t('settings.closed')
         }
         data-testid="settings-btn"
         onClick={handleSettingsClick}
@@ -125,7 +135,7 @@ const Settings: React.FC = () => {
       >
         <Body>
           <Heading>
-            {t('game.settings.heading')}
+            {t('settings.heading')}
           </Heading>
 
           {settings.difficulty}
@@ -145,12 +155,12 @@ const Settings: React.FC = () => {
           <ResetButton
             type="reset"
           >
-            {t('game.settings.reset')}
+            {t('settings.reset')}
           </ResetButton>
           <SubmitButton
             type="submit"
           >
-            {t('game.settings.save')}
+            {t('settings.save')}
           </SubmitButton>
         </Footer>
       </Form>
