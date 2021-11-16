@@ -7,14 +7,25 @@ import { Wrapper } from './elements'
 const Board: React.FC = () => {
   const { settings } = useSettings()
 
-  React.useEffect(() => {
-    console.log('Settings from Board Component!', settings)
-  }, [
-    settings
-  ])
-
   return (
-    <Wrapper />
+    <Wrapper>
+      <table>
+        <tbody>
+          <tr>
+            <th>Difficulty</th>
+            <td>{settings.difficulty}</td>
+          </tr>
+          <tr>
+            <th>Fall Rate</th>
+            <td>
+              {settings.difficulty * 10}
+              {''}
+              px / sec
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Wrapper>
   )
 }
 

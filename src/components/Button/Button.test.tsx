@@ -2,20 +2,21 @@ import { render, screen } from '@testing-library/react'
 
 import { ReactComponent as Icon } from '~/assets/play.svg'
 
-import ControlButton from './ControlButton'
+import Button from './Button'
 
 describe('<ControlButton />', () => {
   test('icon is rendered', async () => {
     const labelText = 'Foo'
 
     render(
-      <ControlButton
+      <Button
         Icon={Icon}
-        text={labelText}
-      />
+      >
+        {labelText}
+      </Button>
     )
 
-    const anscestor = screen.getByTestId('control-button')
+    const anscestor = screen.getByRole('button')
     const descendant = screen.getByLabelText(labelText)
 
     expect(anscestor).toContainElement(descendant)
@@ -24,25 +25,25 @@ describe('<ControlButton />', () => {
   test('button is accessible for screen readers', async () => {
     const text = 'Foo'
     render(
-      <ControlButton
+      <Button
         Icon={Icon}
-        text={text}
-      />
+      >
+        {text}
+      </Button>
     )
-    expect(
-      screen.getByTestId('control-button')
-    ).toHaveAttribute('aria-label', text)
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', text)
   })
 
   test('styles are extensible', async () => {
     const className = 'foo'
     render(
-      <ControlButton
+      <Button
         Icon={Icon}
         className={className}
-        text="Foo"
-      />
+      >
+        Foo
+      </Button>
     )
-    expect(screen.getByTestId('control-button')).toHaveClass(className)
+    expect(screen.getByRole('button')).toHaveClass(className)
   })
 })
