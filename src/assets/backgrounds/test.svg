@@ -1,0 +1,25 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 1300'>
+  <rect fill='#ccffcc' width='450' height='1300' />
+  <rect fill='#ccffcc' x='-50' y='-130' width='550' height='390' />
+  <polygon fill='#b7f4c7' points='75 -130 0 0 75 130 150 0' />
+  <rect fill='#a3eac2' x='-50' y='130' width='550' height='260' />
+  <polygon fill='#8edfbf' points='300 0 225 130 300 260 375 130' />
+  <rect fill='#7ad4bb' x='-50' y='260' width='550' height='260' />
+  <polygon fill='#66c9b8' points='75 130 0 260 75 390 150 260' />
+  <rect fill='#51bdb4' x='-50' y='390' width='550' height='260' />
+  <polygon fill='#3ab2b1' points='300 260 225 390 300 520 375 390' />
+  <rect fill='#1ea7ad' x='-50' y='520' width='550' height='260' />
+  <polygon fill='#009baa' points='75 390 0 520 75 650 150 520' />
+  <rect fill='#008fa5' x='-50' y='650' width='550' height='260' />
+  <polygon fill='#0084a0' points='300 520 225 650 300 780 375 650' />
+  <rect fill='#00789b' x='-50' y='780' width='550' height='260' />
+  <polygon fill='#006c94' points='75 650 0 780 75 910 150 780' />
+  <rect fill='#00618d' x='-50' y='910' width='550' height='260' />
+  <polygon fill='#005585' points='300 780 225 910 300 1040 375 910' />
+  <rect fill='#004a7c' x='-50' y='1040' width='550' height='260' />
+  <polygon fill='#003e73' points='75 910 0 1040 75 1170 150 1040' />
+  <rect fill='#003368' x='-50' y='1170' width='550' height='260' />
+  <polygon fill='#00285d' points='300 1040 225 1170 300 1300 375 1170' />
+  <rect fill='#081d51' x='-50' y='1300' width='550' height='260' />
+  <polygon fill='#114' points='75 1170 0 1300 75 1430 150 1300' />
+</svg>

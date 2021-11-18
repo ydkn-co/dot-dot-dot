@@ -30,7 +30,7 @@ export const Wrapper = styled.button<WrapperProps>`
   cursor: crosshair;
   padding: 0;
   position: absolute;
-  will-change: contents;
+  z-index: 2;
 
   ${props => css`
     animation: ${makeFallingAnimation(props.diameter)} ${props.animationDuration}s linear;

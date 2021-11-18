@@ -2,6 +2,7 @@ import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useSettings } from '~/app/settings/store'
+import Background from '~/components/Background'
 import useInterval from '~/hooks/useInterval'
 
 import Dot from '../Dot'
@@ -102,6 +103,7 @@ const Board: React.FC = () => {
       data-score={game.score}
       ref={boardRef}
     >
+      <Background />
       {dimensions && [...dots].map(id => (
         <Dot
           boardDimensions={dimensions}
@@ -114,4 +116,4 @@ const Board: React.FC = () => {
   )
 }
 
-export default Board
+export default React.memo(Board)

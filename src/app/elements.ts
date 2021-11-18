@@ -6,7 +6,7 @@ const Pane = styled.div`
   transform: translate3d(0, 0, 0);
   transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
-  will-change: transform;
+  will-change: height;
 `
 
 export const TopPane = styled(Pane)`
@@ -15,6 +15,7 @@ export const TopPane = styled(Pane)`
   display: grid;
   justify-items: center;
   top: 0;
+  z-index: ${props => props.theme.zIndex.panes.top}
 `
 TopPane.displayName = 'App.TopPane'
 
@@ -22,6 +23,7 @@ export const BottomPane = styled(Pane)`
   background: hsl(30deg 17% 98%);
   border-top: 1px solid #ddd;
   bottom: 0;
+  z-index: ${props => props.theme.zIndex.panes.bottom}
 `
 BottomPane.displayName = 'App.BottomPane'
 

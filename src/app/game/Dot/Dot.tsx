@@ -5,6 +5,7 @@ import { useGame } from '~/app/game/store'
 import { useSettings } from '~/app/settings/store'
 import useInterval from '~/hooks/useInterval'
 
+// import randomNumberBetween from '~/utils/randomNumberBetween'
 import { Wrapper, YPositions } from './elements'
 
 const MIN_DIAMETER = 10
@@ -17,12 +18,13 @@ const randomNumberBetween = (min: number, max: number) => Math.floor(
 
 interface DotProps {
   boardDimensions: BoardDimensions;
+  className?: string;
   handleRemovalCallback: (id: string) => void;
   id: string;
 }
 
 const Dot: React.FC<DotProps> = (props) => {
-  const { boardDimensions, id, handleRemovalCallback } = props
+  const { boardDimensions, className, id, handleRemovalCallback } = props
   const { game, dispatch } = useGame()
   const { settings } = useSettings()
 
@@ -137,6 +139,7 @@ const Dot: React.FC<DotProps> = (props) => {
     <Wrapper
       animationDuration={animationDuration}
       animationState={game.status === 'playing' ? 'running' : 'paused'}
+      className={className}
       data-diameter={diameter}
       data-value={value}
       data-x-offset-percent={xOffSetPercent}

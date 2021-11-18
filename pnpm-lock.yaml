@@ -25,6 +25,7 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-standard: ^16.0.3
   eslint-import-resolver-custom-alias: ^1.3.0
+  eslint-plugin-better-styled-components: ^1.1.2
   eslint-plugin-import: ^2.25.3
   eslint-plugin-json: ^3.1.0
   eslint-plugin-jsx-a11y: ^6.5.1
@@ -45,6 +46,7 @@ specifiers:
   lint-staged: ^11.2.6
   normalize.css: ^8.0.1
   npm-run-all: ^4.1.5
+  polished: ^4.1.3
   postcss-syntax: ^0.36.2
   prop-types: ^15.7.2
   react: ^17.0.0
@@ -69,6 +71,7 @@ dependencies:
   framer-motion: 5.3.0_react-dom@17.0.2+react@17.0.2
   i18next: 21.4.2
   normalize.css: 8.0.1
+  polished: 4.1.3
   prop-types: 15.7.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -99,6 +102,7 @@ devDependencies:
   eslint: 7.32.0
   eslint-config-standard: 16.0.3_c064783008e6437da98d184fd45815b6
   eslint-import-resolver-custom-alias: 1.3.0_eslint-plugin-import@2.25.3
+  eslint-plugin-better-styled-components: 1.1.2
   eslint-plugin-import: 2.25.3_eslint@7.32.0
   eslint-plugin-json: 3.1.0
   eslint-plugin-jsx-a11y: 6.5.1_eslint@7.32.0
@@ -2671,6 +2675,14 @@ packages:
       pkg-dir: 2.0.0
     dev: true
 
+  /eslint-plugin-better-styled-components/1.1.2:
+    resolution: {integrity: sha512-pGLIv8Z05xnmMyDyLWV65KQs7HU+FN403Tqb5xv3BZvw5kjC3K18/aYm7mcRpLLPse5/lwhX8ieGQKflPgr0xQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      postcss: 7.0.39
+      requireindex: 1.1.0
+    dev: true
+
   /eslint-plugin-es/3.0.1_eslint@7.32.0:
     resolution: {integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==}
     engines: {node: '>=8.10.0'}
@@ -4871,6 +4883,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /picocolors/0.2.1:
+    resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
+    dev: true
+
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
@@ -4917,6 +4933,13 @@ packages:
     dependencies:
       semver-compare: 1.0.0
     dev: true
+
+  /polished/4.1.3:
+    resolution: {integrity: sha512-ocPAcVBUOryJEKe0z2KLd1l9EBa1r5mSwlKpExmrLzsnIzJo4axsoU9O2BjOTkDGDT4mZ0WFE5XKTlR3nLnZOA==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.16.3
+    dev: false
 
   /popmotion/11.0.0:
     resolution: {integrity: sha512-kJDyaG00TtcANP5JZ51od+DCqopxBm2a/Txh3Usu23L9qntjY5wumvcVf578N8qXEHR1a+jx9XCv8zOntdYalQ==}
@@ -4968,6 +4991,14 @@ packages:
 
   /postcss-value-parser/4.1.0:
     resolution: {integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==}
+
+  /postcss/7.0.39:
+    resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      picocolors: 0.2.1
+      source-map: 0.6.1
+    dev: true
 
   /postcss/8.3.11:
     resolution: {integrity: sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==}
@@ -5182,6 +5213,11 @@ packages:
   /require-from-string/2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /requireindex/1.1.0:
+    resolution: {integrity: sha1-5UBLgVV+91225JxacgBIk/4D4WI=}
+    engines: {node: '>=0.10.5'}
     dev: true
 
   /requireindex/1.2.0:

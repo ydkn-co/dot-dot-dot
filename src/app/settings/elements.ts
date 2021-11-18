@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 
 export const SettingsButton = styled(Button)`
   border-width: 5px;
-  padding: 10px;
   grid-template-columns: max-content;
+  padding: 10px;
 
   svg {
     width: 18px;
