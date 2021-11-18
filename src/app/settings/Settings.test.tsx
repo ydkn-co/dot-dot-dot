@@ -1,4 +1,9 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import {
+  customRender as render,
+  fireEvent,
+  screen,
+  waitFor
+} from '~/testing-library'
 
 import Settings from './Settings'
 

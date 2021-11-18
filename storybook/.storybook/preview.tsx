@@ -1,16 +1,7 @@
-import GlobalStyles from '../../src/GlobalStyles'
-import theme from '../../src/theme'
-import { ThemeProvider } from 'styled-components'
+import withAllProviders from '../../src/hocs/withAllProviders'
 
 export const decorators = [
-  (Story) => (
-    <ThemeProvider
-      theme={theme}
-    >
-      <GlobalStyles />
-      <Story />
-    </ThemeProvider>
-  )
+  (Story) => withAllProviders(<Story />)
 ]
 
 export const parameters = {

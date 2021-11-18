@@ -29,7 +29,6 @@
       "./src/global"
     ],
     "types": [
-      "@types/testing-library__dom",
       "@types/testing-library__jest-dom",
       "jest",
       "vite/client"

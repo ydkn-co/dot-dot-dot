@@ -7,4 +7,4 @@ export const customRender = (
   options?: Omit<RenderOptions, 'wrapper'>
 ) => render(ui, { wrapper: AllProviders, ...options })
 
-export * from 'styled-components'
+export * from '@testing-library/react'

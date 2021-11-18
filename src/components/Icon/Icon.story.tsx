@@ -1,10 +1,17 @@
 import { Meta, Story } from '@storybook/react'
 
 import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+import theme from '~/theme'
 
 import Icon, { IconProps } from './Icon'
 
 export default {
+  argTypes: {
+    size: {
+      control: { type: 'select' },
+      options: Object.keys(theme.icons.sizes)
+    }
+  },
   component: Icon,
   title: 'Components/Icon'
 } as Meta<IconProps>

@@ -12,6 +12,7 @@ importers:
       '@stylelint/postcss-css-in-js': ^0.37.2
       '@swc/core': ^1.2.108
       '@swc/jest': ^0.2.5
+      '@testing-library/dom': ^8.11.1
       '@testing-library/jest-dom': ^5.15.0
       '@testing-library/react': ^12.1.2
       '@testing-library/react-hooks': ^7.0.2
@@ -88,6 +89,7 @@ importers:
       '@stylelint/postcss-css-in-js': 0.37.2_postcss-syntax@0.36.2
       '@swc/core': 1.2.108
       '@swc/jest': 0.2.5_@swc+core@1.2.108
+      '@testing-library/dom': 8.11.1
       '@testing-library/jest-dom': 5.15.0
       '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
       '@testing-library/react-hooks': 7.0.2_react-dom@17.0.2+react@17.0.2
