@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-
 import BaseDot from '~/app/game/Dot'
 import BaseBackground from '~/components/Background'
+import styled from '~/styled'
 
 export const Wrapper = styled.div`
   color: #fff;

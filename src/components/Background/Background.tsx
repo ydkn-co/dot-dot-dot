@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import useRandomColorInterval from '~/hooks/useRandomColorInterval'
 
-import { Grain, Lotus } from './elements'
+import { Grain, Lotus } from './BackgroundElements'
 
 interface BackgroundProps {
   className?: string;

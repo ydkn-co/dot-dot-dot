@@ -2,10 +2,9 @@ import * as React from 'react'
 
 import { Board, Controls, useGame } from '~/app/game'
 import Settings from '~/app/settings'
-import Background from '~/components/Background'
 import Logo from '~/components/Logo'
 
-import { BottomPane, TopPane, Wrapper } from './elements'
+import { BottomPane, TopPane, Wrapper } from './AppElements'
 
 const App: React.FC = () => {
   const { game } = useGame()

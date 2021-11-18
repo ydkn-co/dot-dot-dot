@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react'
 
-import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+import { ReactComponent as PlaySvg } from '~/assets/play.svg'
+import Icon from '~/components/Icon'
 
 import Button, { ButtonProps } from './Button'
 
@@ -22,12 +23,22 @@ TextOnlyButton.args = {
 
 export const IconOnlyButton = Template.bind({})
 IconOnlyButton.args = {
-  Icon: PlayIcon,
-  'aria-label': 'Play'
+  'aria-label': 'Play',
+  icon: (
+    <Icon
+      Svg={PlaySvg}
+      size="sm"
+    />
+  )
 }
 
 export const TextAndIconButton = Template.bind({})
 TextAndIconButton.args = {
-  Icon: PlayIcon,
-  children: 'Play'
+  children: 'Play',
+  icon: (
+    <Icon
+      Svg={PlaySvg}
+      size="sm"
+    />
+  )
 }

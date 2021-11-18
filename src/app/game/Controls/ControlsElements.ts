@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
 import Button from '~/components/Button'
+import styled from '~/styled'
 
 export const Wrapper = styled.div`
   left: 50%;

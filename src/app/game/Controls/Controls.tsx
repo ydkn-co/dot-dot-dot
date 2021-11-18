@@ -2,21 +2,35 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGame } from '~/app/game'
-import { ReactComponent as PauseIcon } from '~/assets/pause.svg'
-import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+import Icon from '~/components/Icon'
+import { useCurrentTheme } from '~/styled'
 
-import { PauseButton, PlayButton, Wrapper } from './elements'
+import {
+  PauseButton,
+  // PauseIcon,
+  PlayButton,
+  // PlayIcon,
+  Wrapper
+} from './ControlsElements'
 
 const Controls: React.FC = () => {
   const { t } = useTranslation()
   const { game, dispatch } = useGame()
+  const theme = useCurrentTheme()
+
+  const { PlaySvg, PauseSvg } = theme.icons.svgs
 
   return (
     <Wrapper>
       {game.status === 'unstarted' && (
         <PlayButton
-          Icon={PlayIcon}
           data-testid="play-btn"
+          icon={(
+            <Icon
+              Svg={PlaySvg}
+              size="md"
+            />
+          )}
           onClick={() => dispatch({
             payload: 'playing',
             type: '@GAME/UPDATE_STATUS'
@@ -28,8 +42,13 @@ const Controls: React.FC = () => {
 
       {game.status === 'paused' && (
         <PlayButton
-          Icon={PlayIcon}
           data-testid="resume-btn"
+          icon={(
+            <Icon
+              Svg={PlaySvg}
+              size="md"
+            />
+          )}
           onClick={() => dispatch({
             payload: 'playing',
             type: '@GAME/UPDATE_STATUS'
@@ -41,8 +60,13 @@ const Controls: React.FC = () => {
 
       {game.status === 'playing' && (
         <PauseButton
-          Icon={PauseIcon}
           data-testid="pause-btn"
+          icon={(
+            <Icon
+              Svg={PauseSvg}
+              size="md"
+            />
+          )}
           onClick={() => dispatch({
             payload: 'paused',
             type: '@GAME/UPDATE_STATUS'

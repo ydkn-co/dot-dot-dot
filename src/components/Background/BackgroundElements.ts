@@ -1,4 +1,4 @@
-import styled, { keyframes, withTheme } from 'styled-components'
+import styled, { keyframes } from '~/styled'
 
 import LotusSvg from './LotusSvg'
 
@@ -32,14 +32,14 @@ export const Grain = styled.div`
 `
 Grain.displayName = 'Background.Grain'
 
-const lotusAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
+// const lotusAnimation = keyframes`
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// `
 
 export const Lotus = styled(LotusSvg)`
   transition: fill 1s linear;

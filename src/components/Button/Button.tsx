@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Button as StyledButton, iconStyles } from './elements'
+import { Button as StyledButton } from './ButtonElements'
 
 type BaseVariation = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -8,20 +8,20 @@ type BaseVariation = Omit<
 >
 
 interface TextOnlyVariation {
-  Icon?: undefined;
   'aira-label'?: string;
   children: string;
+  icon?: undefined;
 }
 
 interface IconOnlyVariation {
-  Icon: React.FC<Svg>;
   'aria-label': string;
-  children?: undefined
+  children?: undefined,
+  icon: React.ReactElement;
 }
 interface TextAndIconVariation {
-  Icon: React.FC<Svg>
   'aria-label'?: string;
   children: string;
+  icon: React.ReactElement
 }
 
 export type ButtonProps =
@@ -31,7 +31,7 @@ export type ButtonProps =
 
 const Button: React.FC<ButtonProps & BaseVariation> = (props) => {
   let ariaLabel
-  let Icon
+  let icon
   let children
 
   if ('aria-label' in props) {
@@ -42,8 +42,8 @@ const Button: React.FC<ButtonProps & BaseVariation> = (props) => {
     children = props.children
   }
 
-  if ('Icon' in props) {
-    Icon = props.Icon
+  if ('icon' in props) {
+    icon = props.icon
   }
 
   return (
@@ -51,11 +51,7 @@ const Button: React.FC<ButtonProps & BaseVariation> = (props) => {
       aria-label={ariaLabel || children}
       {...props}
     >
-      {Icon && (
-        <Icon
-          css={iconStyles}
-        />
-      )}
+      {icon}
       {children}
     </StyledButton>
   )

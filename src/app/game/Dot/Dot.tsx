@@ -6,7 +6,7 @@ import { useSettings } from '~/app/settings/store'
 import useInterval from '~/hooks/useInterval'
 
 // import randomNumberBetween from '~/utils/randomNumberBetween'
-import { Wrapper, YPositions } from './elements'
+import { Wrapper, YPositions } from './DotElements'
 
 const MIN_DIAMETER = 10
 const MAX_DIAMETER = 100

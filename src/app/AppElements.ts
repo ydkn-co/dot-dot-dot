@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from '~/styled'
 
 const Pane = styled.div`
   height: 50%;

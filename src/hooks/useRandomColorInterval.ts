@@ -1,6 +1,9 @@
 import * as React from 'react'
 
-import { collectColorsByWeight, Weight } from '~/design-language/color'
+import {
+  collectExpressiveColorsByWeight,
+  Weight
+} from '~/design-language/color'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import useInterval from './useInterval'
@@ -11,7 +14,9 @@ interface RandomColorIntervalProps {
 }
 
 const useRandomColorInterval = (props: RandomColorIntervalProps) => {
-  const colors = React.useRef(collectColorsByWeight(props.colorWeight))
+  const colors = React.useRef(
+    collectExpressiveColorsByWeight(props.colorWeight)
+  )
 
   const [
     color,

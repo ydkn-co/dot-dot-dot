@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import { Input, Wrapper } from './elements'
+import { Input, Wrapper } from './NumberSliderElements'
 
 // eslint-disable-next-line max-len
 interface NumberSliderProps extends React.InputHTMLAttributes<HTMLInputElement> {

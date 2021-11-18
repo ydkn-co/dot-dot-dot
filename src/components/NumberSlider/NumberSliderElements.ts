@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '~/styled'
 
 export const Wrapper = styled.div``
 Wrapper.displayName = 'NumberSlider.Wrapper'

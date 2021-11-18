@@ -9,7 +9,7 @@ specifiers:
   '@storybook/react': ^6.4.0-rc.3
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
-  '@vitejs/plugin-react': ^1.0.0
+  '@vitejs/plugin-react': ^1.0.9
   babel-loader: ^8.2.3
   chromatic: ^6.0.6
   react: ^17.0.0
@@ -541,7 +541,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.14.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.16.3_@babel+core@7.12.9
     dev: true
@@ -1545,7 +1545,7 @@ packages:
       '@emotion/memoize': 0.7.4
       '@emotion/unitless': 0.7.5
       '@emotion/utils': 0.11.3
-      csstype: 2.6.18
+      csstype: 2.6.19
     dev: true
 
   /@emotion/sheet/0.9.4:
@@ -5368,8 +5368,8 @@ packages:
     hasBin: true
     dev: true
 
-  /csstype/2.6.18:
-    resolution: {integrity: sha512-RSU6Hyeg14am3Ah4VZEmeX8H7kLwEEirXe6aU2IPfKNvhXwTflK5HQRDNI0ypQXoqmm+QPyG2IaPuQE5zMwSIQ==}
+  /csstype/2.6.19:
+    resolution: {integrity: sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==}
     dev: true
 
   /csstype/3.0.10:
@@ -7734,7 +7734,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 14.17.33
+      '@types/node': 16.11.7
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true

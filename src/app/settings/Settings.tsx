@@ -2,10 +2,10 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGame } from '~/app/game'
-import { ReactComponent as CloseIcon } from '~/assets/close.svg'
-import { ReactComponent as SettingsIcon } from '~/assets/settings.svg'
+import Icon from '~/components/Icon'
 import NumberSlider from '~/components/NumberSlider'
 import usePresence from '~/hooks/usePresence'
+import { useCurrentTheme } from '~/styled'
 
 import {
   Body,
@@ -16,13 +16,17 @@ import {
   SettingsButton,
   SubmitButton,
   Wrapper
-} from './elements'
+} from './SettingsElements'
 import { useSettings } from './store'
 
 const Settings: React.FC = () => {
   const { t } = useTranslation()
 
   const { dispatch: gameDispatch } = useGame()
+
+  const theme = useCurrentTheme()
+
+  const { CloseSvg, SettingsSvg } = theme.icons.svgs
 
   /* ----- Container Display Logic ----- */
 
@@ -110,10 +114,23 @@ const Settings: React.FC = () => {
     closeSettings()
   }
 
+  const icon = presence.isVisible
+    ? (
+      <Icon
+        Svg={CloseSvg}
+        size="sm"
+      />
+    )
+    : (
+      <Icon
+        Svg={SettingsSvg}
+        size="sm"
+      />
+    )
+
   return (
     <Wrapper>
       <SettingsButton
-        Icon={presence.isVisible ? CloseIcon : SettingsIcon}
         aria-expanded={presence.isVisible}
         aria-haspopup="true"
         aria-label={
@@ -122,6 +139,7 @@ const Settings: React.FC = () => {
             : t('settings.closed')
         }
         data-testid="settings-btn"
+        icon={icon}
         onClick={handleSettingsClick}
       />
 

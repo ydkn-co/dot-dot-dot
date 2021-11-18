@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components'
-
 import Button from '~/components/Button'
+import styled, { css } from '~/styled'
 
 export const Wrapper = styled.div`
   border-radius: 50%;
@@ -13,10 +12,6 @@ export const SettingsButton = styled(Button)`
   border-width: 5px;
   grid-template-columns: max-content;
   padding: 10px;
-
-  svg {
-    width: 18px;
-  }
 `
 
 export const Heading = styled.h2``

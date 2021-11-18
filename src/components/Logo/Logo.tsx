@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Bullet, Dot, Wrapper } from './elements'
+import { Bullet, Dot, Wrapper } from './LogoElements'
 
 const Logo: React.FC = () => {
   const { t } = useTranslation()

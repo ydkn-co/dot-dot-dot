@@ -1,3 +1,4 @@
+const reactPlugin = require('@vitejs/plugin-react')
 const path = require('path')
 const { loadConfigFromFile, mergeConfig } = require('vite')
 const svgrPlugin = require('vite-plugin-svgr')
@@ -21,14 +22,25 @@ module.exports = {
 
     const mergedParentConfig = mergeConfig(config, userConfig)
 
+    const entriesPath = path.relative(
+      config.root,
+      path.resolve(__dirname, '../../src')
+    );
+
     const mergedConfig = {
       ...mergedParentConfig,
+      optimizeDeps: {
+        ...config.optimizeDeps,
+          entries: [`${entriesPath}/**/*.story.@(js|jsx|ts|tsx)`],
+      },
       plugins: [
         ...config.plugins,
         svgrPlugin()
       ],
       root: path.resolve(__dirname, '../')
     }
+
+    // throw new Error(JSON.stringify(mergedConfig, null, 2))
 
     return mergedConfig
   }

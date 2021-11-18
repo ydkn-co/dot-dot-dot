@@ -1,6 +1,5 @@
-import styled from 'styled-components'
-
 import { ReactComponent as Logo } from '~/assets/logo-line.svg'
+import styled from '~/styled'
 
 export const Wrapper = styled.div`
   align-items: center;

@@ -1,19 +1,15 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from '~/styled'
 
 export const Button = styled.button`
   align-items: center;
-  border: 5px solid var(--ddd-blue);
+  border: 5px solid ${props => props.theme.colors.accent};
   border-radius: 10px;
   cursor: pointer;
   display: grid;
   gap: 10px;
+  grid-auto-columns: max-content;
   grid-auto-flow: column;
-  grid-template-columns: max-content 1fr;
   padding: 10px 15px;
-
-  svg {
-    width: 36px;
-  }
 `
 export const iconStyles = css`
   display: grid;

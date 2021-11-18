@@ -20,7 +20,7 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "~*": ["./src/*"],
+      "~/*": ["./src/*"],
       "*": ["./node_modules/*", "./storybook/node_modules/*"]
     },
     "typeRoots": [
@@ -29,6 +29,7 @@
       "./src/global"
     ],
     "types": [
+      "@types/testing-library__dom",
       "@types/testing-library__jest-dom",
       "jest",
       "vite/client"

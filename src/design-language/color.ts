@@ -122,12 +122,12 @@ export default color
 
 export type Weight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000
 
-export const collectColorsByWeight = (
+export const collectExpressiveColorsByWeight = (
   weight: Weight
 ) : string[] => Object
   .values(color.expressive)
   .reduce(
-    (acc: any[], colors) => {
+    (acc: string[], colors) => {
       // eslint-disable-next-line security/detect-object-injection
       const color = colors[weight]
       return color ? [...acc, color] : acc

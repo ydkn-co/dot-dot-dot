@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react'
-
-import { ReactComponent as Icon } from '~/assets/play.svg'
+import Icon from '~/components/Icon'
+import { customRender as render, screen } from '~/testing-library'
+import theme from '~/theme'
 
 import Button from './Button'
+
+const PlaySvg = theme.icons.svgs.PlaySvg
+
+const iconFixture = (
+  <Icon
+    Svg={PlaySvg}
+    size="md"
+  />
+)
 
 describe('<ControlButton />', () => {
   test('icon is rendered', async () => {
@@ -10,10 +19,9 @@ describe('<ControlButton />', () => {
 
     render(
       <Button
-        Icon={Icon}
-      >
-        {labelText}
-      </Button>
+        aria-label={labelText}
+        icon={iconFixture}
+      />
     )
 
     const anscestor = screen.getByRole('button')
@@ -26,10 +34,9 @@ describe('<ControlButton />', () => {
     const text = 'Foo'
     render(
       <Button
-        Icon={Icon}
-      >
-        {text}
-      </Button>
+        aria-label={text}
+        icon={iconFixture}
+      />
     )
     expect(screen.getByRole('button')).toHaveAttribute('aria-label', text)
   })
@@ -38,8 +45,8 @@ describe('<ControlButton />', () => {
     const className = 'foo'
     render(
       <Button
-        Icon={Icon}
         className={className}
+        icon={iconFixture}
       >
         Foo
       </Button>

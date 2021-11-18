@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+import Dot from '~/app/game/Dot'
 import { useSettings } from '~/app/settings/store'
 import Background from '~/components/Background'
 import useInterval from '~/hooks/useInterval'
 
-import Dot from '../Dot'
 import { useGame } from '../store'
-import { Wrapper } from './elements'
+import { Wrapper } from './BoardElements'
 
 const DOT_FALL_INTERVAL = 1000
 export interface BoardDimensions {
