@@ -136,6 +136,12 @@ module.exports = {
               '~': './src'
             },
             extensions: ['.ts', '.tsx']
+          },
+          node: {
+            paths: [
+              './node_modules',
+              './storybook/node_modules'
+            ]
           }
         }
       }

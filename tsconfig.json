@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -19,7 +20,8 @@
     "strict": true,
     "target": "ESNext",
     "paths": {
-      "~*": ["./src/*"]
+      "~*": ["./src/*"],
+      "*": ["./node_modules/*", "./storybook/node_modules/*"]
     },
     "typeRoots": [
       "./node_modules/@types",
