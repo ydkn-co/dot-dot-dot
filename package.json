@@ -17,7 +17,8 @@
     "preinstall": "npx only-allow pnpm",
     "serve": "vite preview",
     "test": "jest --config .jestrc.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "pnpm run --dir storybook storybook"
   },
   "dependencies": {
     "framer-motion": "^5.3.0",

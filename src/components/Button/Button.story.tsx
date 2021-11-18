@@ -1,14 +1,15 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import * as React from 'react'
+import { Meta, Story } from '@storybook/react'
 
-import Button from './Button'
+import { ReactComponent as PlayIcon } from '~/assets/play.svg'
+
+import Button, { ButtonProps } from './Button'
 
 export default {
   component: Button,
-  title: 'Example/Button'
-} as ComponentMeta<typeof Button>
+  title: 'Components/Button'
+} as Meta<ButtonProps>
 
-const Template: ComponentStory<typeof Button> = (args: any) => (
+const Template: Story<ButtonProps> = (args) => (
   <Button
     {...args}
   />
@@ -16,5 +17,17 @@ const Template: ComponentStory<typeof Button> = (args: any) => (
 
 export const TextOnlyButton = Template.bind({})
 TextOnlyButton.args = {
-  children: 'Foo'
+  children: 'Submit'
+}
+
+export const IconOnlyButton = Template.bind({})
+IconOnlyButton.args = {
+  Icon: PlayIcon,
+  'aria-label': 'Play'
+}
+
+export const TextAndIconButton = Template.bind({})
+TextAndIconButton.args = {
+  Icon: PlayIcon,
+  children: 'Play'
 }

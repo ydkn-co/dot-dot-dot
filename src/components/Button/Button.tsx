@@ -24,7 +24,7 @@ interface TextAndIconVariation {
   children: string;
 }
 
-type ButtonProps =
+export type ButtonProps =
   | TextOnlyVariation
   | IconOnlyVariation
   | TextAndIconVariation
