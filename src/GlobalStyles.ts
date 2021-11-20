@@ -1,3 +1,5 @@
+import '~/theme/fonts.css'
+
 import normalize from 'normalize.css'
 
 import { createGlobalStyle } from '~/styled'
@@ -13,18 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family:
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Fira Sans",
-      "Droid Sans",
-      "Helvetica Neue",
-      sans-serif;
+    ${props => props.theme.type.heirarchies.text}
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;

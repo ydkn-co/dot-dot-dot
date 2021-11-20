@@ -1,15 +1,18 @@
-import baseStyled, {
-  ThemedStyledInterface,
-  useTheme as baseUseTheme
-} from 'styled-components'
+import * as styledComponents from 'styled-components'
+import { ThemedStyledComponentsModule } from 'styled-components'
 
 import theme from '~/theme'
 
 export type Theme = typeof theme;
-const styled = baseStyled as ThemedStyledInterface<Theme>
 
+const {
+  default: styled,
+  css,
+  createGlobalStyle,
+  keyframes,
+  useTheme,
+  ThemeProvider
+} = styledComponents as ThemedStyledComponentsModule<Theme>
+
+export { css, createGlobalStyle, keyframes, useTheme, ThemeProvider }
 export default styled
-
-export * from 'styled-components'
-
-export const useCurrentTheme = (): Theme => baseUseTheme() as Theme

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useGame } from '~/app/game'
 import Icon from '~/components/Icon'
-import { useCurrentTheme } from '~/styled'
+import { useTheme } from '~/styled'
 
 import {
   PauseButton,
@@ -16,7 +16,7 @@ import {
 const Controls: React.FC = () => {
   const { t } = useTranslation()
   const { game, dispatch } = useGame()
-  const theme = useCurrentTheme()
+  const theme = useTheme()
 
   const { PlaySvg, PauseSvg } = theme.icons.svgs
 

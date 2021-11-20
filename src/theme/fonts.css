@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'Faction Personal';
-  src: url('${factionPersonalPath}-Outline.woff2') format('woff2'),
+  src: url('/assets/fonts/faction-personal/FactionPersonal-Outline.woff2') format('woff2'),
       url('/assets/fonts/faction-personal/FactionPersonal-Outline.woff') format('woff'),
       url('/assets/fonts/faction-personal/FactionPersonal-Outline.ttf') format('truetype');
   font-weight: normal;

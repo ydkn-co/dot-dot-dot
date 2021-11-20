@@ -2,21 +2,24 @@ import * as React from 'react'
 
 type Callback = () => unknown
 
-const useControlledInterval = ({
-  callback,
-  delay
-} : {
+type Args = {
   callback: () => unknown
   delay: number,
-}) => {
+}
+
+interface Return {
+  start: () => void;
+  stop: () => void
+}
+
+const useControlledInterval = (args: Args) : Return => {
+  const { callback, delay } = args
   const intervalRef = React.useRef<number>()
-  const savedCallbackRef = React.useRef<Callback>()
+  const savedCallbackRef = React.useRef<Callback>(callback)
 
   React.useEffect(() => {
     savedCallbackRef.current = callback
-  }, [
-    callback
-  ])
+  }, [callback])
 
   const stop = React.useCallback(() => {
     clearInterval(intervalRef.current)

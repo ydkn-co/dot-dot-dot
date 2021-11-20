@@ -1,4 +1,13 @@
+import BaseGame from '~/app/game'
 import styled, { css } from '~/styled'
+
+export const Game = styled(BaseGame)`
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  position: absolute;
+  top: 100px;
+  width: 100vw;
+`
 
 const Pane = styled.div`
   height: 50%;
@@ -27,12 +36,12 @@ export const BottomPane = styled(Pane)`
 `
 BottomPane.displayName = 'App.BottomPane'
 
-interface WrapperProps {
+interface ContainerProps {
   isActive: boolean;
 }
 
-export const Wrapper = styled.div<WrapperProps>`
-  background: #fff;
+export const Container = styled.div<ContainerProps>`
+  background: #ccc;
   box-shadow:
     rgb(0 0 0 / 0%) 0 0 0 0,
     rgb(0 0 0 / 0%) 0 0 0 0,
@@ -53,4 +62,4 @@ export const Wrapper = styled.div<WrapperProps>`
     }
   `}
 `
-Wrapper.displayName = 'App.Wrapper'
+Container.displayName = 'App.Container'

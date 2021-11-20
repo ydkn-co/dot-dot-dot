@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Bullet, Dot, Wrapper } from './LogoElements'
+import { Wrapper } from './LogoElements'
 
 const Logo: React.FC = () => {
   const { t } = useTranslation()
@@ -11,11 +11,7 @@ const Logo: React.FC = () => {
       aria-label={t`app.name`}
       role="presentation"
     >
-      <Dot />
-      <Bullet />
-      <Dot />
-      <Bullet />
-      <Dot />
+      {t`app.name`}
     </Wrapper>
   )
 }

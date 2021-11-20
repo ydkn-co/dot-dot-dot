@@ -1,24 +1,23 @@
-import { ReactComponent as Logo } from '~/assets/logo-line.svg'
 import styled from '~/styled'
 
 export const Wrapper = styled.div`
+  ${props => props.theme.type.heirarchies.brand}
   align-items: center;
+  color: ${props => props.theme.colors.accent};
   display: grid;
-  gap: 30px;
-  grid-auto-flow: column;
-  grid-template-columns: 200px max-content 200px max-content 200px;
+  font-size: 80px;
+  letter-spacing: 4px;
+  margin: 0;
+  text-transform: uppercase;
+
+  &::after {
+    color: ${props => props.theme.colors.background.aqua[400]};
+    content: 'Dot Dot Dot';
+    font-weight: bold;
+    letter-spacing: 4.2px;
+    opacity: .2;
+    position: absolute;
+    z-index: -1;
+  }
 `
 Wrapper.displayName = 'Logo.Wrapper'
-
-export const Bullet = styled.div`
-  background: var(--ddd-blue);
-  height: 20px;
-  width: 20px;
-`
-Bullet.displayName = 'Logo.Bullet'
-
-export const Dot = styled(Logo)`
-  height: auto;
-  width: 100%;
-`
-Dot.displayName = 'Logo.Dot'

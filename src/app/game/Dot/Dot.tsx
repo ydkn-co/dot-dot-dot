@@ -1,28 +1,26 @@
 import * as React from 'react'
 
 import { useGame } from '~/app/game'
-import { BoardDimensions } from '~/app/game/Board'
 import { useSettings } from '~/app/settings'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Wrapper } from './DotElements'
 
-const getElementTranslationY = (element: HTMLElement) => {
-  const { transform } = window.getComputedStyle(element)
-  const { f: translationY } = new DOMMatrix(transform)
-  return translationY
-}
+// const getElementTranslationY = (element: HTMLElement) => {
+//   const { transform } = window.getComputedStyle(element)
+//   const { f: translationY } = new DOMMatrix(transform)
+//   return translationY
+// }
 interface DotProps {
-  boardDimensions: BoardDimensions;
-  className?: string;
   id: string;
   onRemoveCallback: (id: string) => void;
 }
 
 const Dot: React.FC<DotProps> = (props) => {
-  const { boardDimensions, className, id, onRemoveCallback } = props
+  const { id, onRemoveCallback } = props
   const { settings } = useSettings()
-  const { minDiameter, maxDiameter } = settings.dot
+  const { game, dispatch: gameDispatch } = useGame()
+  const { minDiameter, maxDiameter, minValue, maxValue } = settings.dot
 
   /**
    * A dot's diameter is a random number between the lower and upper bounds,
@@ -39,13 +37,20 @@ const Dot: React.FC<DotProps> = (props) => {
   /**
    * A dot's point value has an inverse relationship to it's size. The smaller
    * a dot is, the more points it is worth.
+   *
+   * A dot also needs to be able to observe min and max values. If the
+   * calculation relative to the max value is below the minValue, use the min
+   * value instead.
    */
-  const value = React.useMemo(() => Math.round(
-    (minDiameter + maxDiameter - diameter) / minDiameter
+  const value = React.useMemo(() => Math.max(
+    minValue,
+    Math.round((minDiameter + maxDiameter - diameter) / maxValue)
   ), [
     diameter,
+    minValue,
     minDiameter,
-    maxDiameter
+    maxDiameter,
+    maxValue
   ])
 
   const xPercent = React.useMemo(() => randomNumberBetween(1, 100), [])
@@ -62,18 +67,19 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     const x = Math.round(
       (
-        boardDimensions.width - diameter
+        game.dimensions.width - diameter
       ) * xPercent / 100
     )
 
     /**
-     * The y-axis starting point value needs be set beyond the acccount for the dynamic height
-     * of the dot.
+     * The y-axis starting point value needs be set beyond the height of the
+     * board to the acccount for the dynamic height of the dot.
      *
-     *
+     * Likewise, the dot needs to finish beyond the height of the board, so
+     * the diameter of the dot must be added to the height of the board.
      */
     const y = {
-      finish: boardDimensions.height + diameter,
+      finish: game.dimensions.height + diameter,
       start: 0 - diameter
     }
 
@@ -103,7 +109,7 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     /* eslint-enable max-len */
     const duration = (
-      (boardDimensions.height + diameter * 2) / //
+      (game.dimensions.height + diameter * 2) / //
       (difficulty * 10)
     ) * 1000
 
@@ -122,14 +128,12 @@ const Dot: React.FC<DotProps> = (props) => {
     }
   }, [
     // dotRef,
-    boardDimensions,
+    game.dimensions,
     diameter,
     difficulty,
     xPercent
     // animationRef
   ])
-
-  const { game, dispatch: gameDispatch } = useGame()
 
   React.useEffect(
     () => {
@@ -193,7 +197,6 @@ const Dot: React.FC<DotProps> = (props) => {
   return (
     <Wrapper
       animationState={game.status === 'playing' ? 'running' : 'paused'}
-      className={className}
       diameter={diameter}
       onMouseDown={handleClick}
       ref={dotRef}

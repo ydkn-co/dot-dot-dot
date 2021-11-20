@@ -1,5 +1,6 @@
 /* eslint-disable security/detect-object-injection */
 const flattenObject = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   obj: any,
   roots: string[] = [],
   sep = '-'

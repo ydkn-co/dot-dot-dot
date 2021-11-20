@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import { Board, Controls, useGame } from '~/app/game'
+import { Controls, useGame } from '~/app/game'
 import Settings from '~/app/settings'
 import Logo from '~/components/Logo'
 
-import { BottomPane, TopPane, Wrapper } from './AppElements'
+import { BottomPane, Container, Game, TopPane } from './AppElements'
 
 const App: React.FC = () => {
   const { game, dispatch } = useGame()
@@ -21,10 +21,10 @@ const App: React.FC = () => {
   ])
 
   return (
-    <Wrapper
+    <Container
       isActive={game.status !== 'unstarted'}
     >
-      <Board />
+      <Game />
 
       <TopPane>
         <Logo />
@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <Controls />
         <Settings />
       </BottomPane>
-    </Wrapper>
+    </Container>
   )
 }
 

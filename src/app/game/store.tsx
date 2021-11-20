@@ -1,25 +1,40 @@
 import * as React from 'react'
 
 export type GameStatus = 'unstarted' | 'playing' | 'paused' | 'over'
+export interface GameDimensions {
+  height: number;
+  width: number;
+}
 
-interface State {
+export interface State {
+  dimensions: GameDimensions;
   score: number;
   status: GameStatus;
 }
 
 const initialState: State = {
+  dimensions: {
+    height: 0,
+    width: 0
+  },
   score: 0,
   status: 'unstarted'
 }
 
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
+  | { type: '@GAME/UPDATE_DIMENSIONS', payload: GameDimensions }
   | { type: '@GAME/UPDATE_SCORE', payload: number }
   | { type: '@GAME/UPDATE_STATUS', payload: GameStatus }
 /* eslint-enable typescript-sort-keys/interface */
 
 const reducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
+    case '@GAME/UPDATE_DIMENSIONS':
+      return {
+        ...state,
+        dimensions: action.payload
+      }
     case '@GAME/UPDATE_SCORE':
       return {
         ...state,

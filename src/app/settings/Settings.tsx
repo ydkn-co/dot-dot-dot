@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useGame } from '~/app/game'
 import Icon from '~/components/Icon'
 import NumberSlider from '~/components/NumberSlider'
-import usePresence from '~/hooks/usePresence'
-import { useCurrentTheme } from '~/styled'
+import { usePresence } from '~/hooks'
+import { useTheme } from '~/styled'
 
 import {
   Body,
@@ -24,7 +24,7 @@ const Settings: React.FC = () => {
 
   const { dispatch: gameDispatch } = useGame()
 
-  const theme = useCurrentTheme()
+  const theme = useTheme()
 
   const { CloseSvg, SettingsSvg } = theme.icons.svgs
 

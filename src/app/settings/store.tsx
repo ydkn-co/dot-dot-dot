@@ -1,11 +1,13 @@
 import * as React from 'react'
 
 export interface State {
-  difficulty: number,
+  difficulty: number;
   dot: {
-    interval: number,
-    maxDiameter: number,
-    minDiameter: number
+    interval: number;
+    maxDiameter: number;
+    maxValue: number;
+    minDiameter: number;
+    minValue: number;
   }
 }
 
@@ -14,7 +16,9 @@ const initialState: State = {
   dot: {
     interval: 1000,
     maxDiameter: 100,
-    minDiameter: 10
+    maxValue: 10,
+    minDiameter: 10,
+    minValue: 1
   }
 }
 
