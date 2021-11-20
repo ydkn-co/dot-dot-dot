@@ -20,4 +20,4 @@ const Logo: React.FC = () => {
   )
 }
 
-export default Logo
+export default React.memo(Logo)

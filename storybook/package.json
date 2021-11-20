@@ -22,12 +22,9 @@
   },
   "name": "dot-dot-dot-storybook",
   "scripts": {
-    "build": "tsc && vite build",
-    "build-storybook": "build-storybook",
+    "build": "build-storybook",
     "chromatic": "npx chromatic --project-token=9349dc008ead",
-    "dev": "vite",
-    "serve": "vite preview",
-    "storybook": "TS_NODE_PROJECT=.storybook/tsconfig.json start-storybook -p 6006"
+    "serve": "TS_NODE_PROJECT=.storybook/tsconfig.json start-storybook -p 6006"
   },
   "version": "0.0.0"
 }

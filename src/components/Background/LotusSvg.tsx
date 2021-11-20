@@ -2,13 +2,12 @@ import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 interface LotusProps {
-  backgroundFill: string;
   className?: string;
   leafFill: [string, string];
 }
 
 const Lotus: React.FC<LotusProps> = (props) => {
-  const { backgroundFill, className, leafFill } = props
+  const { className, leafFill } = props
   return (
     <svg
       className={className}
@@ -17,7 +16,6 @@ const Lotus: React.FC<LotusProps> = (props) => {
     >
       <rect
         className="lotus__background"
-        fill={backgroundFill}
         id="lotus__rect"
       />
       <defs>

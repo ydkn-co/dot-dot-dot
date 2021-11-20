@@ -105,6 +105,7 @@ const Settings: React.FC = () => {
 
     dispatch({
       payload: {
+        ...settings,
         ...formValues,
         difficulty: Number(formValues.difficulty)
       },
@@ -186,4 +187,4 @@ const Settings: React.FC = () => {
   )
 }
 
-export default Settings
+export default React.memo(Settings)

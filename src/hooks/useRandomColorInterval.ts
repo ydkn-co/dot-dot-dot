@@ -26,7 +26,7 @@ const useRandomColorInterval = (props: RandomColorIntervalProps) => {
   const randomColor = React.useCallback(
     (colors: string[], currentColor: string) => {
       const filteredColors = colors.filter((color) => color !== currentColor)
-      const randomIdx = randomNumberBetween(0, colors.length - 1)
+      const randomIdx = randomNumberBetween(0, filteredColors.length - 1)
 
       // eslint-disable-next-line security/detect-object-injection
       return filteredColors[randomIdx]
@@ -34,12 +34,11 @@ const useRandomColorInterval = (props: RandomColorIntervalProps) => {
     []
   )
 
-  const colorChangeCallBack = () => {
-    console.log('fire', props)
+  const doColorChange = () => {
     setColor(randomColor(colors.current, color))
   }
 
-  const interval = useInterval(colorChangeCallBack, props.intervalDuration)
+  const interval = useInterval(doColorChange, props.intervalDuration)
 
   return {
     color,

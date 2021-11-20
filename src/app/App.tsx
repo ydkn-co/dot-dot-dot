@@ -7,7 +7,18 @@ import Logo from '~/components/Logo'
 import { BottomPane, TopPane, Wrapper } from './AppElements'
 
 const App: React.FC = () => {
-  const { game } = useGame()
+  const { game, dispatch } = useGame()
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      dispatch({
+        payload: 'paused',
+        type: '@GAME/UPDATE_STATUS'
+      })
+    })
+  }, [
+    dispatch
+  ])
 
   return (
     <Wrapper

@@ -2,6 +2,8 @@
  * Color – https://indeed.design/brand/color
  */
 
+import flattenObject from '~/utils/flattenObject'
+
 const color = {
   foundational: {
     indeedBlue: '#003a9b',
@@ -134,3 +136,5 @@ export const collectExpressiveColorsByWeight = (
     },
     []
   )
+
+export const colorMap = flattenObject(color)

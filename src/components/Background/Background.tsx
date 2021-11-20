@@ -2,9 +2,9 @@ import * as React from 'react'
 
 import useRandomColorInterval from '~/hooks/useRandomColorInterval'
 
-import { Grain, Lotus } from './BackgroundElements'
+import { Grain, Lotus, LotusWrapper } from './BackgroundElements'
 
-interface BackgroundProps {
+export interface BackgroundProps {
   className?: string;
 }
 
@@ -15,10 +15,12 @@ const Background: React.FC<BackgroundProps> = (props) => {
     colorWeight: 500,
     intervalDuration: 10000
   })
+
   const leafFill1 = useRandomColorInterval({
     colorWeight: 100,
     intervalDuration: 10000
   })
+
   const leafFill2 = useRandomColorInterval({
     colorWeight: 100,
     intervalDuration: 10000
@@ -38,14 +40,18 @@ const Background: React.FC<BackgroundProps> = (props) => {
   )
 
   return (
-    <Grain
-      className={className}
-    >
-      <Lotus
-        backgroundFill={backgroundFill.color}
-        leafFill={[leafFill1.color, leafFill2.color]}
+    <>
+      <Grain
+        className={className}
       />
-    </Grain>
+      <LotusWrapper
+        backgroundColor={backgroundFill.color}
+      >
+        <Lotus
+          leafFill={[leafFill1.color, leafFill2.color]}
+        />
+      </LotusWrapper>
+    </>
   )
 }
 

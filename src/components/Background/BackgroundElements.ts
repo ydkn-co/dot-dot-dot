@@ -12,6 +12,7 @@ const grainAnimation = keyframes`
 
 export const Grain = styled.div`
   height: 100%;
+  overflow: hidden;
   position: absolute;
   width: 100%;
   will-change: contents;
@@ -32,7 +33,7 @@ export const Grain = styled.div`
 `
 Grain.displayName = 'Background.Grain'
 
-// const lotusAnimation = keyframes`
+// const lotusAnimation = k eyframes`
 //   from {
 //     transform: rotate(0deg);
 //   }
@@ -41,9 +42,19 @@ Grain.displayName = 'Background.Grain'
 //   }
 // `
 
+interface LotusWrapperProps {
+  backgroundColor: string;
+}
+
+export const LotusWrapper = styled.div<LotusWrapperProps>`
+  background-color: ${props => props.backgroundColor};
+  height: 100%;
+  width: 100%;
+  z-index: ${props => props.theme.zIndex.background.lotus};
+`
+LotusWrapper.displayName = 'Background.LotusWrapper'
+
 export const Lotus = styled(LotusSvg)`
   transition: fill 1s linear;
-  z-index: ${props => props.theme.zIndex.background.lotus};
-
 `
 Lotus.displayName = 'Background.Lotus'

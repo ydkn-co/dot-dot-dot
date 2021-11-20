@@ -1,10 +1,21 @@
 import * as React from 'react'
-interface State {
-  difficulty: number
+
+export interface State {
+  difficulty: number,
+  dot: {
+    interval: number,
+    maxDiameter: number,
+    minDiameter: number
+  }
 }
 
 const initialState: State = {
-  difficulty: 4
+  difficulty: 4,
+  dot: {
+    interval: 1000,
+    maxDiameter: 100,
+    minDiameter: 10
+  }
 }
 
 type Action = {

@@ -21,7 +21,7 @@
     "target": "ESNext",
     "paths": {
       "~/*": ["./src/*"],
-      "*": ["./node_modules/*", "./storybook/node_modules/*"]
+      "*": ["./node_modules/*"]
     },
     "typeRoots": [
       "./node_modules/@types",
@@ -37,5 +37,8 @@
   },
   "include": [
     "./src"
+  ],
+  "exclude": [
+    "./**/*.story.tsx"
   ]
 }
