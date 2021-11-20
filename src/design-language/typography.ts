@@ -1,30 +1,28 @@
 /**
  * Typography – https://indeed.design/brand/typography
- *
- * Font faces – Indeed Sans, Noto Sans
  */
 
 export default {
-  scale: {
-    0: 0,
-    1: 9,
-    2: 12,
-    3: 13,
-    4: 16,
-    5: 19,
-    6: 24,
-    7: 28,
-    8: 33,
-    9: 40
+  fonts: {
+    display: 'Faction Personal',
+    voice: 'Indeed Sans',
+    universal: 'Noto Sans'
+  },
+  size: {
+    xl: '5.75rem',
+    lg: '2.25rem',
+    md: '1.75rem',
+    sm: '1.25rem',
+    xs: '1rem'
   },
   spacing: {
-    tighter: '',
-    tight: '',
-    normal: '',
-    loose: ''
+    tighter: '1rem',
+    tight: '1.125rem',
+    normal: '1.25rem',
+    loose: '1.5rem'
   },
   weight: {
-    bold: '',
-    regular: ''
+    bold: 'bold',
+    regular: 'normal'
   }
 }

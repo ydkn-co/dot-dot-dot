@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Faction Personal Outline';
+    src: url('FactionPersonal-Outline.woff2') format('woff2'),
+        url('FactionPersonal-Outline.woff') format('woff'),
+        url('FactionPersonal-Outline.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Faction Personal';
+    src: url('FactionPersonal-Black.woff2') format('woff2'),
+        url('FactionPersonal-Black.woff') format('woff'),
+        url('FactionPersonal-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
