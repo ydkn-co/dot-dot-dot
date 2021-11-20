@@ -41,10 +41,7 @@ const Game: React.FC<GameProps> = (props) => {
     //     type: '@GAME/UPDATE_DIMENSIONS'
     //   })
     // })
-  }, [
-    gameRef,
-    gameDispatch
-  ])
+  }, [gameDispatch])
 
   return (
     <Container

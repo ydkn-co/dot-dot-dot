@@ -1,6 +1,6 @@
-import designLanguage from '~/design-language'
+import color from '~/design-language/color'
 
-const { expressive: allExpressiveColors } = designLanguage.color
+const { expressive: allExpressiveColors } = color
 
 // Discard the colors we don't want to use
 const {
@@ -12,6 +12,9 @@ const {
 } = allExpressiveColors
 
 export default {
-  accent: allExpressiveColors.blue[700],
-  background: selectExpressiveColors
+  background: 'rgba(255, 255, 255, 0.5)',
+  expressive: selectExpressiveColors,
+  primary: 'var(--ddd-game-background-color)',
+  secondary: '#05a',
+  text: 'rgba(255, 255, 255, 0.5)'
 }

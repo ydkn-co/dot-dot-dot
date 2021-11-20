@@ -1,18 +1,22 @@
 import * as React from 'react'
 
-import BackgroundGrain from '~/components/BackgroundGrain'
+import { useGame } from '~/app/game'
 import { useControlledInterval, useRandomColor } from '~/hooks'
 
-import { LeftLotus, RightLotus } from './BackgroundElements'
+import { Container, Grain } from './BackgroundElements'
+
+const BACKGROUND_TRANSITION_DURATION = 10000
 
 const Background: React.FC = () => {
+  const { game, dispatch: dispatchGame } = useGame()
+
   const [randomColor, pickRandomColor] = useRandomColor({
     weight: 700
   })
 
   const randomColorInterval = useControlledInterval({
     callback: pickRandomColor,
-    delay: 10000
+    delay: BACKGROUND_TRANSITION_DURATION
   })
 
   React.useEffect(() => {
@@ -20,19 +24,22 @@ const Background: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  React.useEffect(() => {
+    dispatchGame({
+      payload: randomColor,
+      type: '@GAME/UPDATE_BACKGROUND_COLOR'
+    })
+  }, [
+    randomColor
+  ])
+
   return (
-    <BackgroundGrain
+    <Container
       color={randomColor}
-      grainOpacity={0.5}
-      transitionDuration={10000}
+      transitionDuration={BACKGROUND_TRANSITION_DURATION}
     >
-      <LeftLotus
-        leafFill={['#fff', '#fff']}
-      />
-      <RightLotus
-        leafFill={['#fff', '#fff']}
-      />
-    </BackgroundGrain>
+      <Grain />
+    </Container>
   )
 }
 

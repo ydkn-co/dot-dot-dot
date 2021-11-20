@@ -24,6 +24,30 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  /**
+   * This is a hack to get around styled components not properly observing this
+   * style during it's compilation.
+   */
+  /* input[type=range] {
+    appearance: none;
+    background: ${props => props.theme.colors.background};
+    border: none;
+    border-radius: 2px;
+    height: 10px;
+    outline: none;
+    transition: opacity .2s;
+    width: 100%;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      aspect-ratio: 1 / 1;
+      background: ${props => props.theme.colors.background};
+      border-radius: 50%;
+      cursor: pointer;
+      width: 20px;
+    }
+  } */
 `
 
 export default GlobalStyle

@@ -7,12 +7,14 @@ export interface GameDimensions {
 }
 
 export interface State {
+  backgroundColor: string;
   dimensions: GameDimensions;
   score: number;
   status: GameStatus;
 }
 
 const initialState: State = {
+  backgroundColor: '',
   dimensions: {
     height: 0,
     width: 0
@@ -23,6 +25,7 @@ const initialState: State = {
 
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
+  | { type: '@GAME/UPDATE_BACKGROUND_COLOR', payload: string }
   | { type: '@GAME/UPDATE_DIMENSIONS', payload: GameDimensions }
   | { type: '@GAME/UPDATE_SCORE', payload: number }
   | { type: '@GAME/UPDATE_STATUS', payload: GameStatus }
@@ -30,6 +33,11 @@ type Action =
 
 const reducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
+    case '@GAME/UPDATE_BACKGROUND_COLOR':
+      return {
+        ...state,
+        backgroundColor: action.payload
+      }
     case '@GAME/UPDATE_DIMENSIONS':
       return {
         ...state,

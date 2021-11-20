@@ -5,7 +5,7 @@ import { Background, Grain } from './BackgroundGrainElements'
 export interface BackgroundGrainProps {
   children?: React.ReactNode;
   className?: string;
-  color: string;
+  color?: string;
   grainOpacity?: number;
   transitionDuration?: number;
 }

@@ -2,10 +2,15 @@
   "app": {
     "name": "Dot Dot Dot"
   },
-  "game": {
-    "controlButtonText": {
+  "menu": {
+    "button": {
       "paused": "Resume game",
       "playing": "Pause game",
+      "settings": {
+        "close": "Open Settings",
+        "open": "Close Settings"
+      },
+      "settingsOpen": "Open Settings",
       "unstarted": "Start game"
     }
   },
@@ -13,6 +18,9 @@
     "closed": "Open settings",
     "difficultyLabel": "Choose a difficulty",
     "heading": "Settings",
+    "labels": {
+      "difficulty": "Difficulty Level"
+    },
     "opened": "Close settings",
     "reset": "Reset",
     "save": "Save"

@@ -6,6 +6,7 @@ export default {
   game: {
     dot: 2
   },
+  menu: 5,
   panes: {
     bottom: 3,
     top: 3

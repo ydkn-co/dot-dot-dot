@@ -16,10 +16,10 @@ export default {
     xs: '1rem'
   },
   spacing: {
-    tighter: '1rem',
-    tight: '1.125rem',
-    normal: '1.25rem',
-    loose: '1.5rem'
+    tighter: '1em',
+    tight: '1.125em',
+    normal: '1.25em',
+    loose: '1.5em'
   },
   weight: {
     bold: 'bold',

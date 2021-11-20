@@ -1,15 +1,15 @@
+import assets from './assets'
 import colors from './colors'
-import icons from './icons'
 import mediaQueries from './media-queries'
+import motion from './motion'
 import type from './type'
 import zIndex from './z-index'
 
-const theme = {
+export default {
+  assets,
   colors,
-  icons,
   mediaQueries,
+  motion,
   type,
   zIndex
 }
-
-export default theme

@@ -1,40 +1,22 @@
 import * as React from 'react'
 
-import { Controls, useGame } from '~/app/game'
-import Settings from '~/app/settings'
-import Logo from '~/components/Logo'
+import { useGame } from '~/app/game'
+import Menu from '~/app/menu'
 
-import { BottomPane, Container, Game, TopPane } from './AppElements'
+import { Container, Game } from './AppElements'
 
 const App: React.FC = () => {
-  const { game, dispatch } = useGame()
-
-  React.useEffect(() => {
-    window.addEventListener('resize', () => {
-      dispatch({
-        payload: 'paused',
-        type: '@GAME/UPDATE_STATUS'
-      })
-    })
-  }, [
-    dispatch
-  ])
+  const { game } = useGame()
 
   return (
     <Container
-      isActive={game.status !== 'unstarted'}
+      gameBackgroundColor={game.backgroundColor}
     >
+      <Menu
+        variant="mini"
+      />
+      <Menu />
       <Game />
-
-      <TopPane>
-        <Logo />
-        {game.score}
-      </TopPane>
-
-      <BottomPane>
-        <Controls />
-        <Settings />
-      </BottomPane>
     </Container>
   )
 }

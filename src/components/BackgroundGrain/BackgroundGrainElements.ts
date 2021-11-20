@@ -1,12 +1,12 @@
 import styled, { keyframes } from '~/styled'
 
 interface BackgroundProps {
-  color: string;
+  color?: string;
   transitionDuration?: number;
 }
 
 export const Background = styled.div<BackgroundProps>`
-  background-color: ${props => props.color};
+  background-color: ${props => props.color || 'red'};
   height: 100%;
   transition: background-color ${props => props.transitionDuration}ms linear;
   width: 100%;

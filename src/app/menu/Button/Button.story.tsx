@@ -1,8 +1,8 @@
 import { Meta, Story } from '@storybook/react'
 
 import { ReactComponent as PlaySvg } from '~/assets/play.svg'
-import Icon from '~/components/Icon'
 
+import Icon from '../Icon'
 import Button, { ButtonProps } from './Button'
 
 export default {
