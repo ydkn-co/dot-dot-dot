@@ -14,7 +14,6 @@ const {
 export default {
   background: 'rgba(255, 255, 255, 0.5)',
   expressive: selectExpressiveColors,
-  primary: 'var(--ddd-game-background-color)',
-  secondary: '#05a',
+  primary: 'var(--ddd-app-background-color)',
   text: 'rgba(255, 255, 255, 0.5)'
 }

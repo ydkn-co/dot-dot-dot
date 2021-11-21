@@ -1,16 +1,16 @@
 import * as React from 'react'
 
-import { useGame } from '~/components/Game'
 import Menu from '~/components/Menu'
+import { useAppState } from '~/store'
 
 import { Container, Game } from './AppElements'
 
 const App: React.FC = () => {
-  const { game } = useGame()
+  const { app } = useAppState()
 
   return (
     <Container
-      gameBackgroundColor={game.backgroundColor}
+      appBackgroundColor={app.backgroundColor}
     >
       <Menu
         variant="mini"

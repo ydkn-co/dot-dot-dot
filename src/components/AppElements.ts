@@ -9,11 +9,11 @@ export const Game = styled(BaseGame)`
 `
 
 interface Container {
-  gameBackgroundColor?: string;
+  appBackgroundColor?: string;
 }
 
 export const Container = styled.div<Container>`
-  --ddd-game-background-color: ${props => props.gameBackgroundColor};
+  --ddd-app-background-color: ${props => props.appBackgroundColor};
   align-items: center;
   box-shadow:
     rgb(0 0 0 / 0%) 0 0 0 0,

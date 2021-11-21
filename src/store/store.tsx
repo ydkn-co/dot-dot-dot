@@ -1,14 +1,15 @@
 import * as React from 'react'
 
-export type GameStatus = 'unstarted' | 'playing' | 'paused' | 'over'
-export interface GameDimensions {
+export type Status = 'unstarted' | 'playing' | 'paused' | 'over'
+
+export interface Dimensions {
   height: number;
   width: number;
 }
 
 export interface State {
   backgroundColor: string;
-  dimensions: GameDimensions;
+  dimensions: Dimensions;
   score: number;
   settings: {
     diameter: {
@@ -22,7 +23,7 @@ export interface State {
       min: number;
     }
   },
-  status: GameStatus;
+  status: Status;
 }
 
 const initialState: State = {
@@ -49,37 +50,40 @@ const initialState: State = {
 
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
-  | { type: '@GAME/UPDATE_BACKGROUND_COLOR', payload: string }
-  | { type: '@GAME/UPDATE_DIFFICULTY', payload: number }
-  | { type: '@GAME/UPDATE_DIMENSIONS', payload: GameDimensions }
-  | { type: '@GAME/UPDATE_SCORE', payload: number }
-  | { type: '@GAME/UPDATE_STATUS', payload: GameStatus }
+  | { type: '@APP/UPDATE_BACKGROUND_COLOR', payload: string }
+  | { type: '@APP/UPDATE_DIFFICULTY', payload: number }
+  | { type: '@APP/UPDATE_DIMENSIONS', payload: Dimensions }
+  | { type: '@APP/UPDATE_SCORE', payload: number }
+  | { type: '@APP/UPDATE_STATUS', payload: Status }
 /* eslint-enable typescript-sort-keys/interface */
 
 const reducer = (state: State = initialState, action: Action) => {
   console.log(action)
   switch (action.type) {
-    case '@GAME/UPDATE_BACKGROUND_COLOR':
+    case '@APP/UPDATE_BACKGROUND_COLOR':
       return {
         ...state,
         backgroundColor: action.payload
       }
-    case '@GAME/UPDATE_DIFFICULTY':
+    case '@APP/UPDATE_DIFFICULTY':
       return {
         ...state,
-        difficulty: action.payload
+        settings: {
+          ...state.settings,
+          difficulty: action.payload
+        }
       }
-    case '@GAME/UPDATE_DIMENSIONS':
+    case '@APP/UPDATE_DIMENSIONS':
       return {
         ...state,
         dimensions: action.payload
       }
-    case '@GAME/UPDATE_SCORE':
+    case '@APP/UPDATE_SCORE':
       return {
         ...state,
         score: action.payload
       }
-    case '@GAME/UPDATE_STATUS':
+    case '@APP/UPDATE_STATUS':
       return {
         ...state,
         status: action.payload
@@ -89,34 +93,34 @@ const reducer = (state: State = initialState, action: Action) => {
   }
 }
 
-export const GameContext = React.createContext<{
-  dispatch: React.Dispatch<Action>,
-  game: State
+export const AppStateContext = React.createContext<{
+  app: State,
+  dispatch: React.Dispatch<Action>
 }>({
-  dispatch: () => null,
-  game: initialState
+  app: initialState,
+  dispatch: () => null
 })
 
-export const GameProvider: React.FC = ({ children }) => {
-  const [game, dispatch] = React.useReducer(reducer, initialState)
+export const AppStateProvider: React.FC = ({ children }) => {
+  const [app, dispatch] = React.useReducer(reducer, initialState)
 
-  const value = React.useMemo(() => ({ dispatch, game }), [game])
+  const value = React.useMemo(() => ({ app, dispatch }), [app])
 
   return (
-    <GameContext.Provider
+    <AppStateContext.Provider
       value={value}
     >
       {children}
-    </GameContext.Provider>
+    </AppStateContext.Provider>
   )
 }
 
-export const useGame = () => {
-  const context = React.useContext(GameContext)
+export const useAppState = () => {
+  const context = React.useContext(AppStateContext)
 
   if (!context) {
     throw new Error(
-      '`useGame()` must be used within `<GameProvider />`'
+      '`useAppState()` must be used within `<AppStateProvider />`'
     )
   }
 

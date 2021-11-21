@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGame } from '~/components/Game'
+import { useAppState } from '~/store'
 
 import type { Variant } from '..'
 import {
@@ -21,17 +21,19 @@ interface DifficultySliderProps extends React.InputHTMLAttributes<HTMLInputEleme
 const DifficultySlider: React.FC<DifficultySliderProps> = (props) => {
   const { variant } = props
   const { t } = useTranslation()
-  const { game, dispatch } = useGame()
+  const { app, dispatch } = useAppState()
 
-  const { difficulty } = game.settings
+  const { difficulty } = app.settings
   const levels = React.useMemo(() => [...Array(10).keys()], [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
       payload: Number(e.target.value),
-      type: '@GAME/UPDATE_DIFFICULTY'
+      type: '@APP/UPDATE_DIFFICULTY'
     })
   }
+
+  console.log(difficulty)
 
   return (
     <Container

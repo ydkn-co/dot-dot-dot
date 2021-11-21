@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGame } from '~/components/Game'
 import type { Variant } from '~/components/Menu'
 import Icon from '~/components/Menu/Icon'
 import { usePresence } from '~/hooks'
+import { useAppState } from '~/store'
 import { useTheme } from '~/styled'
 
 import {
@@ -32,7 +32,7 @@ const Menu: React.FC<MenuProps> = (props) => {
   const { variant = 'full' } = props
 
   const { t } = useTranslation()
-  const { game, dispatch: gameDispatch } = useGame()
+  const { app, dispatch } = useAppState()
   const theme = useTheme()
 
   const { CloseSvg, PauseSvg, PlaySvg, SettingsSvg } = theme.assets.icons.svgs
@@ -49,11 +49,11 @@ const Menu: React.FC<MenuProps> = (props) => {
   }, [])
 
   React.useEffect(() => {
-    if (game.status !== 'playing') {
+    if (app.status !== 'playing') {
       setCssModifier(modifierMap.Visible)
     }
   }, [
-    game.status
+    app.status
   ])
 
   React.useEffect(() => {
@@ -103,9 +103,9 @@ const Menu: React.FC<MenuProps> = (props) => {
                 Svg={PauseSvg}
               />
             )}
-            onClick={() => gameDispatch({
+            onClick={() => dispatch({
               payload: 'paused',
-              type: '@GAME/UPDATE_STATUS'
+              type: '@APP/UPDATE_STATUS'
             })}
             variant={variant}
           >
@@ -121,9 +121,9 @@ const Menu: React.FC<MenuProps> = (props) => {
                 Svg={PlaySvg}
               />
             )}
-            onClick={() => gameDispatch({
+            onClick={() => dispatch({
               payload: 'playing',
-              type: '@GAME/UPDATE_STATUS'
+              type: '@APP/UPDATE_STATUS'
             })}
             variant={variant}
           >

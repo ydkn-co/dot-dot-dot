@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useGame } from '~/components/Game'
+import { useAppState } from '~/store'
 
 import Background from './Background'
 import Dots from './Dots'
@@ -13,19 +13,19 @@ interface GameProps {
 const Game: React.FC<GameProps> = (props) => {
   const { className } = props
   const gameRef = React.useRef<HTMLDivElement | null>(null)
-  const { dispatch: gameDispatch } = useGame()
+  const { dispatch } = useAppState()
 
   React.useEffect(() => {
     if (!gameRef.current) {
       return
     }
 
-    gameDispatch({
+    dispatch({
       payload: {
         height: gameRef.current.offsetHeight,
         width: gameRef.current.offsetWidth
       },
-      type: '@GAME/UPDATE_DIMENSIONS'
+      type: '@APP/UPDATE_DIMENSIONS'
     })
 
     // window.addEventListener('resize', () => {
@@ -33,15 +33,15 @@ const Game: React.FC<GameProps> = (props) => {
     //     return
     //   }
 
-    //   gameDispatch({
+    //   dispatch({
     //     payload: {
     //       height: boardRef.current.offsetHeight,
     //       width: boardRef.current.offsetWidth
     //     },
-    //     type: '@GAME/UPDATE_DIMENSIONS'
+    //     type: '@APP/UPDATE_DIMENSIONS'
     //   })
     // })
-  }, [gameDispatch])
+  }, [dispatch])
 
   return (
     <Container

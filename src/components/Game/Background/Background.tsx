@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import { useGame } from '~/components/Game'
 import { useControlledInterval, useRandomColor } from '~/hooks'
+import { useAppState } from '~/store'
 
 import { Container, Grain } from './BackgroundElements'
 
 const BACKGROUND_TRANSITION_DURATION = 10000
 
 const Background: React.FC = () => {
-  const { dispatch } = useGame()
+  const { dispatch } = useAppState()
 
   const [randomColor, pickRandomColor] = useRandomColor({
     weight: 700
@@ -27,7 +27,7 @@ const Background: React.FC = () => {
   React.useEffect(() => {
     dispatch({
       payload: randomColor,
-      type: '@GAME/UPDATE_BACKGROUND_COLOR'
+      type: '@APP/UPDATE_BACKGROUND_COLOR'
     })
   }, [randomColor])
 

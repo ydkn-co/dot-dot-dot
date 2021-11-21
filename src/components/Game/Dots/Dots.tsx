@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { useGame } from '~/components/Game'
 import Dot from '~/components/Game/Dot'
 import { useControlledInterval } from '~/hooks'
+import { useAppState } from '~/store'
 
 const Dots: React.FC = () => {
   const [dots, setDots] = React.useState<string[]>([])
 
-  const { game } = useGame()
+  const { app } = useAppState()
 
   const dotInterval = useControlledInterval({
     callback: () => {
@@ -19,12 +19,12 @@ const Dots: React.FC = () => {
         id
       ]))
     },
-    delay: game.settings.interval
+    delay: app.settings.interval
   })
 
   React.useEffect(
     () => {
-      if (game.status === 'playing') {
+      if (app.status === 'playing') {
         dotInterval.start()
       } else {
         dotInterval.stop()
@@ -32,7 +32,7 @@ const Dots: React.FC = () => {
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
-      game.status
+      app.status
     ]
   )
 
