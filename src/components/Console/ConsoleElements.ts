@@ -21,7 +21,7 @@ export const Container = styled.div`
   max-width: calc(100vw - 96px);
   padding: 8px;
   position: relative;
-  width: max-content;
+  width: 550px;
   z-index: ${props => props.theme.zIndex.menu};
 `
 
@@ -53,9 +53,10 @@ export const Logo = styled.h1`
 Logo.displayName = 'Menu.Logo'
 
 export const GameContainer = styled.div`
-  background-color: red;
+  border: 4px solid ${props => props.theme.colors.background};
   border-radius: 4px;
   grid-area: game;
+  overflow: hidden;
   position: relative;
 `
 

@@ -137,4 +137,23 @@ export const collectExpressiveColorsByWeight = (
     []
   )
 
+export const expressiveColorsGroupedByWeight = ([
+  100,
+  200,
+  300,
+  400,
+  500,
+  600,
+  700,
+  800,
+  900,
+  1000
+] as Weight[]).reduce((acc, weight) => {
+  return {
+    ...acc,
+    // eslint-disable-next-line security/detect-object-injection
+    [weight]: collectExpressiveColorsByWeight(weight)
+  }
+}, {} as Record<number, string[]>)
+
 export const colorMap = flattenObject(color)

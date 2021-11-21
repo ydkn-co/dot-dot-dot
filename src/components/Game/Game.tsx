@@ -1,5 +1,7 @@
+import merge from 'lodash.merge'
 import * as React from 'react'
 
+import type { Settings } from '~/components/Game'
 import { useGame } from '~/components/Game'
 
 import Background from './Background'
@@ -9,18 +11,41 @@ import { Container } from './GameElements'
 interface GameProps {
   autoplay?: boolean;
   className?: string;
+  isFullscreen?: boolean;
+  readonly?: boolean;
+  settings?: Partial<Settings>;
 }
 
 const Game: React.FC<GameProps> = (props) => {
-  const { autoplay, className } = props
+  const { autoplay, className, isFullscreen, settings } = props
   const gameRef = React.useRef<HTMLDivElement | null>(null)
-  const { dispatch } = useGame()
+  const { game, dispatch } = useGame()
 
   React.useEffect(() => {
     if (autoplay) {
       dispatch({
         payload: 'playing',
         type: '@GAME/UPDATE_STATUS'
+      })
+    }
+
+    if (isFullscreen) {
+      dispatch({
+        payload: isFullscreen,
+        type: '@GAME/UPDATE_IS_FULLSCREEN'
+      })
+    }
+
+    console.log('!!!!')
+
+    if (settings) {
+      dispatch({
+        payload: merge(
+          {},
+          game.settings,
+          settings
+        ),
+        type: '@GAME/UPDATE_SETTINGS'
       })
     }
   }, [])
@@ -56,6 +81,7 @@ const Game: React.FC<GameProps> = (props) => {
   return (
     <Container
       className={className}
+      isFullscreen={game.isFullscreen}
       ref={gameRef}
     >
       <Dots />

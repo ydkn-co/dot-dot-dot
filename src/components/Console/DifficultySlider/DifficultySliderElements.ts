@@ -55,7 +55,7 @@ export const InputContainer = styled.div`
   height: 40px;
   justify-content: center;
   padding: 8px;
-  width: calc(100% - 25px);
+  width: 100%;
 
   &::-webkit-slider-thumb {
     border-radius: 12px;

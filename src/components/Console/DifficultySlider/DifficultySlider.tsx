@@ -23,17 +23,13 @@ const DifficultySlider: React.FC = () => {
   React.useEffect(() => {
     dispatch({
       payload: Math.floor(speed / 10),
-      type: '@GAME/UPDATE_DIFFICULTY'
+      type: '@GAME/UPDATE_SETTINGS_DIFFICULTY'
     })
-  }, [
-    speed
-  ])
+  }, [dispatch, speed])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(Number(e.target.value))
   }
-
-  console.log(difficulty)
 
   return (
     <Container>

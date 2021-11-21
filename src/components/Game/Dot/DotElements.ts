@@ -1,21 +1,16 @@
-import * as React from 'react'
-
 import styled, { css } from '~/utils/styled'
-
-export interface YPositions {
-  finish: number;
-  start: number;
-}
 
 interface ContainerProps {
   animationState: 'running' | 'paused';
+  color: string;
   diameter: number;
+  isReadonly: boolean;
 }
 
 /* eslint-disable max-len */
-export const Container = React.memo(styled.button<ContainerProps>`
+export const Container = styled.button<ContainerProps>`
   aspect-ratio: 1 / 1;
-  background-color: #fff;
+  background-color: ${props => props.color};
   border: 0;
   border-radius: 50%;
   cursor: crosshair;
@@ -30,7 +25,11 @@ export const Container = React.memo(styled.button<ContainerProps>`
     cursor: ${props.animationState === 'running' ? 'crosshair' : 'not-allowed'};
     width: ${props.diameter}px;
   `}
-`)
+
+  ${props => props.isReadonly && css`
+    cursor: auto;
+  `}
+`
 /* eslint-enable max-len */
 
 Container.displayName = 'Dot.Container'

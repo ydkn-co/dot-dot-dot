@@ -30,6 +30,8 @@ const useControlledInterval = (args: Args) : Return => {
       return
     }
 
+    savedCallbackRef.current()
+
     intervalRef.current = setInterval(() => {
       if (!savedCallbackRef.current) {
         return

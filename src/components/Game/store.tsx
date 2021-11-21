@@ -1,3 +1,4 @@
+import merge from 'lodash.merge'
 import * as React from 'react'
 
 export type Status = 'unstarted' | 'playing' | 'paused' | 'over'
@@ -7,39 +8,47 @@ export interface Dimensions {
   width: number;
 }
 
+export interface Settings {
+  canToggleFullscreen: boolean,
+  diameter: {
+    max: number;
+    min: number;
+  },
+  difficulty: number;
+  interval: number;
+  isReadonly: boolean,
+  value: {
+    max: number;
+    min: number;
+  }
+}
+
 export interface State {
   backgroundColor: string;
   dimensions: Dimensions;
+  isFullscreen: boolean;
   score: number;
-  settings: {
-    diameter: {
-      max: number;
-      min: number;
-    },
-    difficulty: number;
-    interval: number;
-    value: {
-      max: number;
-      min: number;
-    }
-  },
+  settings: Settings,
   status: Status;
 }
 
-const initialState: State = {
+export const initialState: State = {
   backgroundColor: '',
   dimensions: {
     height: 0,
     width: 0
   },
+  isFullscreen: false,
   score: 0,
   settings: {
+    canToggleFullscreen: false,
     diameter: {
       max: 100,
       min: 10
     },
-    difficulty: 5,
+    difficulty: 1,
     interval: 1000,
+    isReadonly: false,
     value: {
       max: 10,
       min: 1
@@ -51,33 +60,49 @@ const initialState: State = {
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
   | { type: '@GAME/UPDATE_BACKGROUND_COLOR', payload: string }
-  | { type: '@GAME/UPDATE_DIFFICULTY', payload: number }
   | { type: '@GAME/UPDATE_DIMENSIONS', payload: Dimensions }
+  | { type: '@GAME/UPDATE_IS_FULLSCREEN', payload: boolean }
   | { type: '@GAME/UPDATE_SCORE', payload: number }
+  | { type: '@GAME/UPDATE_SETTINGS', payload: Partial<Settings> }
+  | { type: '@GAME/UPDATE_SETTINGS_DIFFICULTY', payload: number }
   | { type: '@GAME/UPDATE_STATUS', payload: Status }
 /* eslint-enable typescript-sort-keys/interface */
 
 const reducer = (state: State = initialState, action: Action) => {
-  console.log(action)
   switch (action.type) {
     case '@GAME/UPDATE_BACKGROUND_COLOR':
       return {
         ...state,
         backgroundColor: action.payload
       }
-    case '@GAME/UPDATE_DIFFICULTY':
-      return {
-        ...state,
-        settings: {
-          ...state.settings,
-          difficulty: action.payload
-        }
-      }
     case '@GAME/UPDATE_DIMENSIONS':
       return {
         ...state,
         dimensions: action.payload
       }
+    case '@GAME/UPDATE_IS_FULLSCREEN':
+      return {
+        ...state,
+        isFullscreen: action.payload
+      }
+    case '@GAME/UPDATE_SETTINGS':
+      return merge(
+        {},
+        state,
+        {
+          settings: action.payload
+        }
+      )
+    case '@GAME/UPDATE_SETTINGS_DIFFICULTY':
+      return merge(
+        {},
+        state,
+        {
+          settings: {
+            difficulty: action.payload
+          }
+        }
+      )
     case '@GAME/UPDATE_SCORE':
       return {
         ...state,
