@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { useGame } from '~/app/game'
-import { useSettings } from '~/app/settings'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Wrapper } from './DotElements'
@@ -18,19 +17,17 @@ interface DotProps {
 
 const Dot: React.FC<DotProps> = (props) => {
   const { id, onRemoveCallback } = props
-  const { settings } = useSettings()
-  const { game, dispatch: gameDispatch } = useGame()
-  const { minDiameter, maxDiameter, minValue, maxValue } = settings.dot
+  const { game, dispatch } = useGame()
+  const { settings } = game
 
   /**
    * A dot's diameter is a random number between the lower and upper bounds,
    * inclusive of the bounds.
    */
   const diameter = React.useMemo(
-    () => randomNumberBetween(minDiameter, maxDiameter),
+    () => randomNumberBetween(settings.diameter.min, settings.diameter.max),
     [
-      minDiameter,
-      maxDiameter
+      settings.diameter
     ]
   )
 
@@ -43,14 +40,15 @@ const Dot: React.FC<DotProps> = (props) => {
    * value instead.
    */
   const value = React.useMemo(() => Math.max(
-    minValue,
-    Math.round((minDiameter + maxDiameter - diameter) / maxValue)
+    settings.value.min,
+    Math.round(
+      (settings.diameter.min + settings.diameter.max - diameter) /
+        settings.value.max
+    )
   ), [
     diameter,
-    minValue,
-    minDiameter,
-    maxDiameter,
-    maxValue
+    settings.value,
+    settings.diameter
   ])
 
   const xPercent = React.useMemo(() => randomNumberBetween(1, 100), [])
@@ -186,7 +184,7 @@ const Dot: React.FC<DotProps> = (props) => {
 
     clickedRef.current = true
 
-    gameDispatch({
+    dispatch({
       payload: game.score + value,
       type: '@GAME/UPDATE_SCORE'
     })

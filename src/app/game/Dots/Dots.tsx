@@ -3,14 +3,12 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { useGame } from '~/app/game'
 import Dot from '~/app/game/Dot'
-import { useSettings } from '~/app/settings'
 import { useControlledInterval } from '~/hooks'
 
 const Dots: React.FC = () => {
   const [dots, setDots] = React.useState<string[]>([])
 
   const { game } = useGame()
-  const { settings } = useSettings()
 
   const dotInterval = useControlledInterval({
     callback: () => {
@@ -21,7 +19,7 @@ const Dots: React.FC = () => {
         id
       ]))
     },
-    delay: settings.dot.interval
+    delay: game.settings.interval
   })
 
   React.useEffect(

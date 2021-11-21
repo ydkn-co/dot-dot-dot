@@ -8,7 +8,7 @@ import { Container, Grain } from './BackgroundElements'
 const BACKGROUND_TRANSITION_DURATION = 10000
 
 const Background: React.FC = () => {
-  const { game, dispatch: dispatchGame } = useGame()
+  const { dispatch } = useGame()
 
   const [randomColor, pickRandomColor] = useRandomColor({
     weight: 700
@@ -25,13 +25,11 @@ const Background: React.FC = () => {
   }, [])
 
   React.useEffect(() => {
-    dispatchGame({
+    dispatch({
       payload: randomColor,
       type: '@GAME/UPDATE_BACKGROUND_COLOR'
     })
-  }, [
-    randomColor
-  ])
+  }, [randomColor])
 
   return (
     <Container

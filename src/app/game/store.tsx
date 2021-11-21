@@ -10,6 +10,18 @@ export interface State {
   backgroundColor: string;
   dimensions: GameDimensions;
   score: number;
+  settings: {
+    diameter: {
+      max: number;
+      min: number;
+    },
+    difficulty: number;
+    interval: number;
+    value: {
+      max: number;
+      min: number;
+    }
+  },
   status: GameStatus;
 }
 
@@ -20,23 +32,42 @@ const initialState: State = {
     width: 0
   },
   score: 0,
+  settings: {
+    diameter: {
+      max: 100,
+      min: 10
+    },
+    difficulty: 5,
+    interval: 1000,
+    value: {
+      max: 10,
+      min: 1
+    }
+  },
   status: 'unstarted'
 }
 
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
   | { type: '@GAME/UPDATE_BACKGROUND_COLOR', payload: string }
+  | { type: '@GAME/UPDATE_DIFFICULTY', payload: number }
   | { type: '@GAME/UPDATE_DIMENSIONS', payload: GameDimensions }
   | { type: '@GAME/UPDATE_SCORE', payload: number }
   | { type: '@GAME/UPDATE_STATUS', payload: GameStatus }
 /* eslint-enable typescript-sort-keys/interface */
 
 const reducer = (state: State = initialState, action: Action) => {
+  console.log(action)
   switch (action.type) {
     case '@GAME/UPDATE_BACKGROUND_COLOR':
       return {
         ...state,
         backgroundColor: action.payload
+      }
+    case '@GAME/UPDATE_DIFFICULTY':
+      return {
+        ...state,
+        difficulty: action.payload
       }
     case '@GAME/UPDATE_DIMENSIONS':
       return {
