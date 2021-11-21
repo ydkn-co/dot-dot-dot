@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useAppState } from '~/store'
+import { useGame } from '~/components/Game'
 
-import type { Variant } from '..'
 import {
   Container,
   Input,
@@ -13,57 +12,57 @@ import {
   Levels
 } from './DifficultySliderElements'
 
-// eslint-disable-next-line max-len
-interface DifficultySliderProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant: Variant;
-}
-
-const DifficultySlider: React.FC<DifficultySliderProps> = (props) => {
-  const { variant } = props
+const DifficultySlider: React.FC = () => {
   const { t } = useTranslation()
-  const { app, dispatch } = useAppState()
+  const { game, dispatch } = useGame()
 
-  const { difficulty } = app.settings
+  const { difficulty } = game.settings
+  const [speed, setSpeed] = React.useState<number>(difficulty * 10)
   const levels = React.useMemo(() => [...Array(10).keys()], [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  React.useEffect(() => {
     dispatch({
-      payload: Number(e.target.value),
-      type: '@APP/UPDATE_DIFFICULTY'
+      payload: Math.floor(speed / 10),
+      type: '@GAME/UPDATE_DIFFICULTY'
     })
+  }, [
+    speed
+  ])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSpeed(Number(e.target.value))
   }
 
   console.log(difficulty)
 
   return (
-    <Container
-      variant={variant}
-    >
-      <Label>{t('settings.labels.difficulty')}</Label>
-      <InputContainer
-        variant={variant}
-      >
+    <Container>
+      <Label>
+        {t('settings.labels.difficulty')}
+        {' '}
+        (speed:
+        {' '}
+        {speed}
+        )
+      </Label>
+      <InputContainer>
         <Input
-          {...props}
           defaultValue={difficulty}
-          max={10}
-          min={1}
+          max={100}
+          min={10}
           name="difficulty"
           onChange={handleChange}
           step={1}
           type="range"
         />
       </InputContainer>
-      <Levels
-        variant={variant}
-      >
+      <Levels>
         {levels.map(n => {
           const level = n + 1
 
           return level <= difficulty && (
             <Level
               key={`level-${level}`}
-              variant={variant}
             >
               {level === difficulty && level}
             </Level>

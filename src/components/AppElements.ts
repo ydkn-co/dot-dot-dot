@@ -29,3 +29,8 @@ export const Container = styled.div<Container>`
   width: 100%;
 `
 Container.displayName = 'App.Container'
+
+export const ConsoleGame = styled(BaseGame)`
+  height: 100%;
+  width: 100%;
+`

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useAppState } from '~/store'
+import { useGame } from '~/components/Game'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Container } from './DotElements'
@@ -17,8 +17,8 @@ interface DotProps {
 
 const Dot: React.FC<DotProps> = (props) => {
   const { id, onRemoveCallback } = props
-  const { app, dispatch } = useAppState()
-  const { settings } = app
+  const { game, dispatch } = useGame()
+  const { settings } = game
 
   /**
    * A dot's diameter is a random number between the lower and upper bounds,
@@ -65,7 +65,7 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     const x = Math.round(
       (
-        app.dimensions.width - diameter
+        game.dimensions.width - diameter
       ) * xPercent / 100
     )
 
@@ -77,7 +77,7 @@ const Dot: React.FC<DotProps> = (props) => {
      * the diameter of the dot must be added to the height of the board.
      */
     const y = {
-      finish: app.dimensions.height + diameter,
+      finish: game.dimensions.height + diameter,
       start: 0 - diameter
     }
 
@@ -107,7 +107,7 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     /* eslint-enable max-len */
     const duration = (
-      (app.dimensions.height + diameter * 2) / //
+      (game.dimensions.height + diameter * 2) / //
       (difficulty * 10)
     ) * 1000
 
@@ -126,7 +126,7 @@ const Dot: React.FC<DotProps> = (props) => {
     }
   }, [
     // dotRef,
-    app.dimensions,
+    game.dimensions,
     diameter,
     difficulty,
     xPercent
@@ -135,16 +135,16 @@ const Dot: React.FC<DotProps> = (props) => {
 
   React.useEffect(
     () => {
-      if (app.status === 'paused') {
+      if (game.status === 'paused') {
         animationRef.current?.pause()
       }
 
-      if (app.status === 'playing') {
+      if (game.status === 'playing') {
         animationRef.current?.play()
       }
     },
     [
-      app.status
+      game.status
     ]
   )
 
@@ -170,7 +170,7 @@ const Dot: React.FC<DotProps> = (props) => {
       animation,
       animationRef,
       dotRef,
-      app.status,
+      game.status,
       id,
       onRemoveCallback
     ]
@@ -178,15 +178,15 @@ const Dot: React.FC<DotProps> = (props) => {
 
   const clickedRef = React.useRef<boolean>(false)
   const handleClick = () => {
-    if (app.status !== 'playing' || clickedRef.current) {
+    if (game.status !== 'playing' || clickedRef.current) {
       return
     }
 
     clickedRef.current = true
 
     dispatch({
-      payload: app.score + value,
-      type: '@APP/UPDATE_SCORE'
+      payload: game.score + value,
+      type: '@GAME/UPDATE_SCORE'
     })
 
     onRemoveCallback(id)
@@ -194,7 +194,7 @@ const Dot: React.FC<DotProps> = (props) => {
 
   return (
     <Container
-      animationState={app.status === 'playing' ? 'running' : 'paused'}
+      animationState={game.status === 'playing' ? 'running' : 'paused'}
       diameter={diameter}
       onMouseDown={handleClick}
       ref={dotRef}

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
+import { GameProvider } from '~/components/Game'
 import GlobalStyles from '~/GlobalStyles'
-import { AppStateProvider } from '~/store'
 import theme from '~/theme'
 import { ThemeProvider } from '~/utils/styled'
 
@@ -10,9 +10,9 @@ export const AllProviders: React.FC = ({ children }) => (
     theme={theme}
   >
     <GlobalStyles />
-    <AppStateProvider >
+    <GameProvider >
       {children}
-    </AppStateProvider>
+    </GameProvider>
   </ThemeProvider>
 )
 

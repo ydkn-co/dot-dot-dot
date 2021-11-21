@@ -1,15 +1,9 @@
-import styled, { css } from '~/utils/styled'
+import styled from '~/utils/styled'
 
-import { Variant } from '../.'
-
-interface ButtonProps {
-  variant: Variant
-}
-
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button`
   align-items: center;
   background: transparent;
-  border: 2px solid ${props => props.theme.colors.background};
+  border: 4px solid ${props => props.theme.colors.background};
   border-radius: 10px;
   color: ${props => props.theme.colors.background};
   cursor: pointer;
@@ -19,10 +13,6 @@ export const Button = styled.button<ButtonProps>`
   grid-auto-columns: max-content;
   grid-auto-flow: column;
   padding: 10px 15px;
-
-  ${props => props.variant === 'full' && css`
-    border-width: 4px;
-  `}
 
   * {
     fill: ${props => props.theme.colors.background};

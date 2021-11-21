@@ -28,10 +28,11 @@ interface GrainProps {
 export const Grain = styled.div<GrainProps>`
   height: 100%;
   overflow: hidden;
+  pointer-events: none;
   position: absolute;
   width: 100%;
   will-change: contents;
-  z-index: ${props => props.theme.zIndex.background.grain};
+  z-index: ${props => props.theme.zIndex.game.background.grain};
 
   &::after {
     animation: ${grainAnimation} 1s steps(6) infinite;

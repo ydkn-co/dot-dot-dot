@@ -50,22 +50,22 @@ const initialState: State = {
 
 /* eslint-disable typescript-sort-keys/interface */
 type Action =
-  | { type: '@APP/UPDATE_BACKGROUND_COLOR', payload: string }
-  | { type: '@APP/UPDATE_DIFFICULTY', payload: number }
-  | { type: '@APP/UPDATE_DIMENSIONS', payload: Dimensions }
-  | { type: '@APP/UPDATE_SCORE', payload: number }
-  | { type: '@APP/UPDATE_STATUS', payload: Status }
+  | { type: '@GAME/UPDATE_BACKGROUND_COLOR', payload: string }
+  | { type: '@GAME/UPDATE_DIFFICULTY', payload: number }
+  | { type: '@GAME/UPDATE_DIMENSIONS', payload: Dimensions }
+  | { type: '@GAME/UPDATE_SCORE', payload: number }
+  | { type: '@GAME/UPDATE_STATUS', payload: Status }
 /* eslint-enable typescript-sort-keys/interface */
 
 const reducer = (state: State = initialState, action: Action) => {
   console.log(action)
   switch (action.type) {
-    case '@APP/UPDATE_BACKGROUND_COLOR':
+    case '@GAME/UPDATE_BACKGROUND_COLOR':
       return {
         ...state,
         backgroundColor: action.payload
       }
-    case '@APP/UPDATE_DIFFICULTY':
+    case '@GAME/UPDATE_DIFFICULTY':
       return {
         ...state,
         settings: {
@@ -73,17 +73,17 @@ const reducer = (state: State = initialState, action: Action) => {
           difficulty: action.payload
         }
       }
-    case '@APP/UPDATE_DIMENSIONS':
+    case '@GAME/UPDATE_DIMENSIONS':
       return {
         ...state,
         dimensions: action.payload
       }
-    case '@APP/UPDATE_SCORE':
+    case '@GAME/UPDATE_SCORE':
       return {
         ...state,
         score: action.payload
       }
-    case '@APP/UPDATE_STATUS':
+    case '@GAME/UPDATE_STATUS':
       return {
         ...state,
         status: action.payload
@@ -93,34 +93,34 @@ const reducer = (state: State = initialState, action: Action) => {
   }
 }
 
-export const AppStateContext = React.createContext<{
-  app: State,
-  dispatch: React.Dispatch<Action>
+export const GameContext = React.createContext<{
+  dispatch: React.Dispatch<Action>,
+  game: State
 }>({
-  app: initialState,
-  dispatch: () => null
+  dispatch: () => null,
+  game: initialState
 })
 
-export const AppStateProvider: React.FC = ({ children }) => {
-  const [app, dispatch] = React.useReducer(reducer, initialState)
+export const GameProvider: React.FC = ({ children }) => {
+  const [game, dispatch] = React.useReducer(reducer, initialState)
 
-  const value = React.useMemo(() => ({ app, dispatch }), [app])
+  const value = React.useMemo(() => ({ dispatch, game }), [game])
 
   return (
-    <AppStateContext.Provider
+    <GameContext.Provider
       value={value}
     >
       {children}
-    </AppStateContext.Provider>
+    </GameContext.Provider>
   )
 }
 
-export const useAppState = () => {
-  const context = React.useContext(AppStateContext)
+export const useGame = () => {
+  const context = React.useContext(GameContext)
 
   if (!context) {
     throw new Error(
-      '`useAppState()` must be used within `<AppStateProvider />`'
+      '`useGame()` must be used within `<GameProvider />`'
     )
   }
 

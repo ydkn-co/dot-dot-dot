@@ -1,22 +1,25 @@
 import * as React from 'react'
 
-import Menu from '~/components/Menu'
-import { useAppState } from '~/store'
+import Console from '~/components/Console'
+import { GameProvider, useGame } from '~/components/Game'
 
-import { Container, Game } from './AppElements'
+import { ConsoleGame, Container, Game } from './AppElements'
 
 const App: React.FC = () => {
-  const { app } = useAppState()
+  const { game } = useGame()
 
   return (
     <Container
-      appBackgroundColor={app.backgroundColor}
+      appBackgroundColor={game.backgroundColor}
     >
-      <Menu
-        variant="mini"
+      <GameProvider>
+        <Console>
+          <ConsoleGame />
+        </Console>
+      </GameProvider>
+      <Game
+        autoplay={true}
       />
-      <Menu />
-      <Game />
     </Container>
   )
 }
