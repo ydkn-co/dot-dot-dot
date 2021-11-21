@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-import { useGame } from '~/app/game'
-import Dot from '~/app/game/Dot'
+import { useGame } from '~/components/Game'
+import Dot from '~/components/Game/Dot'
 import { useControlledInterval } from '~/hooks'
 
 const Dots: React.FC = () => {

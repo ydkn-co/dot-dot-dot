@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { GameProvider } from '~/app/game'
+import { GameProvider } from '~/components/Game'
 import GlobalStyles from '~/GlobalStyles'
 import { ThemeProvider } from '~/styled'
 import theme from '~/theme'

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGame } from '~/app/game'
+import { useGame } from '~/components/Game'
 
 import type { Variant } from '..'
 import {

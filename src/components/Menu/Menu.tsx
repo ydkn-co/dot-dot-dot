@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGame } from '~/app/game'
-import type { Variant } from '~/app/menu'
-import Icon from '~/app/menu/Icon'
+import { useGame } from '~/components/Game'
+import type { Variant } from '~/components/Menu'
+import Icon from '~/components/Menu/Icon'
 import { usePresence } from '~/hooks'
 import { useTheme } from '~/styled'
 

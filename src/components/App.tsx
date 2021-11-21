@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { useGame } from '~/app/game'
-import Menu from '~/app/menu'
+import { useGame } from '~/components/Game'
+import Menu from '~/components/Menu'
 
 import { Container, Game } from './AppElements'
 

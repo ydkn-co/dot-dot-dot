@@ -1,4 +1,4 @@
-import BaseGame from '~/app/game'
+import BaseGame from '~/components/Game'
 import styled from '~/styled'
 
 export const Game = styled(BaseGame)`

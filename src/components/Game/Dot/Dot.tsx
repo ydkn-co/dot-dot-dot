@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useGame } from '~/app/game'
+import { useGame } from '~/components/Game'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Wrapper } from './DotElements'

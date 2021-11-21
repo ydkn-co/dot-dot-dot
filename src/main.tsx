@@ -3,7 +3,7 @@ import '~/utils/i18n'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from '~/app'
+import App from '~/components'
 import withProviders from '~/hocs/withAllProviders'
 
 ReactDOM.render(
