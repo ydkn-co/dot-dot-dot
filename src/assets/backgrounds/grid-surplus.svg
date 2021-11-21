@@ -1,9 +1,0 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'>
-  <rect fill='#123141' width='1000' height='1000' />
-  <pattern id='p' width='500' height='500' patternUnits='userSpaceOnUse' patternTransform='rotate(45 500 500) scale(0.22) translate(1772.73 1772.73)'>
-    <g fill='none' transform='scale(4.85)' style='transform-origin:25% 25%'>
-      <path stroke='#1D455C' stroke-width='8.4' d='M230 250h40M250 230v40' vector-effect='non-scaling-stroke' />
-    </g>
-  </pattern>
-  <rect fill='url(#p)' width='100%' height='100%' />
-</svg>

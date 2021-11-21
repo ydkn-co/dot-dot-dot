@@ -29,7 +29,9 @@ const Background: React.FC = () => {
       payload: randomColor,
       type: '@APP/UPDATE_BACKGROUND_COLOR'
     })
-  }, [randomColor])
+  }, [
+    randomColor
+  ])
 
   return (
     <Container

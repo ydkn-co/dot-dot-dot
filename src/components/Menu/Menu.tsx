@@ -5,7 +5,7 @@ import type { Variant } from '~/components/Menu'
 import Icon from '~/components/Menu/Icon'
 import { usePresence } from '~/hooks'
 import { useAppState } from '~/store'
-import { useTheme } from '~/styled'
+import { useTheme } from '~/utils/styled'
 
 import {
   Container,

@@ -1,4 +1,4 @@
-import styled from '~/styled'
+import styled from '~/utils/styled'
 
 export const Container = styled.span`
   align-items: center;

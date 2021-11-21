@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react'
 
-import styled from '~/styled'
+import styled from '~/utils/styled'
 
 import Background, { BackgroundProps } from './Background'
 

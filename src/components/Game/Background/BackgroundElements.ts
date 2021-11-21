@@ -1,4 +1,4 @@
-import styled, { keyframes } from '~/styled'
+import styled, { keyframes } from '~/utils/styled'
 
 interface ContainerProps {
   color?: string;

@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import GlobalStyles from '~/GlobalStyles'
 import { AppStateProvider } from '~/store'
-import { ThemeProvider } from '~/styled'
 import theme from '~/theme'
+import { ThemeProvider } from '~/utils/styled'
 
 export const AllProviders: React.FC = ({ children }) => (
   <ThemeProvider

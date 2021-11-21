@@ -3,7 +3,7 @@ import {
   fireEvent,
   screen,
   waitFor
-} from '~/testing-library'
+} from '~/utils/testing-library'
 
 import Layout from './App'
 

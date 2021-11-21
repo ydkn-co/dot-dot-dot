@@ -1,7 +1,7 @@
 import type { FlattenSimpleInterpolation } from 'styled-components'
 
 import typography from '~/design-language/typography'
-import { css } from '~/styled'
+import { css } from '~/utils/styled'
 
 // eslint-disable-next-line max-len
 const defaultStack = [

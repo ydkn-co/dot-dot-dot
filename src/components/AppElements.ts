@@ -1,5 +1,5 @@
 import BaseGame from '~/components/Game'
-import styled from '~/styled'
+import styled from '~/utils/styled'
 
 export const Game = styled(BaseGame)`
   height: 100vh;

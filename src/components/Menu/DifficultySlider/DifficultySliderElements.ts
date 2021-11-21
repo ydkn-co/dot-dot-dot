@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import styled, { css } from '~/styled'
+import styled, { css } from '~/utils/styled'
 
 import type { Variant } from '..'
 

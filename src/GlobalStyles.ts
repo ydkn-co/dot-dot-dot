@@ -2,7 +2,7 @@ import '~/theme/fonts.css'
 
 import normalize from 'normalize.css'
 
-import { createGlobalStyle } from '~/styled'
+import { createGlobalStyle } from '~/utils/styled'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}

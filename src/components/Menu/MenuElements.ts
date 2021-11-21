@@ -1,4 +1,4 @@
-import styled, { css } from '~/styled'
+import styled, { css } from '~/utils/styled'
 
 import type { Variant } from '.'
 import BaseButton from './Button'

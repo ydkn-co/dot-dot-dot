@@ -1,19 +1,19 @@
 import * as React from 'react'
 
-import styled, { css } from '~/styled'
+import styled, { css } from '~/utils/styled'
 
 export interface YPositions {
   finish: number;
   start: number;
 }
 
-interface WrapperProps {
+interface ContainerProps {
   animationState: 'running' | 'paused';
   diameter: number;
 }
 
 /* eslint-disable max-len */
-export const Wrapper = React.memo(styled.button<WrapperProps>`
+export const Container = React.memo(styled.button<ContainerProps>`
   aspect-ratio: 1 / 1;
   background-color: #fff;
   border: 0;
@@ -33,4 +33,4 @@ export const Wrapper = React.memo(styled.button<WrapperProps>`
 `)
 /* eslint-enable max-len */
 
-Wrapper.displayName = 'Dot.Wrapper'
+Container.displayName = 'Dot.Container'

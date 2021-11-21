@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useAppState } from '~/store'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
-import { Wrapper } from './DotElements'
+import { Container } from './DotElements'
 
 // const getElementTranslationY = (element: HTMLElement) => {
 //   const { transform } = window.getComputedStyle(element)
@@ -193,7 +193,7 @@ const Dot: React.FC<DotProps> = (props) => {
   }
 
   return (
-    <Wrapper
+    <Container
       animationState={app.status === 'playing' ? 'running' : 'paused'}
       diameter={diameter}
       onMouseDown={handleClick}
