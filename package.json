@@ -90,7 +90,6 @@
     "_fix:styles": "pnpm run lint:styles -- --fix",
     "_lint:styles": "stylelint './src/**/*.{ts,tsx}'",
     "build": "tsc && vite build",
-    "build:storybook": "pnpm --dir storybook run build",
     "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "dev": "vite",
     "fix": "run-p fix:*",
@@ -102,9 +101,7 @@
     "lint:json": "eslint . --ext json",
     "lint:scripts": "eslint . --ext js,ts,tsx",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "run-p prepare:*",
-    "prepare:husky": "husky install",
-    "prepare:storybook": "pnpm --dir storybook install",
+    "prepare": "husky install",
     "serve": "vite preview",
     "storybook": "pnpm --dir storybook run serve",
     "test": "jest --config .jestrc.js"
