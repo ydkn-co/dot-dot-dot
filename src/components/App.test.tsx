@@ -7,7 +7,7 @@ import {
 
 import Layout from './App'
 
-describe('<Game />', () => {
+xdescribe('<Game />', () => {
   beforeEach(() => {
     render(
       <Layout />
