@@ -83,44 +83,24 @@ const Dot: React.FC<DotProps> = (props) => {
   ])
 
   /**
-   * This variable captures the position on the y-axis that the animation will
-   * start from.
-   */
-  const [
-    verticalProgress,
-    setVerticalProgress
-  ] = React.useState(0)
-
-  /**
    * This function creates a few outputs that will be consumed by the Web
    * Animation api.
    */
   const animation = React.useMemo(() => {
     /**
-     * A dot's position will always start off the board. However, this value
-     * needs to be reset if the speed/difficulty level changes.
+     * A dot's position will always start off the board.
      */
     const y = {
       finish: game.dimensions.height,
-      start: verticalProgress === 0
-        ? verticalProgress - diameter
-        : verticalProgress
-    }
-
-    if (verticalProgress !== 0) {
-      console.log(game.dimensions.height - verticalProgress - diameter)
+      start: 0 - diameter
     }
 
     /**
-     * The duration needs to consider the current y-axis position of the dot,
-     * in case this animation is recalculated on speed/difficulty changes.
+     * The duration of the dot animation needs to consider the dot's height to
+     * achieve perceived constant animation rates between dots of varying sizes.
      */
-    const height = verticalProgress === 0
-      ? game.dimensions.height - verticalProgress - diameter
-      : game.dimensions.height - verticalProgress
-
     const duration = math.durationInMs(
-      height,
+      game.dimensions.height - diameter,
       settings.difficulty
     )
 
@@ -141,7 +121,7 @@ const Dot: React.FC<DotProps> = (props) => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    verticalProgress,
+    game.dimensions.height,
     game.dimensions.width,
     diameter,
     settings.difficulty,
@@ -205,30 +185,33 @@ const Dot: React.FC<DotProps> = (props) => {
   /**
    * If the difficulty level/speed of the game changes, we need to replace the
    * current animation with a newly recalculated animation.
+   *
+   * Slight bug in this. Disabled for now. I normally wouldn't commit dead code
+   * lik this. :(
    */
-  React.useEffect(() => {
-    if (
-      !dotRef.current ||
-      !dotRef.current.parentElement ||
-      !animationRef.current ||
-      animationRef.current.currentTime === 0
-    ) {
-      return
-    }
+  // React.useEffect(() => {
+  //   if (
+  //     !dotRef.current ||
+  //     !dotRef.current.parentElement ||
+  //     !animationRef.current ||
+  //     animationRef.current.currentTime === 0
+  //   ) {
+  //     return
+  //   }
 
-    if (game.status === 'playing') {
-      animationRef.current.pause()
-    }
+  //   if (game.status === 'playing') {
+  //     animationRef.current.pause()
+  //   }
 
-    animationRef.current = undefined
+  //   animationRef.current = undefined
 
-    const { transform } = window.getComputedStyle(dotRef.current)
-    const { f: translationY } = new DOMMatrix(transform)
+  //   const { transform } = window.getComputedStyle(dotRef.current)
+  //   const { f: translationY } = new DOMMatrix(transform)
 
-    setVerticalProgress(translationY)
-  }, [
-    game.settings.difficulty
-  ])
+  //   setVerticalProgress(translationY)
+  // }, [
+  //   game.settings.difficulty
+  // ])
 
   /**
    * Update the score on click, and then remove the dot. Also, use a ref to
@@ -264,7 +247,6 @@ const Dot: React.FC<DotProps> = (props) => {
       `Diameter: ${diameter}`,
       `Game Dimensions: ${game.dimensions.width}x${game.dimensions.height}`,
       `Initial coordinates: ${x}, ${0 - diameter}`,
-      `Vertical progress: ${verticalProgress}`,
       // eslint-disable-next-line max-len
       `Animation y-axis [start, finish]: [${animation.y.start}, ${animation.y.finish}]`,
       `Animation keyframe start: ${animation.keyframes[0].transform}`,

@@ -27,7 +27,7 @@ const Dots: React.FC = () => {
         id
       ]))
     },
-    delay: 40000
+    delay: game.settings.interval
   })
 
   React.useEffect(
