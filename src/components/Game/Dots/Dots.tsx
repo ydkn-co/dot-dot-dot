@@ -10,6 +10,14 @@ const Dots: React.FC = () => {
 
   const { game } = useGame()
 
+  const handleResize = () => {
+    setDots(() => [])
+  }
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  }, [])
+
   const dotInterval = useControlledInterval({
     callback: () => {
       const id = uuidv4()
@@ -19,7 +27,7 @@ const Dots: React.FC = () => {
         id
       ]))
     },
-    delay: game.settings.interval
+    delay: 40000
   })
 
   React.useEffect(

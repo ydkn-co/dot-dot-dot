@@ -22,7 +22,7 @@ export const Container = styled.div`
   max-width: calc(100vw - 96px);
   padding: 8px;
   position: relative;
-  width: 550px;
+  width: 80vw;
   z-index: ${props => props.theme.zIndex.menu};
 `
 

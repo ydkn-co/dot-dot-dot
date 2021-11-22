@@ -86,7 +86,10 @@ const Dot: React.FC<DotProps> = (props) => {
    * This variable captures the position on the y-axis that the animation will
    * start from.
    */
-  const [yStart, setYStart] = React.useState(0 - diameter)
+  const [
+    verticalProgress,
+    setVerticalProgress
+  ] = React.useState(0)
 
   /**
    * This function creates a few outputs that will be consumed by the Web
@@ -99,31 +102,50 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     const y = {
       finish: game.dimensions.height,
-      start: yStart
+      start: verticalProgress === 0
+        ? verticalProgress - diameter
+        : verticalProgress
+    }
+
+    if (verticalProgress !== 0) {
+      console.log(game.dimensions.height - verticalProgress - diameter)
     }
 
     /**
      * The duration needs to consider the current y-axis position of the dot,
      * in case this animation is recalculated on speed/difficulty changes.
      */
+    const height = verticalProgress === 0
+      ? game.dimensions.height - verticalProgress - diameter
+      : game.dimensions.height - verticalProgress
+
     const duration = math.durationInMs(
-      game.dimensions.height - yStart,
+      height,
       settings.difficulty
     )
 
+    const keyframes = [
+      {
+        transform: `translate3d(${x}px, ${y.start}px, 0)`
+      },
+      {
+        transform: `translate3d(${x}px, ${y.finish}px, 0)`
+      }
+    ]
+
     return {
       duration,
+      keyframes,
       x,
       y
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    game.dimensions.height,
+    verticalProgress,
     game.dimensions.width,
     diameter,
     settings.difficulty,
-    x,
-    yStart
+    x
   ])
 
   React.useEffect(
@@ -153,19 +175,16 @@ const Dot: React.FC<DotProps> = (props) => {
         return
       }
 
-      const { duration, x, y } = animation
+      const { duration, keyframes } = animation
 
-      animationRef.current = dotRef.current.animate([
-        {
-          transform: `translate3d(${x}px, ${y.start}px, 0)`
-        },
-        {
-          transform: `translate3d(${x}px, ${y.finish}px, 0)`
-        }
-      ], {
+      animationRef.current = dotRef.current.animate(keyframes, {
         duration,
         id
       })
+
+      if (game.status === 'paused') {
+        animationRef.current.pause()
+      }
 
       animationRef.current.addEventListener('finish', () => {
         animationRef.current?.cancel()
@@ -173,7 +192,8 @@ const Dot: React.FC<DotProps> = (props) => {
       })
     },
     [
-      animation,
+      animation.duration,
+      animation.keyframes,
       animationRef,
       dotRef,
       game.status,
@@ -189,6 +209,7 @@ const Dot: React.FC<DotProps> = (props) => {
   React.useEffect(() => {
     if (
       !dotRef.current ||
+      !dotRef.current.parentElement ||
       !animationRef.current ||
       animationRef.current.currentTime === 0
     ) {
@@ -204,7 +225,7 @@ const Dot: React.FC<DotProps> = (props) => {
     const { transform } = window.getComputedStyle(dotRef.current)
     const { f: translationY } = new DOMMatrix(transform)
 
-    setYStart(translationY)
+    setVerticalProgress(translationY)
   }, [
     game.settings.difficulty
   ])
@@ -238,12 +259,16 @@ const Dot: React.FC<DotProps> = (props) => {
 
   const title = game.status === 'paused'
     ? [
+      `ID: ${id}`,
       `Value: ${value}`,
       `Diameter: ${diameter}`,
       `Game Dimensions: ${game.dimensions.width}x${game.dimensions.height}`,
-      `Initial coordinates: ${x}, ${yStart}`,
+      `Initial coordinates: ${x}, ${0 - diameter}`,
+      `Vertical progress: ${verticalProgress}`,
       // eslint-disable-next-line max-len
       `Animation y-axis [start, finish]: [${animation.y.start}, ${animation.y.finish}]`,
+      `Animation keyframe start: ${animation.keyframes[0].transform}`,
+      `Animation keyframe finish: ${animation.keyframes[1].transform}`,
       // eslint-disable-next-line max-len
       `Animation Duration as constant: ${math.durationInMs(game.dimensions.height, settings.difficulty) / 1000}s`,
       `Animation Duration, dot height adjusted: ${animation.duration / 1000}s`

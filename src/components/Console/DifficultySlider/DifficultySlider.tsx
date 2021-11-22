@@ -67,7 +67,7 @@ const DifficultySlider: React.FC = () => {
           {t('game.stats.score')}
           :
           {' '}
-          {game.score}
+          {game.score.toLocaleString()}
         </span>
       </Stats>
       <InputContainer>
