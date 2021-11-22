@@ -2,7 +2,6 @@ coverage
 dist
 dist-ssr
 node_modules
-storybook-static
 .DS_Store
 *.local
 

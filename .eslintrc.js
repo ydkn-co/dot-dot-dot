@@ -139,8 +139,7 @@ module.exports = {
           },
           node: {
             paths: [
-              './node_modules',
-              './storybook/node_modules'
+              './node_modules'
             ]
           }
         }

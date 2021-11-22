@@ -99,7 +99,6 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "serve": "vite preview",
-    "storybook": "pnpm --dir storybook run serve",
     "test": "jest --config .jestrc.js"
   },
   "version": "0.1.0"
