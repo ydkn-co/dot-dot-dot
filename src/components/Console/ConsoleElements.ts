@@ -1,14 +1,15 @@
 /* eslint-disable max-len */
+import { ReactComponent as LogoSvg } from '~/assets/logo.svg'
 import styled from '~/utils/styled'
 
 import BaseButton from './Button'
 import BaseDifficultySlider from './DifficultySlider'
 
 export const Container = styled.div`
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  background-color: rgba(255,255,255, 0.2);
   border: 8px solid ${props => props.theme.colors.background};
   border-radius: 16px;
-  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
   display: grid;
   gap: 8px;
   grid-template-areas:
@@ -31,24 +32,20 @@ export const Header = styled.div`
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  gap: 30px;
   grid-area: header;
   grid-auto-flow: row;
   height: max-content;
   padding: 40px;
 `
 
-export const Logo = styled.h1`
-  ${props => props.theme.type.heirarchies.brand}
-  color: ${props => props.theme.colors.primary};
-  font-size: 70px;
-  grid-area: logo;
-  letter-spacing: 4px;
-  margin: 0 0 30px;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  transition: color 10s linear;
-  white-space: nowrap;
+export const Logo = styled(LogoSvg)`
+  width: 100%;
+
+  * {
+    fill: ${props => props.theme.colors.primary};
+    transition: fill ${props => props.theme.motion.randomColorTransition};
+  }
 `
 Logo.displayName = 'Menu.Logo'
 
@@ -68,22 +65,21 @@ export const Controls = styled.div`
 
 export const Button = styled(BaseButton)`
   background-color: ${props => props.theme.colors.primary};
+  border-color: rgba(255,255,255,0.3);
   border-radius: 8px;
+  color: ${props => props.theme.colors.text};
   display: flex;
   justify-content: center;
   transition: background-color ${props => props.theme.motion.randomColorTransition}, color ${props => props.theme.motion.randomColorTransition};
 
   svg * {
+    fill: ${props => props.theme.colors.text};
     transition: fill ${props => props.theme.motion.randomColorTransition};
   }
 
   &:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.5);
     color: ${props => props.theme.colors.primary};
-
-    svg * {
-      fill: ${props => props.theme.colors.primary};
-    }
   }
 `
 

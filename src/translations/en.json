@@ -2,6 +2,13 @@
   "app": {
     "name": "Dot Dot Dot"
   },
+  "game": {
+    "stats": {
+      "difficulty": "Difficulty Level",
+      "score": "Score",
+      "speed": "Speed"
+    }
+  },
   "menu": {
     "button": {
       "paused": "Resume game",

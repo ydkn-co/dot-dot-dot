@@ -7,9 +7,9 @@ import {
   Container,
   Input,
   InputContainer,
-  Label,
   Level,
-  Levels
+  Levels,
+  Stats
 } from './DifficultySliderElements'
 
 const DifficultySlider: React.FC = () => {
@@ -33,17 +33,29 @@ const DifficultySlider: React.FC = () => {
 
   return (
     <Container>
-      <Label>
-        {t('settings.labels.difficulty')}
-        {' '}
-        (speed:
-        {' '}
-        {speed}
-        )
-      </Label>
+      <Stats>
+        <span>
+          {t('game.stats.speed')}
+          :
+          {' '}
+          {speed}
+        </span>
+        <span>
+          {t('game.stats.difficulty')}
+          :
+          {' '}
+          {difficulty}
+        </span>
+        <span>
+          {t('game.stats.score')}
+          :
+          {' '}
+          {game.score}
+        </span>
+      </Stats>
       <InputContainer>
         <Input
-          defaultValue={difficulty}
+          defaultValue={speed}
           max={100}
           min={10}
           name="difficulty"
@@ -59,9 +71,7 @@ const DifficultySlider: React.FC = () => {
           return level <= difficulty && (
             <Level
               key={`level-${level}`}
-            >
-              {level === difficulty && level}
-            </Level>
+            />
           )
         })}
       </Levels>

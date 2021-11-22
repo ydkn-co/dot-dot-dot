@@ -13,6 +13,7 @@ export const Container = styled.button<ContainerProps>`
   background-color: ${props => props.color};
   border: 0;
   border-radius: 50%;
+  box-shadow: 2px 2px 10px rgba(0,0,0,.2);
   cursor: crosshair;
   opacity: .5;
   padding: 0;

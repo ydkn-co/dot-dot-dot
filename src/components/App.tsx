@@ -14,19 +14,11 @@ const App: React.FC = () => {
     >
       <GameProvider>
         <Console>
-          <ConsoleGame
-            settings={{
-              canToggleFullscreen: true
-            }}
-          />
+          <ConsoleGame />
         </Console>
       </GameProvider>
       <Game
-        // autoplay={true}
-        isFullscreen={true}
         settings={{
-          difficulty: 3,
-          interval: 5000,
           isReadonly: true
         }}
       />

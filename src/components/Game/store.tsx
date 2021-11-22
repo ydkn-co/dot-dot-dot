@@ -1,6 +1,8 @@
 import merge from 'lodash.merge'
 import * as React from 'react'
 
+import color from '~/design-language/color'
+
 export type Status = 'unstarted' | 'playing' | 'paused' | 'over'
 
 export interface Dimensions {
@@ -9,7 +11,6 @@ export interface Dimensions {
 }
 
 export interface Settings {
-  canToggleFullscreen: boolean,
   diameter: {
     max: number;
     min: number;
@@ -26,27 +27,24 @@ export interface Settings {
 export interface State {
   backgroundColor: string;
   dimensions: Dimensions;
-  isFullscreen: boolean;
   score: number;
   settings: Settings,
   status: Status;
 }
 
 export const initialState: State = {
-  backgroundColor: '',
+  backgroundColor: color.foundational.indeedBlue,
   dimensions: {
     height: 0,
     width: 0
   },
-  isFullscreen: false,
   score: 0,
   settings: {
-    canToggleFullscreen: false,
     diameter: {
       max: 100,
       min: 10
     },
-    difficulty: 1,
+    difficulty: 5,
     interval: 1000,
     isReadonly: false,
     value: {

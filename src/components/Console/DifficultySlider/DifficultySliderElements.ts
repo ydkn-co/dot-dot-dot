@@ -3,8 +3,9 @@ import styled from '~/utils/styled'
 
 export const Container = styled.div`
   display: grid;
+  gap: 10px;
   grid-template-areas:
-      'label'
+      'stats'
       'input'
       'steps';
   grid-template-rows: 1fr max-content max-content;
@@ -12,18 +13,19 @@ export const Container = styled.div`
 `
 Container.displayName = 'DifficultySlider.Container'
 
-export const Label = styled.label`
-  border-top: 2px dotted rgba(255,255,255,0.5);
-  color: rgba(255,255,255,0.5);
+export const Stats = styled.div`
+  color: ${props => props.theme.colors.text};
+  display: grid;
   font-family: ${props => props.theme.type.fonts.voice};
   font-size: ${props => props.theme.type.size.xs};
   font-weight: ${props => props.theme.type.weight.bold};
-  grid-area: label;
-  margin: 4px 15px 0;
-  padding: 15px 0 5px;
+  grid-area: stats;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  margin-top: 10px;
   text-align: center;
 `
-Label.displayName = 'DifficultySlider.Label'
+Stats.displayName = 'DifficultySlider.Stats'
 
 export const Input = styled.input`
   appearance: none;
@@ -54,7 +56,7 @@ export const InputContainer = styled.div`
   grid-area: input;
   height: 40px;
   justify-content: center;
-  padding: 8px;
+  margin-bottom: 10px;
   width: 100%;
 
   &::-webkit-slider-thumb {

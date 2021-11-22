@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import {
+import { useGame } from '~/components/Game'
+import color, {
   collectExpressiveColorsByWeight,
   Weight
 } from '~/design-language/color'
@@ -22,6 +23,7 @@ type Return = [string, () => void];
 
 const useRandomExpressiveColor = (args: Args = {}) : Return => {
   const { weight = 400 } = args
+  const { game } = useGame()
 
   const colors = React.useMemo(
     () => collectExpressiveColorsByWeight(weight),
@@ -33,7 +35,7 @@ const useRandomExpressiveColor = (args: Args = {}) : Return => {
   const [
     color,
     setColor
-  ] = React.useState<string>(randomColor(colors))
+  ] = React.useState<string>(game.backgroundColor)
 
   const pickRandomColor = () => {
     setColor(() => randomColor(colors, color))

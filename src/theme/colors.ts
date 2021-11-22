@@ -15,5 +15,5 @@ export default {
   background: 'rgba(255, 255, 255, 0.5)',
   expressive: selectExpressiveColors,
   primary: 'var(--ddd-app-background-color)',
-  text: 'rgba(255, 255, 255, 0.5)'
+  text: 'rgba(255, 255, 255, 0.7)'
 }

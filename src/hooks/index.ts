@@ -1,3 +1,3 @@
 export { default as useControlledInterval } from './useControlledInterval'
 export { default as usePresence } from './usePresence'
-export { default as useRandomColor } from './useRandomColor'
+export { default as useRandomExpressiveColor } from './useRandomExpressiveColor'

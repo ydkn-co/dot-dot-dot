@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useGame } from '~/components/Game'
-import { useControlledInterval, useRandomColor } from '~/hooks'
+import { useControlledInterval, useRandomExpressiveColor } from '~/hooks'
 
 import { Container, Grain } from './BackgroundElements'
 
@@ -10,8 +10,8 @@ const BACKGROUND_TRANSITION_DURATION = 10000
 const Background: React.FC = () => {
   const { dispatch } = useGame()
 
-  const [randomColor, pickRandomColor] = useRandomColor({
-    weight: 700
+  const [randomColor, pickRandomColor] = useRandomExpressiveColor({
+    weight: 800
   })
 
   const randomColorInterval = useControlledInterval({
