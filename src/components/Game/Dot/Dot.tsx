@@ -5,6 +5,7 @@ import { collectExpressiveColorsByWeight } from '~/design-language/color'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Container } from './DotElements'
+import * as math from './math'
 
 interface DotProps {
   id: string;
@@ -21,7 +22,7 @@ const Dot: React.FC<DotProps> = (props) => {
    * inclusive of the bounds.
    */
   const diameter = React.useMemo(
-    () => randomNumberBetween(settings.diameter.min, settings.diameter.max),
+    () => math.randomDiameter(settings.diameter.min, settings.diameter.max),
     [
       settings.diameter.min,
       settings.diameter.max
@@ -37,13 +38,13 @@ const Dot: React.FC<DotProps> = (props) => {
    * hardcoded switch statement would be more difficult to maintain if any of
    * these values changed.
    */
-  const value = React.useMemo(() => Math.max(
-    settings.value.min,
-    Math.round(
-      (settings.diameter.min + settings.diameter.max - diameter) /
-        settings.value.max
-    )
-  ), [
+  const value = React.useMemo(() => math.value({
+    diameter,
+    maxDiameter: settings.diameter.max,
+    maxValue: settings.value.max,
+    minDiameter: settings.diameter.min,
+    minValue: settings.value.min
+  }), [
     diameter,
     settings.value.min,
     settings.value.max,
@@ -102,29 +103,18 @@ const Dot: React.FC<DotProps> = (props) => {
     }
 
     /**
-     *
+     * The duration needs to consider the current y-axis position of the dot,
+     * in case this animation is recalculated on speed/difficulty changes.
      */
-    const duration = (
-      ((game.dimensions.height - yStart) * 2) /
-      (settings.difficulty * 10)
-    ) * 1000
-
-    /**
-     * Use `translate3d` to ensure the animation can be hardware accelerated and
-     * run in its own thread.
-     */
-    const keyframes: [Keyframe, Keyframe] = [
-      {
-        transform: `translate3d(${x}px, ${y.start}px, 0)`
-      },
-      {
-        transform: `translate3d(${x}px, ${y.finish}px, 0)`
-      }
-    ]
+    const duration = math.durationInMs(
+      game.dimensions.height - yStart,
+      settings.difficulty
+    )
 
     return {
       duration,
-      keyframes
+      x,
+      y
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -163,9 +153,16 @@ const Dot: React.FC<DotProps> = (props) => {
         return
       }
 
-      const { duration, keyframes } = animation
+      const { duration, x, y } = animation
 
-      animationRef.current = dotRef.current.animate(keyframes, {
+      animationRef.current = dotRef.current.animate([
+        {
+          transform: `translate3d(${x}px, ${y.start}px, 0)`
+        },
+        {
+          transform: `translate3d(${x}px, ${y.finish}px, 0)`
+        }
+      ], {
         duration,
         id
       })
@@ -239,6 +236,20 @@ const Dot: React.FC<DotProps> = (props) => {
     onRemoveCallback(id)
   }
 
+  const title = game.status === 'paused'
+    ? [
+      `Value: ${value}`,
+      `Diameter: ${diameter}`,
+      `Game Dimensions: ${game.dimensions.width}x${game.dimensions.height}`,
+      `Initial coordinates: ${x}, ${yStart}`,
+      // eslint-disable-next-line max-len
+      `Animation y-axis [start, finish]: [${animation.y.start}, ${animation.y.finish}]`,
+      // eslint-disable-next-line max-len
+      `Animation Duration as constant: ${math.durationInMs(game.dimensions.height, settings.difficulty) / 1000}s`,
+      `Animation Duration, dot height adjusted: ${animation.duration / 1000}s`
+    ].join('\n')
+    : ''
+
   return (
     <Container
       animationState={game.status === 'playing' ? 'running' : 'paused'}
@@ -247,6 +258,7 @@ const Dot: React.FC<DotProps> = (props) => {
       isReadonly={game.settings.isReadonly}
       onMouseDown={handleClick}
       ref={dotRef}
+      title={title}
     />
   )
 }
