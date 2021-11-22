@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGame } from '~/components/Game'
+import { useDebounce } from '~/hooks'
 
 import {
   Container,
@@ -16,19 +17,35 @@ const DifficultySlider: React.FC = () => {
   const { t } = useTranslation()
   const { game, dispatch } = useGame()
 
-  const { difficulty } = game.settings
+  const [difficulty, setDifficulty] = React.useState(game.settings.difficulty)
   const [speed, setSpeed] = React.useState<number>(difficulty * 10)
+  const debouncedDifficulty = useDebounce(difficulty, 100)
+
   const levels = React.useMemo(() => [...Array(10).keys()], [])
 
   React.useEffect(() => {
+    setDifficulty(Math.floor(speed / 10))
+  }, [speed])
+
+  React.useEffect(() => {
     dispatch({
-      payload: Math.floor(speed / 10),
+      payload: debouncedDifficulty,
       type: '@GAME/UPDATE_SETTINGS_DIFFICULTY'
     })
-  }, [dispatch, speed])
+  }, [dispatch, debouncedDifficulty])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(Number(e.target.value))
+  }
+
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const handleLevelChange = (level: number) => {
+    const difficultyToSpeed = level * 10
+    setSpeed(difficultyToSpeed)
+
+    if (inputRef.current) {
+      inputRef.current.value = difficultyToSpeed.toString()
+    }
   }
 
   return (
@@ -60,6 +77,7 @@ const DifficultySlider: React.FC = () => {
           min={10}
           name="difficulty"
           onChange={handleChange}
+          ref={inputRef}
           step={1}
           type="range"
         />
@@ -68,9 +86,15 @@ const DifficultySlider: React.FC = () => {
         {levels.map(n => {
           const level = n + 1
 
-          return level <= difficulty && (
+          const style = level > difficulty
+            ? { backgroundColor: 'rgba(0,0,0,.3)' }
+            : {}
+
+          return (
             <Level
               key={`level-${level}`}
+              onClick={() => handleLevelChange(level)}
+              style={style}
             />
           )
         })}
