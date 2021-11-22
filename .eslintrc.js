@@ -57,12 +57,14 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       plugins: [
         '@typescript-eslint',
+        'better-styled-components',
         'jsx-a11y',
         'react',
         'typescript-sort-keys'
       ],
       rules: {
         '@typescript-eslint/no-use-before-define': ['error'],
+        'better-styled-components/sort-declarations-alphabetically': 1,
         'no-use-before-define': 'off',
         'react/jsx-closing-bracket-location': [
           1,
@@ -134,6 +136,12 @@ module.exports = {
               '~': './src'
             },
             extensions: ['.ts', '.tsx']
+          },
+          node: {
+            paths: [
+              './node_modules',
+              './storybook/node_modules'
+            ]
           }
         }
       }

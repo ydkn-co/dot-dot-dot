@@ -1,0 +1,117 @@
+/**
+ * In some scenarios, when these styles are applied via JavaScript, there is
+ * potential for them to flash when a component re-renders, which causes the
+ * css-in-js to reload.
+ *
+ * https://github.com/styled-components/styled-components/issues/1593
+ */
+
+@font-face {
+  font-family: 'Faction Personal';
+  src: url('/assets/fonts/faction-personal/FactionPersonal-Outline.woff2') format('woff2'),
+      url('/assets/fonts/faction-personal/FactionPersonal-Outline.woff') format('woff'),
+      url('/assets/fonts/faction-personal/FactionPersonal-Outline.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Faction Personal';
+  src: url('/assets/fonts/faction-personal/FactionPersonal-Black.woff2') format('woff2'),
+      url('/assets/fonts/faction-personal/FactionPersonal-Black.woff') format('woff'),
+      url('/assets/fonts/faction-personal/FactionPersonal-Black.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/assets/fonts/noto-sans/NotoSans.woff2') format('woff2'),
+      url('/assets/fonts/noto-sans/NotoSans.woff') format('woff'),
+      url('/assets/fonts/noto-sans/NotoSans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/assets/fonts/noto-sans/NotoSans-BoldItalic.woff2') format('woff2'),
+        url('/assets/fonts/noto-sans/NotoSans-BoldItalic.woff') format('woff'),
+        url('/assets/fonts/noto-sans/NotoSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/assets/fonts/noto-sans/NotoSans-Italic.woff2') format('woff2'),
+        url('/assets/fonts/noto-sans/NotoSans-Italic.woff') format('woff'),
+        url('/assets/fonts/noto-sans/NotoSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('/assets/fonts/noto-sans/NotoSans-Bold.woff2') format('woff2'),
+        url('/assets/fonts/noto-sans/NotoSans-Bold.woff') format('woff'),
+        url('/assets/fonts/noto-sans/NotoSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+  font-family: 'Indeed Sans';
+  src: url('/assets/fonts/indeed-sans/IndeedSans_W_Lt.woff2') format('woff2'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Lt.woff') format('woff'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Lt.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Indeed Sans';
+  src: url('/assets/fonts/indeed-sans/IndeedSans_W_Md.woff2') format('woff2'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Md.woff') format('woff'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Md.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Indeed Sans';
+  src: url('/assets/fonts/indeed-sans/IndeedSans_W_Rg.woff2') format('woff2'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Rg.woff') format('woff'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Indeed Sans';
+  src: url('/assets/fonts/indeed-sans/IndeedSans_W_It.woff2') format('woff2'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_It.woff') format('woff'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_It.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Indeed Sans';
+  src: url('/assets/fonts/indeed-sans/IndeedSans_W_Bd.woff2') format('woff2'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Bd.woff') format('woff'),
+      url('/assets/fonts/indeed-sans/IndeedSans_W_Bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
