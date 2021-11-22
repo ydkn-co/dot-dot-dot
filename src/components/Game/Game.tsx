@@ -46,6 +46,24 @@ const Game: React.FC<GameProps> = (props) => {
     })
   }, [dispatch])
 
+  const handleResize = () => {
+    if (!gameRef.current) {
+      return
+    }
+
+    dispatch({
+      payload: {
+        height: gameRef.current.offsetHeight,
+        width: gameRef.current.offsetWidth
+      },
+      type: '@GAME/UPDATE_DIMENSIONS'
+    })
+  }
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  }, [])
+
   return (
     <Container
       className={className}

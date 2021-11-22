@@ -5,6 +5,7 @@ import { collectExpressiveColorsByWeight } from '~/design-language/color'
 import randomNumberBetween from '~/utils/randomNumberBetween'
 
 import { Container } from './DotElements'
+import * as math from './math'
 
 interface DotProps {
   id: string;
@@ -21,7 +22,7 @@ const Dot: React.FC<DotProps> = (props) => {
    * inclusive of the bounds.
    */
   const diameter = React.useMemo(
-    () => randomNumberBetween(settings.diameter.min, settings.diameter.max),
+    () => math.randomDiameter(settings.diameter.min, settings.diameter.max),
     [
       settings.diameter.min,
       settings.diameter.max
@@ -37,13 +38,13 @@ const Dot: React.FC<DotProps> = (props) => {
    * hardcoded switch statement would be more difficult to maintain if any of
    * these values changed.
    */
-  const value = React.useMemo(() => Math.max(
-    settings.value.min,
-    Math.round(
-      (settings.diameter.min + settings.diameter.max - diameter) /
-        settings.value.max
-    )
-  ), [
+  const value = React.useMemo(() => math.value({
+    diameter,
+    maxDiameter: settings.diameter.max,
+    maxValue: settings.value.max,
+    minDiameter: settings.diameter.min,
+    minValue: settings.value.min
+  }), [
     diameter,
     settings.value.min,
     settings.value.max,
@@ -82,38 +83,28 @@ const Dot: React.FC<DotProps> = (props) => {
   ])
 
   /**
-   * This variable captures the position on the y-axis that the animation will
-   * start from.
-   */
-  const [yStart, setYStart] = React.useState(0 - diameter)
-
-  /**
    * This function creates a few outputs that will be consumed by the Web
    * Animation api.
    */
   const animation = React.useMemo(() => {
     /**
-     * A dot's position will always start off the board. However, this value
-     * needs to be reset if the speed/difficulty level changes.
+     * A dot's position will always start off the board.
      */
     const y = {
       finish: game.dimensions.height,
-      start: yStart
+      start: 0 - diameter
     }
 
     /**
-     *
+     * The duration of the dot animation needs to consider the dot's height to
+     * achieve perceived constant animation rates between dots of varying sizes.
      */
-    const duration = (
-      ((game.dimensions.height - yStart) * 2) /
-      (settings.difficulty * 10)
-    ) * 1000
+    const duration = math.durationInMs(
+      game.dimensions.height - diameter,
+      settings.difficulty
+    )
 
-    /**
-     * Use `translate3d` to ensure the animation can be hardware accelerated and
-     * run in its own thread.
-     */
-    const keyframes: [Keyframe, Keyframe] = [
+    const keyframes = [
       {
         transform: `translate3d(${x}px, ${y.start}px, 0)`
       },
@@ -124,7 +115,9 @@ const Dot: React.FC<DotProps> = (props) => {
 
     return {
       duration,
-      keyframes
+      keyframes,
+      x,
+      y
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -132,8 +125,7 @@ const Dot: React.FC<DotProps> = (props) => {
     game.dimensions.width,
     diameter,
     settings.difficulty,
-    x,
-    yStart
+    x
   ])
 
   React.useEffect(
@@ -170,13 +162,18 @@ const Dot: React.FC<DotProps> = (props) => {
         id
       })
 
+      if (game.status === 'paused') {
+        animationRef.current.pause()
+      }
+
       animationRef.current.addEventListener('finish', () => {
         animationRef.current?.cancel()
         onRemoveCallback(id)
       })
     },
     [
-      animation,
+      animation.duration,
+      animation.keyframes,
       animationRef,
       dotRef,
       game.status,
@@ -188,29 +185,33 @@ const Dot: React.FC<DotProps> = (props) => {
   /**
    * If the difficulty level/speed of the game changes, we need to replace the
    * current animation with a newly recalculated animation.
+   *
+   * Slight bug in this. Disabled for now. I normally wouldn't commit dead code
+   * lik this. :(
    */
-  React.useEffect(() => {
-    if (
-      !dotRef.current ||
-      !animationRef.current ||
-      animationRef.current.currentTime === 0
-    ) {
-      return
-    }
+  // React.useEffect(() => {
+  //   if (
+  //     !dotRef.current ||
+  //     !dotRef.current.parentElement ||
+  //     !animationRef.current ||
+  //     animationRef.current.currentTime === 0
+  //   ) {
+  //     return
+  //   }
 
-    if (game.status === 'playing') {
-      animationRef.current.pause()
-    }
+  //   if (game.status === 'playing') {
+  //     animationRef.current.pause()
+  //   }
 
-    animationRef.current = undefined
+  //   animationRef.current = undefined
 
-    const { transform } = window.getComputedStyle(dotRef.current)
-    const { f: translationY } = new DOMMatrix(transform)
+  //   const { transform } = window.getComputedStyle(dotRef.current)
+  //   const { f: translationY } = new DOMMatrix(transform)
 
-    setYStart(translationY)
-  }, [
-    game.settings.difficulty
-  ])
+  //   setVerticalProgress(translationY)
+  // }, [
+  //   game.settings.difficulty
+  // ])
 
   /**
    * Update the score on click, and then remove the dot. Also, use a ref to
@@ -239,6 +240,23 @@ const Dot: React.FC<DotProps> = (props) => {
     onRemoveCallback(id)
   }
 
+  const title = game.status === 'paused'
+    ? [
+      `ID: ${id}`,
+      `Value: ${value}`,
+      `Diameter: ${diameter}`,
+      `Game Dimensions: ${game.dimensions.width}x${game.dimensions.height}`,
+      `Initial coordinates: ${x}, ${0 - diameter}`,
+      // eslint-disable-next-line max-len
+      `Animation y-axis [start, finish]: [${animation.y.start}, ${animation.y.finish}]`,
+      `Animation keyframe start: ${animation.keyframes[0].transform}`,
+      `Animation keyframe finish: ${animation.keyframes[1].transform}`,
+      // eslint-disable-next-line max-len
+      `Animation Duration as constant: ${math.durationInMs(game.dimensions.height, settings.difficulty) / 1000}s`,
+      `Animation Duration, dot height adjusted: ${animation.duration / 1000}s`
+    ].join('\n')
+    : ''
+
   return (
     <Container
       animationState={game.status === 'playing' ? 'running' : 'paused'}
@@ -247,6 +265,7 @@ const Dot: React.FC<DotProps> = (props) => {
       isReadonly={game.settings.isReadonly}
       onMouseDown={handleClick}
       ref={dotRef}
+      title={title}
     />
   )
 }

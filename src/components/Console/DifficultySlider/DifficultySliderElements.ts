@@ -72,23 +72,25 @@ export const Levels = styled.div`
   flex-direction: row;
   gap: 8px;
   grid-area: steps;
-  height: 80px;
+  height: 20px;
   width: 100%;
 `
 Levels.displayName = 'DifficultySlider.Levels'
 
-export const Level = styled.div`
+export const Level = styled.button`
   align-items: center;
   background: ${props => props.theme.colors.background};
+  border: 0;
   border-radius: 4px;
   color: ${props => props.theme.colors.primary};
+  cursor: pointer;
   display: flex;
   font-family: ${props => props.theme.type.fonts.voice};
   font-size: ${props => props.theme.type.size.md};
   font-weight: ${props => props.theme.type.weight.bold};
   height: 100%;
   justify-content: center;
-  transition: color ${props => props.theme.motion.randomColorTransition};
+  transition: background-color 100ms linear;
   width: calc(10% - 7.4px);
 `
 Level.displayName = 'DifficultySlider.Level'
