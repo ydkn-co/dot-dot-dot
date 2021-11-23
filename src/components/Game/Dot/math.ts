@@ -27,6 +27,6 @@ export const value = ({
 )
 
 export const durationInMs = (height: number, difficulty: number) => Math.max(
-  2,
+  0,
   height / (difficulty * 10)
 ) * 1000
