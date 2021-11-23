@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100vh;
     width: 100vw;
+    min-width: 300px;
     overscroll-behavior: none;
   }
 

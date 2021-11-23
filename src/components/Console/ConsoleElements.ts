@@ -21,8 +21,14 @@ export const Container = styled.div`
   max-width: calc(100vw - 40px);
   padding: 8px;
   position: relative;
-  width: 80vw;
+  width: 100%;
   z-index: ${props => props.theme.zIndex.menu};
+
+  ${props => props.theme.mediaQueries.md`
+     height: calc(100vh - 80px);
+     max-width: calc(100vw - 80px);
+     width: 80vw;
+  `}
 `
 
 export const Header = styled.div`

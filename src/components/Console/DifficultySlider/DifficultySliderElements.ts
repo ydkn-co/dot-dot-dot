@@ -5,9 +5,9 @@ export const Container = styled.div`
   display: grid;
   gap: 10px;
   grid-template-areas:
-      'stats'
-      'input'
-      'steps';
+    'stats'
+    'input'
+    'levels';
   grid-template-rows: 1fr max-content max-content;
   height: 100%;
 `
@@ -34,17 +34,25 @@ export const Input = styled.input`
   border-radius: 8px;
   height: 16px;
   outline: none;
-  padding: 4px;
   transition: color ${props => props.theme.motion.randomColorTransition};
+
+  ${props => props.theme.mediaQueries.md`
+    padding: 4px;
+  `}
 
   &::-webkit-slider-thumb {
     appearance: none;
     aspect-ratio: 1 / 1;
     background-color: ${props => props.theme.colors.primary};
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color ${props => props.theme.motion.randomColorTransition};
-    width: 10px;
+    width: 30px;
+
+    ${props => props.theme.mediaQueries.md`
+      border-radius: 10px;
+      width: 10px;
+    `}
   }
 `
 Input.displayName = 'DifficultySlider.Input'
@@ -71,7 +79,7 @@ export const Levels = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
-  grid-area: steps;
+  grid-area: levels;
   height: 20px;
   width: 100%;
 `
@@ -88,8 +96,8 @@ export const Level = styled.button`
   font-family: ${props => props.theme.type.fonts.voice};
   font-size: ${props => props.theme.type.size.md};
   font-weight: ${props => props.theme.type.weight.bold};
-  height: 100%;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
   transition: background-color 100ms linear;
   width: calc(10% - 7.4px);
 `
