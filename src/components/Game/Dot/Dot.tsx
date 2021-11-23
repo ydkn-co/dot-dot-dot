@@ -74,13 +74,12 @@ const Dot: React.FC<DotProps> = (props) => {
   /**
    * Ensure that a dot is not positioned beyond the bounds the board.
    */
-  const x = React.useMemo(() => randomNumberBetween(
+  const x = React.useRef(randomNumberBetween(
     0,
     game.dimensions.width - diameter
-  ), [
-    game.dimensions.width,
-    diameter
-  ])
+  ))
+
+  const [vericalProgress, setVerticalProgress] = React.useState(0 - diameter)
 
   /**
    * This function creates a few outputs that will be consumed by the Web
@@ -92,7 +91,7 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     const y = {
       finish: game.dimensions.height,
-      start: 0 - diameter
+      start: vericalProgress
     }
 
     /**
@@ -100,23 +99,23 @@ const Dot: React.FC<DotProps> = (props) => {
      * achieve perceived constant animation rates between dots of varying sizes.
      */
     const duration = math.durationInMs(
-      game.dimensions.height - diameter,
+      game.dimensions.height - vericalProgress,
       settings.difficulty
     )
 
     const keyframes = [
       {
-        transform: `translate3d(${x}px, ${y.start}px, 0)`
+        transform: `translate3d(${x.current}px, ${y.start}px, 0)`
       },
       {
-        transform: `translate3d(${x}px, ${y.finish}px, 0)`
+        transform: `translate3d(${x.current}px, ${y.finish}px, 0)`
       }
     ]
 
     return {
       duration,
       keyframes,
-      x,
+      x: x.current,
       y
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,6 +124,7 @@ const Dot: React.FC<DotProps> = (props) => {
     game.dimensions.width,
     diameter,
     settings.difficulty,
+    vericalProgress,
     x
   ])
 
@@ -189,29 +189,30 @@ const Dot: React.FC<DotProps> = (props) => {
    * Slight bug in this. Disabled for now. I normally wouldn't commit dead code
    * lik this. :(
    */
-  // React.useEffect(() => {
-  //   if (
-  //     !dotRef.current ||
-  //     !dotRef.current.parentElement ||
-  //     !animationRef.current ||
-  //     animationRef.current.currentTime === 0
-  //   ) {
-  //     return
-  //   }
+  React.useEffect(() => {
+    if (
+      !dotRef.current ||
+      !dotRef.current.parentElement ||
+      !animationRef.current ||
+      animationRef.current.currentTime === 0
+    ) {
+      return
+    }
 
-  //   if (game.status === 'playing') {
-  //     animationRef.current.pause()
-  //   }
+    if (game.status === 'playing') {
+      animationRef.current.pause()
+    }
 
-  //   animationRef.current = undefined
+    animationRef.current = undefined
 
-  //   const { transform } = window.getComputedStyle(dotRef.current)
-  //   const { f: translationY } = new DOMMatrix(transform)
+    const { transform } = window.getComputedStyle(dotRef.current)
+    const { f: translationY } = new DOMMatrix(transform)
 
-  //   setVerticalProgress(translationY)
-  // }, [
-  //   game.settings.difficulty
-  // ])
+    setVerticalProgress(translationY)
+  }, [
+    game.status,
+    game.settings.difficulty
+  ])
 
   /**
    * Update the score on click, and then remove the dot. Also, use a ref to
@@ -246,8 +247,9 @@ const Dot: React.FC<DotProps> = (props) => {
       `Value: ${value}`,
       `Diameter: ${diameter}`,
       `Game Dimensions: ${game.dimensions.width}x${game.dimensions.height}`,
-      `Initial coordinates: ${x}, ${0 - diameter}`,
+      `Initial coordinates: ${x.current}, ${0 - diameter}`,
       // eslint-disable-next-line max-len
+      `Animation vertical progress: ${vericalProgress}`,
       `Animation y-axis [start, finish]: [${animation.y.start}, ${animation.y.finish}]`,
       `Animation keyframe start: ${animation.keyframes[0].transform}`,
       `Animation keyframe finish: ${animation.keyframes[1].transform}`,

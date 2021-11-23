@@ -39,7 +39,7 @@ describe('math', () => {
     }
 
     describe('given value constraints of 1-10, and diameter 10-100', () => {
-      test.only.each([
+      test.each([
         { ...baseArgs, diameter: 100, expected: 1 },
         { ...baseArgs, diameter: 90, expected: 2 },
         { ...baseArgs, diameter: 80, expected: 3 },
@@ -59,10 +59,6 @@ describe('math', () => {
   })
 
   describe('duration()', () => {
-    test('returns a minimum duration of 2 seconds to for a pleasant UX', () => {
-      expect(durationInMs(1, 10)).toBe(2000)
-    })
-
     describe('given test cases', () => {
       test.each([
         { h: 1000, d: 10, e: 10 * 1000 },
