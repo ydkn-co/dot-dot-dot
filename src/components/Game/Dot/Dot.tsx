@@ -266,6 +266,7 @@ const Dot: React.FC<DotProps> = (props) => {
       diameter={diameter}
       isReadonly={game.settings.isReadonly}
       onMouseDown={handleClick}
+      onTouchStart={handleClick}
       ref={dotRef}
       title={title}
     />

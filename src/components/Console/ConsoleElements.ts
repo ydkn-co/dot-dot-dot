@@ -13,17 +13,22 @@ export const Container = styled.div`
   display: grid;
   gap: 8px;
   grid-template-areas:
-      'header'
-      'game'
-      'settings';
+    'header'
+    'game'
+    'settings';
   grid-template-rows: max-content 1fr max-content;
-  height: calc(100vh - 80px);
-  margin: 40px;
-  max-width: calc(100vw - 96px);
+  height: calc(100vh - 40px);
+  max-width: calc(100vw - 40px);
   padding: 8px;
   position: relative;
-  width: 80vw;
+  width: 100%;
   z-index: ${props => props.theme.zIndex.menu};
+
+  ${props => props.theme.mediaQueries.md`
+     height: calc(100vh - 80px);
+     max-width: calc(100vw - 80px);
+     width: 80vw;
+  `}
 `
 
 export const Header = styled.div`

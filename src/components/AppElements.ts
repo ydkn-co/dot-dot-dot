@@ -24,7 +24,6 @@ export const Container = styled.div<Container>`
   height: 100%;
   justify-content: center;
   overflow: hidden;
-  padding: 40px;
   position: relative;
   width: 100%;
 `

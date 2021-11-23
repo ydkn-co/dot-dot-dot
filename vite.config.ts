@@ -5,6 +5,9 @@ import svgPlugin from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  assetsInclude: [
+    '**/*.woff'
+  ],
   plugins: [
     svgPlugin(),
     react()
