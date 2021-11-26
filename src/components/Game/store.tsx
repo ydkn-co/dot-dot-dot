@@ -15,9 +15,9 @@ export interface Settings {
     max: number;
     min: number;
   },
-  difficulty: number;
   interval: number;
   isReadonly: boolean,
+  speed: number;
   value: {
     max: number;
     min: number;
@@ -44,9 +44,9 @@ export const initialState: State = {
       max: 100,
       min: 10
     },
-    difficulty: 5,
     interval: 1000,
     isReadonly: false,
+    speed: 50,
     value: {
       max: 10,
       min: 1
@@ -62,7 +62,7 @@ type Action =
   | { type: '@GAME/UPDATE_IS_FULLSCREEN', payload: boolean }
   | { type: '@GAME/UPDATE_SCORE', payload: number }
   | { type: '@GAME/UPDATE_SETTINGS', payload: Partial<Settings> }
-  | { type: '@GAME/UPDATE_SETTINGS_DIFFICULTY', payload: number }
+  | { type: '@GAME/UPDATE_SETTINGS_SPEED', payload: number }
   | { type: '@GAME/UPDATE_STATUS', payload: Status }
 /* eslint-enable typescript-sort-keys/interface */
 
@@ -91,13 +91,13 @@ const reducer = (state: State = initialState, action: Action) => {
           settings: action.payload
         }
       )
-    case '@GAME/UPDATE_SETTINGS_DIFFICULTY':
+    case '@GAME/UPDATE_SETTINGS_SPEED':
       return merge(
         {},
         state,
         {
           settings: {
-            difficulty: action.payload
+            speed: action.payload
           }
         }
       )

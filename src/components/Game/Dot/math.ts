@@ -26,7 +26,7 @@ export const value = ({
   Math.round((minDiameter + maxDiameter - diameter) / maxValue)
 )
 
-export const durationInMs = (height: number, difficulty: number) => Math.max(
+export const durationInMs = (height: number, speed: number) => Math.max(
   0,
-  height / (difficulty * 10)
-) * 1000
+  Math.round(height / speed * 1000)
+)

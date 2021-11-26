@@ -11,15 +11,15 @@ import {
   Level,
   Levels,
   Stats
-} from './DifficultySliderElements'
+} from './SpeedSliderElements'
 
-const DifficultySlider: React.FC = () => {
+const SpeedSlider: React.FC = () => {
   const { t } = useTranslation()
   const { game, dispatch } = useGame()
 
-  const [difficulty, setDifficulty] = React.useState(game.settings.difficulty)
-  const [speed, setSpeed] = React.useState<number>(difficulty * 10)
-  const debouncedDifficulty = useDebounce(difficulty, 100)
+  const [difficulty, setDifficulty] = React.useState(0)
+  const [speed, setSpeed] = React.useState<number>(game.settings.speed)
+  const debouncedSpeed = useDebounce(speed, 100)
 
   const levels = React.useMemo(() => [...Array(10).keys()], [])
 
@@ -29,10 +29,10 @@ const DifficultySlider: React.FC = () => {
 
   React.useEffect(() => {
     dispatch({
-      payload: debouncedDifficulty,
-      type: '@GAME/UPDATE_SETTINGS_DIFFICULTY'
+      payload: debouncedSpeed,
+      type: '@GAME/UPDATE_SETTINGS_SPEED'
     })
-  }, [dispatch, debouncedDifficulty])
+  }, [dispatch, debouncedSpeed])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpeed(Number(e.target.value))
@@ -52,16 +52,16 @@ const DifficultySlider: React.FC = () => {
     <Container>
       <Stats>
         <span>
-          {t('game.stats.speed')}
-          :
-          {' '}
-          {speed}
-        </span>
-        <span>
           {t('game.stats.difficulty')}
           :
           {' '}
           {difficulty}
+        </span>
+        <span>
+          {t('game.stats.speed')}
+          :
+          {' '}
+          {speed}
         </span>
         <span>
           {t('game.stats.score')}
@@ -75,7 +75,7 @@ const DifficultySlider: React.FC = () => {
           defaultValue={speed}
           max={100}
           min={10}
-          name="difficulty"
+          name="speed"
           onChange={handleChange}
           ref={inputRef}
           step={1}
@@ -103,4 +103,4 @@ const DifficultySlider: React.FC = () => {
   )
 }
 
-export default DifficultySlider
+export default SpeedSlider

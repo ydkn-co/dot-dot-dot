@@ -11,7 +11,7 @@ export const Container = styled.div`
   grid-template-rows: 1fr max-content max-content;
   height: 100%;
 `
-Container.displayName = 'DifficultySlider.Container'
+Container.displayName = 'SpeedSlider.Container'
 
 export const Stats = styled.div`
   color: ${props => props.theme.colors.text};

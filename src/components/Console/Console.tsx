@@ -8,11 +8,11 @@ import { useTheme } from '~/utils/styled'
 import {
   Button,
   Container,
-  DifficultySlider,
   GameContainer,
   Header,
   Logo,
-  Settings
+  Settings,
+  SpeedSlider
 } from './ConsoleElements'
 
 interface MenuProps {
@@ -89,7 +89,7 @@ const Console: React.FC<MenuProps> = (props) => {
       </GameContainer>
 
       <Settings>
-        <DifficultySlider />
+        <SpeedSlider />
       </Settings>
     </Container>
   )

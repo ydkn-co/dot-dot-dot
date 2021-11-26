@@ -61,17 +61,18 @@ describe('math', () => {
   describe('duration()', () => {
     describe('given test cases', () => {
       test.each([
-        { h: 1000, d: 10, e: 10 * 1000 },
-        { h: 1000, d: 5, e: 20 * 1000 },
-        { h: 1000, d: 1, e: 100 * 1000 },
-        { h: 500, d: 10, e: 5 * 1000 },
-        { h: 500, d: 5, e: 10 * 1000 },
-        { h: 500, d: 1, e: 50 * 1000 }
+        { h: 1000, s: 100, e: 10 * 1000 },
+        { h: 1000, s: 75, e: 13.333 * 1000 },
+        { h: 1000, s: 50, e: 20 * 1000 },
+        { h: 1000, s: 10, e: 100 * 1000 },
+        { h: 500, s: 100, e: 5 * 1000 },
+        { h: 500, s: 50, e: 10 * 1000 },
+        { h: 500, s: 10, e: 50 * 1000 }
       ])(
         // eslint-disable-next-line max-len
-        'given a height of $h and a difficulty of $d, the duration should be $e milliseconds',
-        ({ h: height, d: difficulty, e: expected }) => {
-          expect(durationInMs(height, difficulty)).toBe(expected)
+        'given a height of $h and a speed of $s, the duration should be $e milliseconds',
+        ({ h: height, s: speed, e: expected }) => {
+          expect(durationInMs(height, speed)).toBe(expected)
         }
       )
     })
