@@ -3,7 +3,7 @@ import { ReactComponent as LogoSvg } from '~/assets/logo.svg'
 import styled from '~/utils/styled'
 
 import BaseButton from './Button'
-import BaseDifficultySlider from './DifficultySlider'
+import BaseSpeedSlider from './SpeedSlider'
 
 export const Container = styled.div`
   backdrop-filter: blur(20px);
@@ -104,4 +104,4 @@ export const Label = styled.label`
   transition: color ${props => props.theme.motion.randomColorTransition};
 `
 
-export const DifficultySlider = styled(BaseDifficultySlider)``
+export const SpeedSlider = styled(BaseSpeedSlider)``

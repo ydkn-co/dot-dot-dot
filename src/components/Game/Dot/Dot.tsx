@@ -100,7 +100,7 @@ const Dot: React.FC<DotProps> = (props) => {
      */
     const duration = math.durationInMs(
       game.dimensions.height - vericalProgress,
-      settings.difficulty
+      settings.speed
     )
 
     const keyframes = [
@@ -123,7 +123,7 @@ const Dot: React.FC<DotProps> = (props) => {
     game.dimensions.height,
     game.dimensions.width,
     diameter,
-    settings.difficulty,
+    settings.speed,
     vericalProgress,
     x
   ])
@@ -183,11 +183,8 @@ const Dot: React.FC<DotProps> = (props) => {
   )
 
   /**
-   * If the difficulty level/speed of the game changes, we need to replace the
-   * current animation with a newly recalculated animation.
-   *
-   * Slight bug in this. Disabled for now. I normally wouldn't commit dead code
-   * lik this. :(
+   * If the speed of the game changes, we need to replace the current animation
+   * with a newly recalculated animation.
    */
   React.useEffect(() => {
     if (
@@ -211,7 +208,7 @@ const Dot: React.FC<DotProps> = (props) => {
     setVerticalProgress(translationY)
   }, [
     game.status,
-    game.settings.difficulty
+    game.settings.speed
   ])
 
   /**
@@ -254,7 +251,7 @@ const Dot: React.FC<DotProps> = (props) => {
       `Animation keyframe start: ${animation.keyframes[0].transform}`,
       `Animation keyframe finish: ${animation.keyframes[1].transform}`,
       // eslint-disable-next-line max-len
-      `Animation Duration as constant: ${math.durationInMs(game.dimensions.height, settings.difficulty) / 1000}s`,
+      `Animation Duration as constant: ${math.durationInMs(game.dimensions.height, settings.speed) / 1000}s`,
       `Animation Duration, dot height adjusted: ${animation.duration / 1000}s`
     ].join('\n')
     : ''
